@@ -3,9 +3,7 @@
 namespace App\Domain\UseCase\Queries;
 
 use App\Domain\Adapters\Repositories\ITaxonomiesRepository;
-use App\Domain\ValueObjects\Category;
 use App\Domain\ValueObjects\SingleCategory;
-use App\Domain\ValueObjects\SinglePost;
 
 readonly class GetSingleCategoryQuery
 {

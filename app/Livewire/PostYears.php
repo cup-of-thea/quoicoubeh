@@ -9,7 +9,9 @@ use Livewire\Component;
 
 class PostYears extends Component
 {
+    use HasToggle;
     private GetPostYearsQuery $postYearsQuery;
+
 
     public function boot(GetPostYearsQuery $postYearsQuery): void
     {
@@ -21,4 +23,5 @@ class PostYears extends Component
     {
         return $this->postYearsQuery->get();
     }
+
 }

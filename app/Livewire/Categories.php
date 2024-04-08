@@ -9,6 +9,8 @@ use Livewire\Component;
 
 class Categories extends Component
 {
+    use HasToggle;
+
     private GetCategoriesQuery $categoriesQuery;
 
     public function boot(GetCategoriesQuery $categoriesQuery): void

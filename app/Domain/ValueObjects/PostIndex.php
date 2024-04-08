@@ -14,7 +14,9 @@ readonly class PostIndex implements Wireable
         public ?string $description,
         public Carbon $date,
         public ?PostItemCategory $category,
-        public Reading $reading
+        public ?Episode $episode,
+        public Reading $reading,
+        public ?Review $review,
     ) {
     }
     public function toLivewire(): array
@@ -38,7 +40,9 @@ readonly class PostIndex implements Wireable
             description: $value['description'],
             date: Carbon::parse($value['date']),
             category: PostItemCategory::fromLivewire($value['category']),
+            episode: Episode::fromLivewire($value['episode']),
             reading: Reading::fromLivewire($value['reading']),
+            review: Review::fromLivewire($value['review']),
         );
     }
 }

@@ -14,9 +14,13 @@ readonly class PostDomainService
 
     public function getSinglePost(string $slug): SinglePost
     {
-        $this->incrementReadingCount($slug);
+        $post = Cache::remember("posts:$slug", 86400, fn() => $this->postsRepository->getPost($slug));
 
-        return Cache::remember("posts:$slug", 86400, fn() => $this->postsRepository->getPost($slug));
+        if($post) {
+            $this->incrementReadingCount($slug);
+        }
+
+        return $post;
     }
 
     public function incrementReadingCount(string $slug): void

@@ -3,7 +3,9 @@
 namespace App\Adapters\Repositories;
 
 use App\Domain\Adapters\Repositories\IPostsRepository;
+use App\Domain\Exceptions\NotFoundException;
 use App\Domain\ValueObjects\CategoryId;
+use App\Domain\ValueObjects\Episode;
 use App\Domain\ValueObjects\PostId;
 use App\Domain\ValueObjects\PostIndex;
 use App\Domain\ValueObjects\PostIndexCollection;
@@ -11,34 +13,41 @@ use App\Domain\ValueObjects\PostItemCategory;
 use App\Domain\ValueObjects\PostYear;
 use App\Domain\ValueObjects\PostYearsCollection;
 use App\Domain\ValueObjects\Reading;
+use App\Domain\ValueObjects\Review;
+use App\Domain\ValueObjects\SeriesId;
 use App\Domain\ValueObjects\SinglePost;
 use App\Domain\ValueObjects\TagId;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
 class PostsRepository implements IPostsRepository
 {
+    const LIMIT_POSTS = 500;
+    const POST_INDEX_COLUMNS = [
+        'p.id',
+        'p.title',
+        'p.slug',
+        'p.description',
+        'p.date',
+        'c.id as category_id',
+        'c.title as category_title',
+        'c.slug as category_slug',
+        's.title as series_title',
+        's.slug as series_slug',
+        'e.episode_number',
+        'pm.reading_time',
+        'pm.reading_count',
+        'pm.review_authors',
+    ];
+
     public function getLastPosts(): PostIndexCollection
     {
-        $items = DB::table('posts as p')
-            ->select('p.id', 'p.title', 'p.slug', 'p.description', 'p.content', 'p.date', 'c.id as category_id', 'c.title as category_title', 'c.slug as category_slug', 'pm.reading_time', 'pm.reading_count')
-            ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
-            ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
+        $items = $this->postIndexBuilder()
             ->orderBy('date', 'desc')
             ->limit(10)
             ->get()
-            ->map(fn($post) => new PostIndex(
-                PostId::from($post->id),
-                $post->title,
-                $post->slug,
-                $post->description,
-                new Carbon($post->date),
-                $post->category_id
-                    ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
-                    : null,
-                Reading::from($post->reading_time, $post->reading_count)
-            ));
+            ->map(fn($post) => $this->hydratePostIndex($post));
 
         return new PostIndexCollection(...$items);
     }
@@ -56,6 +65,9 @@ class PostsRepository implements IPostsRepository
         return new PostYearsCollection(...$years);
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function getPost(string $slug): SinglePost
     {
         $post = DB::table('posts as p')
@@ -67,6 +79,107 @@ class PostsRepository implements IPostsRepository
             ->where('p.slug', $slug)
             ->first();
 
+        return $post ? $this->hydrateSinglePost($post) : throw new NotFoundException();
+    }
+
+    public function incrementReadingCount(string $slug): void
+    {
+        DB::table('post_meta')
+            ->where('post_id', DB::table('posts')->where('slug', $slug)->value('id'))
+            ->increment('reading_count');
+    }
+
+    public function getPostsFromCategory(CategoryId $categoryId): PostIndexCollection
+    {
+        $items = $this->postIndexBuilder()
+            ->orderBy('date', 'desc')
+            ->where('c.id', $categoryId->value)
+            ->limit(self::LIMIT_POSTS)
+            ->get()
+            ->map(fn($post) => $this->hydratePostIndex($post));
+
+        return new PostIndexCollection(...$items);
+    }
+
+    public function getPostsFromTag(TagId $tagId): PostIndexCollection
+    {
+        $items = $this->postIndexBuilder()
+            ->join('post_tag as pt', 'p.id', '=', 'pt.post_id')
+            ->join('tags as t', 'pt.tag_id', '=', 't.id')
+            ->where('t.id', $tagId->value)
+            ->orderBy('date', 'desc')
+            ->limit(self::LIMIT_POSTS)
+            ->get()
+            ->map(fn($post) => $this->hydratePostIndex($post));
+
+        return new PostIndexCollection(...$items);
+    }
+
+    public function getPostsFromYear(int $year): PostIndexCollection
+    {
+        $items = $this->postIndexBuilder()
+            ->whereYear('date', $year)
+            ->orderBy('date', 'desc')
+            ->limit(self::LIMIT_POSTS)
+            ->get()
+            ->map(fn($post) => $this->hydratePostIndex($post));
+
+        return new PostIndexCollection(...$items);
+    }
+
+    public function getSeriesEpisodes(SeriesId $seriesId): PostIndexCollection
+    {
+        $items = $this->postIndexBuilder()
+            ->where('e.series_id', $seriesId->value)
+            ->orderBy('e.episode_number')
+            ->limit(self::LIMIT_POSTS)
+            ->get()
+            ->map(fn($post) => $this->hydratePostIndex($post));
+
+        return new PostIndexCollection(...$items);
+    }
+
+    public function postIndexBuilder(): Builder
+    {
+        return DB::table('posts as p')
+            ->select(...self::POST_INDEX_COLUMNS)
+            ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
+            ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
+            ->leftJoin('episodes as e', 'p.id', '=', 'e.post_id')
+            ->leftJoin('series as s', 'e.series_id', '=', 's.id');
+    }
+
+    private function hydratePostIndex($post): PostIndex
+    {
+        return new PostIndex(
+            PostId::from($post->id),
+            $post->title,
+            $post->slug,
+            $post->description,
+            new Carbon($post->date),
+            $post->category_id
+                ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
+                : null,
+            $post->episode_number
+                ? Episode::from($post->episode_number, $post->series_title, $post->series_slug)
+                : null,
+            Reading::from($post->reading_time, $post->reading_count),
+            $post->review_authors
+                ? Review::from($post->review_authors)
+                : null,
+        );
+    }
+
+    public function getRandomPostSlug(): string
+    {
+        return DB::table('posts')
+            ->inRandomOrder()
+            ->limit(1)
+            ->value('slug');
+    }
+
+    private function hydrateSinglePost(object $post): SinglePost
+    {
         return new SinglePost(
             PostId::from($post->id),
             $post->title,
@@ -79,89 +192,5 @@ class PostsRepository implements IPostsRepository
                 ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
                 : null,
         );
-    }
-
-    public function incrementReadingCount(string $slug): void
-    {
-        DB::table('post_meta')
-            ->where('post_id', DB::table('posts')->where('slug', $slug)->value('id'))
-            ->increment('reading_count');
-    }
-
-    public function getPostsFromCategory(CategoryId $categoryId): PostIndexCollection
-    {
-        $items = DB::table('posts as p')
-            ->select('p.id', 'p.title', 'p.slug', 'p.description', 'p.content', 'p.date', 'c.id as category_id', 'c.title as category_title', 'c.slug as category_slug', 'pm.reading_time', 'pm.reading_count')
-            ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
-            ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
-            ->orderBy('date', 'desc')
-            ->where('c.id', $categoryId->value)
-            ->limit(500)
-            ->get()
-            ->map(fn($post) => new PostIndex(
-                PostId::from($post->id),
-                $post->title,
-                $post->slug,
-                $post->description,
-                new Carbon($post->date),
-                $post->category_id
-                    ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
-                    : null,
-                Reading::from($post->reading_time, $post->reading_count)
-            ));
-
-        return new PostIndexCollection(...$items);
-    }
-
-    public function getPostsFromTag(TagId $tagId): PostIndexCollection
-    {
-        $items = DB::table('posts as p')
-            ->select('p.id', 'p.title', 'p.slug', 'p.description', 'p.content', 'p.date', 'c.id as category_id', 'c.title as category_title', 'c.slug as category_slug', 'pm.reading_time', 'pm.reading_count')
-            ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
-            ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
-            ->join('post_tag as pt', 'p.id', '=', 'pt.post_id')
-            ->join('tags as t', 'pt.tag_id', '=', 't.id')
-            ->where('t.id', $tagId->value)
-            ->orderBy('date', 'desc')
-            ->limit(500)
-            ->get()
-            ->map(fn($post) => new PostIndex(
-                PostId::from($post->id),
-                $post->title,
-                $post->slug,
-                $post->description,
-                new Carbon($post->date),
-                $post->category_id
-                    ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
-                    : null,
-                Reading::from($post->reading_time, $post->reading_count)
-            ));
-
-        return new PostIndexCollection(...$items);
-    }
-
-    public function getPostsFromYear(int $year): PostIndexCollection
-    {
-        $items = DB::table('posts as p')
-            ->select('p.id', 'p.title', 'p.slug', 'p.description', 'p.content', 'p.date', 'c.id as category_id', 'c.title as category_title', 'c.slug as category_slug', 'pm.reading_time', 'pm.reading_count')
-            ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
-            ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
-            ->whereYear('date', $year)
-            ->orderBy('date', 'desc')
-            ->limit(500)
-            ->get()
-            ->map(fn($post) => new PostIndex(
-                PostId::from($post->id),
-                $post->title,
-                $post->slug,
-                $post->description,
-                new Carbon($post->date),
-                $post->category_id
-                    ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
-                    : null,
-                Reading::from($post->reading_time, $post->reading_count)
-            ));
-
-        return new PostIndexCollection(...$items);
     }
 }

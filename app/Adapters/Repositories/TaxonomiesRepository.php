@@ -3,12 +3,17 @@
 namespace App\Adapters\Repositories;
 
 use App\Domain\Adapters\Repositories\ITaxonomiesRepository;
+use App\Domain\Exceptions\NotFoundException;
 use App\Domain\ValueObjects\CategoriesCollection;
 use App\Domain\ValueObjects\Category;
 use App\Domain\ValueObjects\CategoryId;
 use App\Domain\ValueObjects\PostId;
 use App\Domain\ValueObjects\PostItemTag;
+use App\Domain\ValueObjects\Series;
+use App\Domain\ValueObjects\SeriesCollection;
+use App\Domain\ValueObjects\SeriesId;
 use App\Domain\ValueObjects\SingleCategory;
+use App\Domain\ValueObjects\SingleSeries;
 use App\Domain\ValueObjects\SingleTag;
 use App\Domain\ValueObjects\Tag;
 use App\Domain\ValueObjects\TagId;
@@ -45,6 +50,22 @@ class TaxonomiesRepository implements ITaxonomiesRepository
         return new TagsCollection($tags);
     }
 
+
+    public function getSeries(): SeriesCollection
+    {
+        $series = DB::table('series as s')
+            ->select('s.id', 's.title', 's.slug', DB::raw('count(p.id) as count'))
+            ->leftJoin('episodes as e', 's.id', '=', 'e.series_id')
+            ->leftJoin('posts as p', 'p.id', '=', 'e.post_id')
+            ->orderBy('count', 'desc')
+            ->groupBy('s.id')
+            ->limit(500)
+            ->get()
+            ->map(fn($series) => Series::from(SeriesId::from($series->id), $series->title, $series->slug, $series->count));
+
+        return new SeriesCollection($series);
+    }
+
     public function getPostTags(PostId $postId): TagsCollection
     {
         $tags = DB::table('post_tag as pt')
@@ -57,6 +78,9 @@ class TaxonomiesRepository implements ITaxonomiesRepository
         return new TagsCollection($tags);
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function getSingleCategory(string $slug): SingleCategory
     {
         $category = DB::table('categories as c')
@@ -64,9 +88,14 @@ class TaxonomiesRepository implements ITaxonomiesRepository
             ->where('c.slug', $slug)
             ->first();
 
-        return SingleCategory::from(CategoryId::from($category->id), $category->title, $category->slug);
+        return $category
+            ? SingleCategory::from(CategoryId::from($category->id), $category->title, $category->slug)
+            : throw new NotFoundException();
     }
 
+    /**
+     * @throws NotFoundException
+     */
     public function getSingleTag(string $slug): SingleTag
     {
         $tag = DB::table('tags as t')
@@ -74,6 +103,21 @@ class TaxonomiesRepository implements ITaxonomiesRepository
             ->where('t.slug', $slug)
             ->first();
 
-        return SingleTag::from(TagId::from($tag->id), $tag->title, $tag->slug);
+        return $tag ? SingleTag::from(TagId::from($tag->id), $tag->title, $tag->slug) : throw new NotFoundException();
+    }
+
+    /**
+     * @throws NotFoundException
+     */
+    public function getSingleSeries(string $slug): SingleSeries
+    {
+        $series = DB::table('series as s')
+            ->select('s.id', 's.title', 's.slug')
+            ->where('s.slug', $slug)
+            ->first();
+
+        return $series
+            ? SingleSeries::from(SeriesId::from($series->id), $series->title, $series->slug)
+            : throw new NotFoundException();
     }
 }

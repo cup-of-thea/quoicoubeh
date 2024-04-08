@@ -9,6 +9,7 @@ use Livewire\Component;
 
 class Tags extends Component
 {
+    use HasToggle;
     private GetTagsQuery $query;
 
     public function boot(GetTagsQuery $query): void
