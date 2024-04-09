@@ -1,4 +1,4 @@
-<div>
+<div class="text-center lg:text-left">
     <div class="relative inline-block">
             <img class="h-32 w-32 rounded-full shadow" src="{{ $avatarUrl }}" alt="Avatar">
             <div class="absolute shadow bottom-0 right-0 block text-lg h-10 w-10 rounded-full bg-white flex items-center justify-center">
@@ -19,12 +19,12 @@
         <div class="h-2"></div>
     </div>
 
-    <ul role="list" class="mt-6 flex gap-6 flex-wrap">
+    <ul role="list" class="mt-6 flex justify-center lg:justify-start gap-6 flex-wrap">
         @foreach($links as $link)
             <li>
                 <a href="{{ $link['url'] }}" class="hover:text-moonstone">
                     <span class="sr-only">{{ $link['title'] }}</span>
-                    <x-dynamic-component component="{{ $link['icon'] }}" class="h-5 w-5" />
+                    <x-dynamic-component component="{{ $link['icon'] }}" class="sm:h-5 sm:w-5 h-6 w-6" />
                 </a>
             </li>
         @endforeach

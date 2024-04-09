@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>{{ $title ?? config('app.name') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,16 +11,16 @@
     @livewireStyles
 </head>
 <body class="bg-alice-blue font-sans text-paynes-gray overflow-y-scroll dark:bg-black-pearl dark:text-alice-blue">
-<div class="mx-auto flex w-full max-w-10xl items-start gap-x-36 px-4 py-10 sm:px-6 lg:px-8">
-    <aside class="sticky top-8 hidden w-64 shrink-0 lg:block">
+<div class="mx-auto flex flex-col xl:flex-row w-full max-w-10xl items-start xl:gap-x-12 px-4 py-10 sm:px-6 xl:px-8">
+    <aside class="xl:sticky top-8 xl:w-64 shrink-0 mx-auto max-w-3xl px-6 xl:px-0">
         <livewire:profile />
     </aside>
 
-    <main class="flex-1">
+    <main class="w-full flex-1 order-last lg:order-none mx-auto max-w-3xl">
         {{ $slot }}
     </main>
 
-    <aside class="sticky top-8 hidden w-96 shrink-0 xl:block">
+    <aside class="xl:sticky top-8 xl:w-96 shrink-0 w-full px-6 xl:px-0 mx-auto max-w-3xl">
         <livewire:navbar />
         <div class="h-8"></div>
         <hr>
