@@ -49,7 +49,7 @@
                     {{ $post->description }}
                 </p>
             @endif
-            <div class="mt-10 post-content">
+            <div class="mt-10 post-content prose max-w-none">
                 {!! $post->content !!}
             </div>
         </div>

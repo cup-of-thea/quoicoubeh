@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.post-content {
-    @apply space-y-4;
-}
-
 .footnotes {
-    @apply mt-8 text-sm;
-    ol {
-        @apply list-decimal pl-4 pt-4;
-    }
-}
-
-.footnote-ref {
-    @apply font-bold;
+    @apply text-sm;
 }
