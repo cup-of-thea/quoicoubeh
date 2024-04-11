@@ -18,7 +18,7 @@
         <livewire:theme-selector />
     </aside>
 
-    <main class="w-full flex-1 order-last lg:order-none mx-auto max-w-3xl">
+    <main class="w-full flex-1 mx-auto max-w-3xl">
         {{ $slot }}
     </main>
 
