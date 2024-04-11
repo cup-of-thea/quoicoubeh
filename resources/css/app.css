@@ -5,3 +5,11 @@
 .footnotes {
     @apply text-sm;
 }
+
+.prose strong {
+    @apply text-black-pearl dark:text-alice-blue;
+}
+
+.prose a {
+    @apply text-moonstone;
+}

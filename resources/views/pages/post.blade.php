@@ -49,7 +49,7 @@
                     {{ $post->description }}
                 </p>
             @endif
-            <div class="mt-10 post-content prose max-w-none">
+            <div class="mt-10 post-content prose max-w-none text-paynes-gray dark:text-alice-blue/80">
                 {!! $post->content !!}
             </div>
         </div>
