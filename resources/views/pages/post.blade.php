@@ -14,8 +14,8 @@
                     <x-ri-time-line class="h-4 w-4" />
                     <span>{{ $post->reading->getReadingTime() }}</span>
                     <div class="w-2"></div>
+                    <livewire:like-post-action :postId="$post->id" />
                 </div>
-
 
             </div>
             <div class="h-4"></div>

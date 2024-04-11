@@ -3,20 +3,6 @@
 <article class="flex flex-col items-start justify-between bg-white dark:bg-black shadow rounded">
     <div class="px-8 py-4 w-full">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full text-xs gap-y-2 sm:gap-y-0">
-            <div class="hidden sm:flex items-center gap-x-2 text-gray-500">
-                <div class="flex items-center gap-x-2">
-                    <x-ri-calendar-schedule-line class="h-4 w-4" />
-                    <time datetime="{{ $post->date->format('Y-m-d') }}">
-                        {{ $post->date->isoFormat('LL') }}
-                    </time>
-                </div>
-                <div class="flex items-center gap-x-2">
-                    <x-ri-time-line class="h-4 w-4" />
-                    <span>{{ $post->reading->getReadingTime() }}</span>
-                    <x-ri-eye-line class="h-4 w-4" />
-                    <span>{{ $post->reading->getReadingCount() }}</span>
-                </div>
-            </div>
             <div>
                 @if($post->category)
                     <a href="/categories/{{ $post->category->slug }}">
@@ -24,6 +10,20 @@
                     </a>
                 @endif
             </div>
+            <div class="hidden sm:flex items-center gap-x-2 text-gray-500">
+                <div class="flex items-center gap-x-2">
+                    <x-ri-calendar-schedule-line class="h-4 w-4" />
+                    <time datetime="{{ $post->date->format('Y-m-d') }}">
+                        {{ $post->date->isoFormat('LL') }}
+                    </time>
+                    <x-ri-time-line class="h-4 w-4" />
+                    <span>{{ $post->reading->getReadingTime() }}</span>
+                    <x-ri-eye-line class="h-4 w-4" />
+                    <span>{{ $post->reading->getReadingCount() }}</span>
+                    <livewire:likes :postId="$post->postId" />
+                </div>
+            </div>
+
         </div>
         <div class="group relative">
             <h3 class="mt-3 sm:text-lg font-semibold leading-6 text-paynes-gray dark:text-alice-blue group-hover:underline">
@@ -86,6 +86,7 @@
                     <span>{{ $post->reading->getReadingTime() }}</span>
                     <x-ri-eye-line class="h-4 w-4" />
                     <span>{{ $post->reading->getReadingCount() }}</span>
+                    <livewire:likes :postId="$post->postId" />
                 </div>
             </div>
         </div>
