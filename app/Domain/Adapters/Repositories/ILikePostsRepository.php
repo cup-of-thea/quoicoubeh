@@ -3,6 +3,7 @@
 namespace App\Domain\Adapters\Repositories;
 
 use App\Domain\ValueObjects\PostId;
+use Illuminate\Support\Collection;
 
 interface ILikePostsRepository
 {
@@ -13,4 +14,6 @@ interface ILikePostsRepository
     public function isLiked(PostId $postId, ?string $ip);
 
     public function likesCount(PostId $postId);
+
+    public function getMostLikedPostIds(int $limit = 10): Collection;
 }
