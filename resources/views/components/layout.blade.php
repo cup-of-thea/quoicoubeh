@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -13,9 +13,9 @@
 <body class="{{ Cache::get('theme:' . request()->ip(), 'light') }} bg-alice-blue font-sans text-paynes-gray overflow-y-scroll dark:bg-black-pearl dark:text-alice-blue">
 <div class="mx-auto flex flex-col xl:flex-row w-full max-w-10xl items-start xl:gap-x-12 px-4 py-10 sm:px-6 xl:px-8">
     <aside class="xl:sticky top-8 xl:w-64 shrink-0 mx-auto max-w-3xl px-6 xl:px-0">
-        <livewire:profile />
+        <livewire:profile/>
         <div class="h-8"></div>
-        <livewire:theme-selector />
+        <livewire:theme-selector/>
     </aside>
 
     <main class="w-full flex-1 mx-auto max-w-3xl">
@@ -23,17 +23,17 @@
     </main>
 
     <aside class="xl:sticky top-8 xl:w-96 shrink-0 w-full px-6 xl:px-0 mx-auto max-w-3xl">
-        <livewire:navbar />
-        <div class="h-8"></div>
+        <livewire:navbar/>
+        <div class="h-4"></div>
         <hr>
-        <div class="h-8"></div>
-        <livewire:categories />
         <div class="h-4"></div>
-        <livewire:series />
+        <livewire:categories/>
         <div class="h-4"></div>
-        <livewire:post-years />
+        <livewire:series/>
         <div class="h-4"></div>
-        <livewire:tags />
+        <livewire:post-years/>
+        <div class="h-4"></div>
+        <livewire:tags/>
     </aside>
 </div>
 @livewireScripts

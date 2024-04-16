@@ -1,4 +1,5 @@
 <?php
+
 return [
     'profile' => [
         'email' => env('PROFILE_EMAIL', ''),
@@ -57,6 +58,11 @@ return [
                 'title' => 'Home',
                 'icon' => 'ri-home-heart-line',
                 'url' => '/',
+            ],
+            [
+                'title' => 'Blog',
+                'icon' => 'ri-blogger-line',
+                'url' => '/blog',
             ]
         ],
     ],
