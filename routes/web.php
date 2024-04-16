@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('welcome'));
 
+Route::get('/blog', fn() => view('pages.blog'));
+
 Route::get('/posts/{slug}', GetSinglePostController::class);
 
 Route::get('/categories/{slug}', GetSingleCategoryController::class);

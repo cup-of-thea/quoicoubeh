@@ -19,6 +19,7 @@ use App\Domain\ValueObjects\SinglePost;
 use App\Domain\ValueObjects\TagId;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class PostsRepository implements IPostsRepository
@@ -41,11 +42,11 @@ class PostsRepository implements IPostsRepository
         'pm.review_authors',
     ];
 
-    public function getLastPosts(): PostIndexCollection
+    public function getLastPosts(int $limit = 10): PostIndexCollection
     {
         $items = $this->postIndexBuilder()
             ->orderBy('date', 'desc')
-            ->limit(10)
+            ->limit($limit)
             ->get()
             ->map(fn($post) => $this->hydratePostIndex($post));
 
@@ -71,9 +72,19 @@ class PostsRepository implements IPostsRepository
     public function getPost(string $slug): SinglePost
     {
         $post = DB::table('posts as p')
-            ->select('p.id', 'p.title', 'p.slug', 'p.description', 'p.content', 'p.date',
-                'c.id as category_id', 'c.title as category_title', 'c.slug as category_slug',
-                'pm.reading_time', 'pm.reading_count')
+            ->select(
+                'p.id',
+                'p.title',
+                'p.slug',
+                'p.description',
+                'p.content',
+                'p.date',
+                'c.id as category_id',
+                'c.title as category_title',
+                'c.slug as category_slug',
+                'pm.reading_time',
+                'pm.reading_count'
+            )
             ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
             ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
             ->where('p.slug', $slug)
@@ -139,14 +150,33 @@ class PostsRepository implements IPostsRepository
         return new PostIndexCollection(...$items);
     }
 
-    public function postIndexBuilder(): Builder
+    public function getRandomPostSlug(): string
     {
-        return DB::table('posts as p')
-            ->select(...self::POST_INDEX_COLUMNS)
-            ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
-            ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
-            ->leftJoin('episodes as e', 'p.id', '=', 'e.post_id')
-            ->leftJoin('series as s', 'e.series_id', '=', 's.id');
+        return DB::table('posts')
+            ->inRandomOrder()
+            ->limit(1)
+            ->value('slug');
+    }
+
+    public function getMostReadPosts(int $limit = 10): PostIndexCollection
+    {
+        $items = $this->postIndexBuilder()
+            ->orderBy('pm.reading_count', 'desc')
+            ->limit($limit)
+            ->get()
+            ->map(fn($post) => $this->hydratePostIndex($post));
+
+        return new PostIndexCollection(...$items);
+    }
+
+    public function getPostsByIds(Collection $likedPostIds): PostIndexCollection
+    {
+        $items = $this->postIndexBuilder()
+            ->whereIn('p.id', $likedPostIds->map(fn($postId) => $postId->value)->toArray())
+            ->get()
+            ->map(fn($post) => $this->hydratePostIndex($post));
+
+        return new PostIndexCollection(...$items);
     }
 
     private function hydratePostIndex($post): PostIndex
@@ -170,14 +200,6 @@ class PostsRepository implements IPostsRepository
         );
     }
 
-    public function getRandomPostSlug(): string
-    {
-        return DB::table('posts')
-            ->inRandomOrder()
-            ->limit(1)
-            ->value('slug');
-    }
-
     private function hydrateSinglePost(object $post): SinglePost
     {
         return new SinglePost(
@@ -192,5 +214,15 @@ class PostsRepository implements IPostsRepository
                 ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
                 : null,
         );
+    }
+
+    private function postIndexBuilder(): Builder
+    {
+        return DB::table('posts as p')
+            ->select(...self::POST_INDEX_COLUMNS)
+            ->leftJoin('categories as c', 'p.category_id', '=', 'c.id')
+            ->leftJoin('post_meta as pm', 'p.id', '=', 'pm.post_id')
+            ->leftJoin('episodes as e', 'p.id', '=', 'e.post_id')
+            ->leftJoin('series as s', 'e.series_id', '=', 's.id');
     }
 }

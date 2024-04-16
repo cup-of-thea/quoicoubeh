@@ -1,3 +1,3 @@
 <x-layout>
-    <livewire:posts />
+    <livewire:top-posts/>
 </x-layout>

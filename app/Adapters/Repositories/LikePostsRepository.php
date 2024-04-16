@@ -4,13 +4,14 @@ namespace App\Adapters\Repositories;
 
 use App\Domain\Adapters\Repositories\ILikePostsRepository;
 use App\Domain\ValueObjects\PostId;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class LikePostsRepository implements ILikePostsRepository
 {
     public function like(PostId $postId, ?string $ip): void
     {
-        if($ip !== null) {
+        if ($ip !== null) {
             DB::connection('mongodb')
                 ->collection('likes')
                 ->insert([
@@ -47,5 +48,18 @@ class LikePostsRepository implements ILikePostsRepository
             ->collection('likes')
             ->where('post_id', $postId->value)
             ->count();
+    }
+
+    public function getMostLikedPostIds(int $limit = 10): Collection
+    {
+        return DB::connection('mongodb')
+            ->collection('likes')
+            ->select('post_id, count(*) as likes_count')
+            ->groupBy('post_id')
+            ->orderBy('likes_count', 'desc')
+            ->limit($limit)
+            ->get()
+            ->pluck('post_id')
+            ->map(fn($postId) => PostId::from($postId));
     }
 }

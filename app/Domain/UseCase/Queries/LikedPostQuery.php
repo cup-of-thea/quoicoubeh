@@ -5,7 +5,7 @@ namespace App\Domain\UseCase\Queries;
 use App\Domain\Adapters\Repositories\ILikePostsRepository;
 use App\Domain\ValueObjects\PostId;
 
-class LikedPostQuery
+readonly class LikedPostQuery
 {
     public function __construct(private ILikePostsRepository $repository)
     {

@@ -8,10 +8,11 @@ use App\Domain\ValueObjects\PostYearsCollection;
 use App\Domain\ValueObjects\SeriesId;
 use App\Domain\ValueObjects\SinglePost;
 use App\Domain\ValueObjects\TagId;
+use Illuminate\Support\Collection;
 
 interface IPostsRepository
 {
-    public function getLastPosts(): PostIndexCollection;
+    public function getLastPosts(int $limit = 10): PostIndexCollection;
 
     public function getYears(): PostYearsCollection;
 
@@ -28,4 +29,8 @@ interface IPostsRepository
     public function getSeriesEpisodes(SeriesId $seriesId): PostIndexCollection;
 
     public function getRandomPostSlug(): string;
+
+    public function getMostReadPosts(int $limit = 10): PostIndexCollection;
+
+    public function getPostsByIds(Collection $likedPostIds): PostIndexCollection;
 }
