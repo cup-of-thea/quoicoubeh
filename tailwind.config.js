@@ -8,7 +8,7 @@ export default {
     darkMode: 'selector',
     theme: {
         fontFamily: {
-            'sans': ['Reddit Mono', 'sans-serif'],
+            'sans': ['Luciole', 'sans-serif'],
         },
         extend: {
             maxWidth: {
