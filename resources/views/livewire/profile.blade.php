@@ -1,34 +1,52 @@
-<div class="text-center lg:text-left">
+<div
+    class="rounded-2xl border border-paynes-gray/30 p-6 text-center lg:text-left"
+>
     <div class="relative inline-block">
-            <img class="h-32 w-32 rounded-full shadow" src="{{ $avatarUrl }}" alt="Avatar">
-            <div class="absolute shadow bottom-0 right-0 block text-lg h-10 w-10 rounded-full bg-white flex items-center justify-center">
-                🖥️
-            </div>
+        <img
+            class="h-24 w-24 rounded-3xl"
+            src="{{ $avatarUrl }}"
+            alt="Avatar"
+        />
+        <div
+            class="absolute -bottom-2 -right-2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg shadow"
+        >
+            🖥️
+        </div>
     </div>
     <div class="mt-4">
-        <h2 class="text-xl font-bold text-raspberry mb-4">{{ $name }}</h2>
+        <h2 class="mb-4 text-xl font-light text-raspberry">
+            {{ $name }} · {{ $pronouns }}
+        </h2>
 
-        <p class="text-sm">
-            Je suis Thea, sans accent, mais avec beaucoup d'amour. Ici, je partage une partie de ma vie pro et perso, ce que j'aime, ce que j'ai besoin et envie de partager, ce qui m'émeut et ce qui me fait vibrer.
-        </p>
-        <div class="h-2"></div>
-
-        <p class="text-sm">
-            Développeuse · Affiliée Twitch · Autrice de contenus · Féministe Intersectionnelle & Lesbienne et fière de l'être 🌸
-        </p>
-        <div class="h-2"></div>
+        <ul class="text-sm">
+            <li>🖥️ Développeuse .Net</li>
+            <li>🎮 Streameuse affiliée Twitch</li>
+            <li>📰 Autrice de contenus</li>
+            <li>🌸🏳️‍⚧️ Support</li>
+        </ul>
+        <div class="h-6"></div>
     </div>
 
-    <ul role="list" class="mt-6 flex justify-center lg:justify-start gap-6 flex-wrap">
-        @foreach($links as $link)
+    <ul
+        role="list"
+        class="grid grid-cols-6 gap-2 sm:grid-cols-4 xl:grid-cols-1"
+    >
+        @foreach ($links as $link)
             <li>
-                <a href="{{ $link['url'] }}" class="hover:text-moonstone">
-                    <span class="sr-only">{{ $link['title'] }}</span>
-                    <x-dynamic-component component="{{ $link['icon'] }}" class="sm:h-5 sm:w-5 h-6 w-6" />
+                <a
+                    href="{{ $link["url"] }}"
+                    class="group flex items-center justify-center rounded-lg border border-paynes-gray/30 bg-paynes-gray/10 p-1 px-2 hover:text-moonstone sm:justify-start dark:text-alice-blue/80"
+                >
+                    <span class="sr-only">{{ $link["title"] }}</span>
+                    <x-dynamic-component
+                        component="{{ $link['icon'] }}"
+                        class="h-4 w-4 sm:text-paynes-gray"
+                    />
+                    <p class="ml-2 hidden text-sm sm:block">
+                        {{ $link["name"] }}
+                    </p>
                 </a>
             </li>
         @endforeach
     </ul>
-
-
 </div>
