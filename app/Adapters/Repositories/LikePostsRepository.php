@@ -52,13 +52,26 @@ class LikePostsRepository implements ILikePostsRepository
 
     public function getMostLikedPostIds(): Collection
     {
-        return DB::connection('mongodb')
+        $elements = DB::connection('mongodb')
             ->collection('likes')
-            ->select('post_id, count(*) as likes_count')
-            ->groupBy('post_id')
-            ->orderBy('likes_count', 'desc')
-            ->get()
-            ->pluck('post_id')
-            ->map(fn($postId) => PostId::from($postId));
+            ->raw(function ($collection) {
+                return $collection->aggregate([
+                    [
+                        '$group' => [
+                            '_id' => '$post_id',
+                            'count' => ['$sum' => 1],
+                        ],
+                    ],
+                    [
+                        '$sort' => ['count' => -1],
+                    ],
+                    [
+                        '$limit' => 4,
+                    ],
+                ]);
+            })
+            ->toArray();
+
+        return collect($elements)->pluck('_id')->map(fn($id) => PostId::from($id));
     }
 }
