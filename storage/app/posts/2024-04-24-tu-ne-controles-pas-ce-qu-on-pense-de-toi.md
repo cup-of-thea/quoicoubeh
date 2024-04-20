@@ -77,3 +77,5 @@ vraiment ?
 
 On sera toujours jugée et critiquée, mais aussi aimée et appréciée, peu importe ce que l'on fait. Alors autant être
 critiquée et aimée pour ce que l'on est vraiment, non ?
+
+![Sois différente. Sois bizarre. Sois folle. Soi toi.](/posts/2024-04-24-tu-ne-controles-pas-ce-qu-on-pense-de-toi/sois-toi.jpg)
