@@ -2,12 +2,23 @@
 
 namespace App\Livewire;
 
+use App\Domain\DomainService\TopPostsDomainService;
+use App\Domain\ValueObjects\PostIndexCollection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class LastPosts extends Component
 {
-    public function render()
+    private TopPostsDomainService $topPostsDomainService;
+
+    public function boot(TopPostsDomainService $topPostsDomainService): void
     {
-        return view('livewire.last-posts');
+        $this->topPostsDomainService = $topPostsDomainService;
+    }
+
+    #[Computed]
+    public function posts(): PostIndexCollection
+    {
+        return $this->topPostsDomainService->getMostRecentPosts();
     }
 }

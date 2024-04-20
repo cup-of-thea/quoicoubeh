@@ -30,7 +30,6 @@ class TopPosts extends Component
         return match ($this->selected) {
             TopPostsSelect::MOST_READ->value => $this->topPostsDomainService->getMostReadPosts(),
             TopPostsSelect::MOST_LIKED->value => $this->topPostsDomainService->getMostLikedPosts(),
-            TopPostsSelect::MOST_RECENT->value => $this->topPostsDomainService->getMostRecentPosts(),
             default => throw new InvalidArgumentException('Invalid selected value'),
         };
     }
@@ -47,10 +46,6 @@ class TopPosts extends Component
                 'title' => 'Les + aimés',
                 'icon' => 'fas fa-heart',
             ],
-            TopPostsSelect::MOST_RECENT->value => [
-                'title' => 'Les + récents',
-                'icon' => 'fas fa-clock',
-            ],
         ];
     }
 }
@@ -59,5 +54,4 @@ enum TopPostsSelect: string
 {
     case MOST_READ = 'most-read';
     case MOST_LIKED = 'most-liked';
-    case MOST_RECENT = 'most-recent';
 }
