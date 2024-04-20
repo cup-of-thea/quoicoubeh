@@ -5,31 +5,36 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
-    darkMode: 'selector',
+    darkMode: "selector",
     theme: {
         fontFamily: {
-            'sans': ['Luciole', 'sans-serif'],
+            sans: ["Luciole", "sans-serif"],
+        },
+        screens: {
+            sm: "425px",
+            md: "768px",
+            lg: "1024px",
+            xl: "1440px",
         },
         extend: {
             maxWidth: {
-                '8xl': '88rem',
-                '9xl': '96rem',
-                '10xl': '104rem',
+                "8xl": "88rem",
+                "9xl": "96rem",
+                "10xl": "104rem",
             },
             colors: {
-                'amaranth-purple': '#AA1155',
-                'raspberry': '#DD1155',
-                'alice-blue': '#F5FCFF',
-                'moonstone': '#39A2AE',
-                'paynes-gray': '#4C5C68',
-                'black-pearl': '#0C0C0C',
-                'white': '#FFFFFF',
+                "amaranth-purple": "#AA1155",
+                raspberry: "#DD1155",
+                "alice-blue": "#F5FCFF",
+                moonstone: "#39A2AE",
+                "paynes-gray": "#4C5C68",
+                "black-pearl": "#0C0C0C",
+                white: "#FFFFFF",
             },
         },
     },
     plugins: [
-        require('@tailwindcss/typography'),
-        require('@tailwindcss/typography'),
+        require("@tailwindcss/typography"),
+        require("@tailwindcss/typography"),
     ],
-}
-
+};

@@ -57,7 +57,6 @@ class LikePostsRepository implements ILikePostsRepository
             ->select('post_id, count(*) as likes_count')
             ->groupBy('post_id')
             ->orderBy('likes_count', 'desc')
-            ->limit($limit)
             ->get()
             ->pluck('post_id')
             ->map(fn($postId) => PostId::from($postId));

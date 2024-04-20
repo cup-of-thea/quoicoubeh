@@ -2,7 +2,7 @@
     <h2
         class="px-6 text-xl font-light tracking-tight text-paynes-gray md:text-2xl lg:px-0 dark:text-alice-blue"
     >
-        Articles les + récents
+        Articles les + lus
     </h2>
 
     <div
