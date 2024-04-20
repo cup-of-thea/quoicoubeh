@@ -15,5 +15,5 @@ interface ILikePostsRepository
 
     public function likesCount(PostId $postId);
 
-    public function getMostLikedPostIds(int $limit = 10): Collection;
+    public function getMostLikedPostIds(): Collection;
 }

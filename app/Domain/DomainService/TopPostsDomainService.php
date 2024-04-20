@@ -18,9 +18,9 @@ readonly final class TopPostsDomainService
 
     public function getMostLikedPosts(): PostIndexCollection
     {
-        $likedPostIds = $this->likePostsRepository->getMostLikedPostIds(self::SMALL_LIMIT);
+        $likedPostIds = $this->likePostsRepository->getMostLikedPostIds();
 
-        return $this->postsRepository->getPostsByIds($likedPostIds);
+        return $this->postsRepository->getPostsByIds($likedPostIds->take(self::SMALL_LIMIT));
     }
 
     public function getMostReadPosts(): PostIndexCollection

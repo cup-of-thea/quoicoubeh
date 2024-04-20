@@ -50,7 +50,7 @@ class LikePostsRepository implements ILikePostsRepository
             ->count();
     }
 
-    public function getMostLikedPostIds(int $limit = 10): Collection
+    public function getMostLikedPostIds(): Collection
     {
         return DB::connection('mongodb')
             ->collection('likes')
