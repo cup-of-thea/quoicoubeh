@@ -11,13 +11,6 @@
         <div
             class="flex w-full flex-col gap-y-2 text-xs sm:flex-row sm:items-center sm:justify-between sm:gap-y-0"
         >
-            <div>
-                @if ($post->category)
-                    <a href="/categories/{{ $post->category->slug }}">
-                        <x-badge :title="$post->category->title" />
-                    </a>
-                @endif
-            </div>
             <div class="hidden items-center gap-x-2 text-gray-500 sm:flex">
                 <div class="flex items-center gap-x-2">
                     <x-ri-calendar-schedule-line class="h-4 w-4" />
@@ -48,23 +41,35 @@
             </p>
         </div>
     </div>
-    @if ($post->episode)
+    @if ($post->episode || $post->category)
         <div class="w-full border-t"></div>
-        <div class="w-full px-8 py-4 text-paynes-gray dark:text-alice-blue">
-            <div
-                class="hidden w-full text-xs sm:flex sm:items-center sm:justify-between sm:text-sm"
-            >
-                <div class="flex items-center gap-x-2">
-                    <x-ri-netflix-fill class="h-4 w-4 text-raspberry" />
-                    <p>{{ $post->episode->series }}</p>
+        <div
+            class="flex w-full items-center gap-x-2 px-8 py-4 text-paynes-gray dark:text-alice-blue"
+        >
+            @if ($post->category)
+                <div>
+                    <a href="/categories/{{ $post->category->slug }}">
+                        <x-badge :title="$post->category->title" />
+                    </a>
                 </div>
-                <p>Épisode {{ $post->episode->episodeNumber }}</p>
-            </div>
-            <div class="w-full gap-x-2 text-xs sm:hidden">
-                <span>{{ $post->episode->series }}</span>
-                <span>-</span>
-                <span>Épisode {{ $post->episode->episodeNumber }}</span>
-            </div>
+            @endif
+
+            @if ($post->episode)
+                <div
+                    class="hidden w-full text-xs sm:flex sm:items-center sm:justify-between sm:text-sm"
+                >
+                    <div class="flex items-center gap-x-2">
+                        <x-ri-netflix-fill class="h-4 w-4 text-raspberry" />
+                        <p>{{ $post->episode->series }}</p>
+                    </div>
+                    <p>Épisode {{ $post->episode->episodeNumber }}</p>
+                </div>
+                <div class="w-full gap-x-2 text-xs sm:hidden">
+                    <span>{{ $post->episode->series }}</span>
+                    <span>-</span>
+                    <span>Épisode {{ $post->episode->episodeNumber }}</span>
+                </div>
+            @endif
         </div>
     @endif
 
