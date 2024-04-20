@@ -1,6 +1,4 @@
-<div
-    class="rounded-2xl border border-paynes-gray/30 p-6 text-center lg:text-left"
->
+<div class="bento text-center lg:text-left">
     <div class="relative inline-block">
         <img
             class="h-24 w-24 rounded-3xl"
