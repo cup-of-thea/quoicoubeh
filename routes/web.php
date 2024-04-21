@@ -23,3 +23,5 @@ Route::get('/archives/{year}', GetSingleYearController::class);
 Route::get('/series/{slug}', GetSingleSeriesController::class);
 
 Route::get('/random', GetRandomPostController::class);
+
+Route::get('/admin', fn() => view('admin.dashboard'))->middleware('auth');

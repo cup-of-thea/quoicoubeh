@@ -25,7 +25,7 @@
         </div>
     </div>
     @if ($post->episode || $post->category)
-        <div class="w-full border-t"></div>
+        <div class="w-full border-t border-paynes-gray/20"></div>
         <div
             class="flex w-full items-center gap-x-2 px-4 py-2 text-paynes-gray dark:text-alice-blue"
         >
@@ -48,7 +48,7 @@
     @endif
 
     @if ($post->review)
-        <div class="w-full border-t"></div>
+        <div class="w-full border-t border-paynes-gray/20"></div>
         <div class="w-full px-8 py-4 text-paynes-gray dark:text-alice-blue">
             <div class="w-full gap-x-2 text-xs">
                 <span>Revue</span>
@@ -59,7 +59,7 @@
     @endif
 
     <div class="w-full">
-        <div class="w-full border-t"></div>
+        <div class="w-full border-t border-paynes-gray/20"></div>
         <div class="w-full px-8 py-4 text-paynes-gray dark:text-alice-blue">
             <div class="flex flex-col gap-y-2 text-xs text-gray-500">
                 <div class="flex items-center gap-x-2">

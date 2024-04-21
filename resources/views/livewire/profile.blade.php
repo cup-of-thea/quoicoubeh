@@ -33,7 +33,7 @@
             <li>
                 <a
                     href="{{ $link["url"] }}"
-                    class="group flex items-center justify-center rounded-lg border border-paynes-gray/30 bg-paynes-gray/10 p-1 px-2 hover:text-moonstone md:justify-start dark:text-alice-blue/80"
+                    class="group flex items-center justify-center rounded-lg border border-paynes-gray/20 bg-paynes-gray/10 p-1 px-2 hover:text-moonstone md:justify-start dark:text-alice-blue/80"
                 >
                     <span class="sr-only">{{ $link["title"] }}</span>
                     <x-dynamic-component

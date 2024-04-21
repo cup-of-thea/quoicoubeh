@@ -59,7 +59,7 @@
 
 @layer components {
     .bento {
-        @apply rounded-2xl border border-paynes-gray/30 p-6;
+        @apply rounded-2xl border border-paynes-gray/20 p-6;
 
         .bento-title {
             @apply text-xl font-light tracking-tight text-paynes-gray sm:text-2xl dark:text-alice-blue;
@@ -67,7 +67,7 @@
     }
 
     .small-post {
-        @apply rounded-2xl border border-paynes-gray/30 p-6;
+        @apply rounded-2xl border border-paynes-gray/20 p-6;
 
         @apply flex flex-col items-start justify-between bg-white dark:bg-black;
 
