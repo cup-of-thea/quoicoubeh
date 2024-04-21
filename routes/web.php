@@ -24,4 +24,12 @@ Route::get('/series/{slug}', GetSingleSeriesController::class);
 
 Route::get('/random', GetRandomPostController::class);
 
-Route::get('/admin', fn() => view('admin.dashboard'))->middleware('auth');
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
+
+require __DIR__ . '/auth.php';
