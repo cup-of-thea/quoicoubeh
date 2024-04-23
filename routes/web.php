@@ -8,7 +8,7 @@ use App\Http\Controllers\GetSingleTagController;
 use App\Http\Controllers\GetSingleYearController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => view('welcome'));
+Route::get('/', fn() => view('welcome'))->name('home');
 
 Route::get('/blog', fn() => view('pages.blog'));
 
@@ -31,5 +31,7 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+require __DIR__ . '/dashboard.php';
 
 require __DIR__ . '/auth.php';

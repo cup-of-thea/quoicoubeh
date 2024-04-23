@@ -74,6 +74,11 @@ return [
                 'title' => 'Blog',
                 'icon' => 'ri-blogger-line',
                 'url' => '/blog',
+            ],
+            [
+                'title' => 'Dashboard',
+                'icon' => 'ri-dashboard-horizontal-fill',
+                'url' => '/dashboard',
             ]
         ],
     ],
