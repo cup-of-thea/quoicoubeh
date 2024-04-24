@@ -16,20 +16,18 @@ que si ça m'a aidée, ça peut peut-être t'aider aussi, alors au final, si tu 
 pas grave, il y a d'autres articles sur ce blog qui te plairont peut-être plus. Et si ce n'est pas le cas, tant pis,
 c'est justement le thème de ce premier billet.
 
+---
+
 ## Tu ne contrôles pas ce qu'on pense de toi
 
 C'est la première chose dont j'avais envie de parler, on ne contrôle rien de ce que les autres pensent de nous.
-
-Voilà, c'est tout, aller, salut ! 👋🏼
-
-Bon, je vais quand même développer un peu, parce que ça fait court, même si dans cette série, j'ai prévu d'être concise.
 
 ### Petite histoire
 
 À cause de ce que j'ai vécu[^1] j'avais tendance à poser sur un piédestal l'opinion des autres, surtout des personnes
 qui, malheureusement, avaient pris un ascendant sur moi. J'étais persuadée que si je faisais bien les choses, si je
 m'habillais bien, si je disais les bonnes choses, alors les gens penseraient bien de moi. Et si les gens pensaient bien
-de moi, alors je serais bien.
+de moi, alors je serais bien pour elleux, et je serais bien pour moi.
 
 [^1]: Et aussi de mon éducation, on ne va pas se mentir.
 
@@ -53,14 +51,12 @@ pousse à vouloir nous éviter, éviter de se confronter à soi-même.
 Et pour réaliser ce conformisme fou, j'étais épuisée, je me sentais seule, et je me sentais vide. J'avais l'impression
 de ne pas être moi, mais une coquille qui se vidait et qui devait être remplie par des normes arbitraires.
 
-### Et un jour...[^2]
-
-[^2]: Merde pour faire court hein, tant pis.
+### Et un jour...
 
 Et puis, pendant un an, je me suis retrouvée dans un job dans lequel on me demandait bien trop de sacrifices au nom de
 ces normes idiotes. Les conditions (que j'avais moi-même acceptées, tellement sous emprise de notre monde capitaliste)
 étaient telles que je faisais 2h30 de route aller, 2h30 de route retour, pour un job qui ne me plaisait pas, pour des
-valeurs qui ne me plaisaient pas, c'est dire l'amour que je me portais à l'époque.
+valeurs qui ne me convenaient pas, c'est dire l'amour que je me portais à l'époque.
 
 Mais... Il y a eu quelque chose d'inattendu dans tout ça, un hasard complet, car c'est cette même condition invivable de
 trajet qui allait s'avérer être ma bouée de sauvetage. Imagine 5 heures de route, sans issues, sans aucun moyen de
@@ -73,7 +69,7 @@ Pour finir par un "merde", un "je ne veux plus de ça", un "je veux être moi, t
 ### Tu ne contrôles pas ce qu'on pense de toi
 
 À quoi bon vivre à côté de soi-même pour plaire à des personnes qui ne nous aiment pas pour ce que nous sommes
-vraiment ?
+réellement ?
 
 On sera toujours jugée et critiquée, mais aussi aimée et appréciée, peu importe ce que l'on fait. Alors autant être
 critiquée et aimée pour ce que l'on est vraiment, non ?
