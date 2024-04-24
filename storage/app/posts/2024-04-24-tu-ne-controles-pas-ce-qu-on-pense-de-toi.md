@@ -24,14 +24,14 @@ C'est la première chose dont j'avais envie de parler, on ne contrôle rien de c
 
 ### Petite histoire
 
-À cause de ce que j'ai vécu[^1] j'avais tendance à poser sur un piédestal l'opinion des autres, surtout des personnes
+À cause de ce que j'ai vécu, j'avais tendance à poser sur un piédestal l'opinion des autres, surtout des personnes
 qui, malheureusement, avaient pris un ascendant sur moi. J'étais persuadée que si je faisais bien les choses, si je
-m'habillais bien, si je disais les bonnes choses, alors les gens penseraient bien de moi. Et si les gens pensaient bien
-de moi, alors je serais bien pour elleux, et je serais bien pour moi.
-
-[^1]: Et aussi de mon éducation, on ne va pas se mentir.
+m'habillais bien, si je disais les bonnes choses, alors les gens penseraient du bien de moi. Et si les gens pensaient du
+bien de moi, alors je serais appréciée, et si j'étais appréciée, alors je serais heureuse.
 
 Erreur.
+
+Et cela m'arrive encore aujourd'hui, et je dois régulièrement revenir et re-déconstruire cette croyance.
 
 ### Être ou paraître, telle est la question
 
