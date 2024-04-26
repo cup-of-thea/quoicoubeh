@@ -2,10 +2,10 @@
 
 namespace Worlds\Dashboard\Domain\Adapters\Repositories;
 
-use Illuminate\Support\Collection;
-use Worlds\Dashboard\Domain\ValueObjects\Pagination;
+use Worlds\Dashboard\Domain\ValueObjects\PaginatedCollection;
+use Worlds\Dashboard\Domain\ValueObjects\PaginationRequest;
 
 interface IPostsRepository
 {
-    public function getPosts(Pagination $pagination): Collection;
+    public function getPosts(PaginationRequest $paginationRequest): PaginatedCollection;
 }

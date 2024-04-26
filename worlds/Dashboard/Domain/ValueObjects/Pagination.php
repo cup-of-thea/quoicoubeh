@@ -2,29 +2,13 @@
 
 namespace Worlds\Dashboard\Domain\ValueObjects;
 
-use Livewire\Wireable;
-
-readonly class Pagination implements Wireable
+final readonly class Pagination
 {
     public function __construct(
         public int $perPage = 25,
         public int $page = 1,
+        public int $total = 0,
+        public int $lastPage = 0,
     ) {
-    }
-
-    public static function fromLivewire($value): self
-    {
-        return new self(
-            perPage: $value['perPage'],
-            page: $value['page'],
-        );
-    }
-
-    public function toLivewire(): array
-    {
-        return [
-            'perPage' => $this->perPage,
-            'page' => $this->page,
-        ];
     }
 }

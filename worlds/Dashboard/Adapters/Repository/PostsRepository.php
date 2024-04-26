@@ -2,32 +2,28 @@
 
 namespace Worlds\Dashboard\Adapters\Repository;
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Worlds\Dashboard\Domain\Adapters\Repositories\IPostsRepository;
+use Worlds\Dashboard\Domain\ValueObjects\PaginatedCollection;
 use Worlds\Dashboard\Domain\ValueObjects\Pagination;
+use Worlds\Dashboard\Domain\ValueObjects\PaginationRequest;
 use Worlds\Dashboard\Domain\ValueObjects\PostListItem;
 
 class PostsRepository implements IPostsRepository
 {
-    public function getPosts(Pagination $pagination): Collection
+    public function getPosts(PaginationRequest $paginationRequest): PaginatedCollection
     {
-        $posts = DB::table('posts as p')
-            ->join('categories as c', 'p.category_id', '=', 'c.id')
-            ->join('post_meta as pm', 'p.id', '=', 'pm.post_id')
-            ->orderBy('p.date', 'desc')
-            ->paginate(
-                perPage: $pagination->perPage,
-                columns: [
-                    'p.id as id',
-                    'p.title as title',
-                    'p.date as date',
-                    'c.title as category',
-                    'pm.reading_count as views'
-                ],
-                page: $pagination->page,
-            )
-            ->collect();
+        $query = $this->buildQuery();
+
+        $pagination = new Pagination(
+            perPage: $paginationRequest->perPage,
+            page: $paginationRequest->page,
+            total: $query->count(),
+            lastPage: ceil($query->count() / $paginationRequest->perPage),
+        );
+
+        $posts = $query->paginate(perPage: $paginationRequest->perPage, page: $paginationRequest->page,)->collect();
 
         $tags = DB::table('post_tag as pt')
             ->join('tags as t', 'pt.tag_id', '=', 't.id')
@@ -42,7 +38,7 @@ class PostsRepository implements IPostsRepository
             ->whereIn('post_id', $posts->pluck('id')->toArray())
             ->get();
 
-        return $posts->map(fn($post) => PostListItem::from(
+        $items = $posts->map(fn($post) => PostListItem::from(
             (object)[
                 'id' => $post->id,
                 'title' => $post->title,
@@ -54,5 +50,22 @@ class PostsRepository implements IPostsRepository
                 'views' => $post->views ?? '0',
             ]
         ));
+
+        return new PaginatedCollection($pagination, $items);
+    }
+
+    private function buildQuery(): Builder
+    {
+        return DB::table('posts as p')
+            ->join('categories as c', 'p.category_id', '=', 'c.id')
+            ->join('post_meta as pm', 'p.id', '=', 'pm.post_id')
+            ->select(
+                'p.id as id',
+                'p.title as title',
+                'p.date as date',
+                'c.title as category',
+                'pm.reading_count as views'
+            )
+            ->orderBy('p.date', 'desc');
     }
 }
