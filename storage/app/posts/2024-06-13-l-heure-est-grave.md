@@ -63,7 +63,7 @@ Et si vous vous dites que cela n’arrivera pas, à coups de &laquo;&nbsp;quand 
 
 Alors oui, ça va demander du courage d’aller voter, ça va demander du courage de sûrement mettre autre chose que ce que vous avez l’habitude de mettre dans l’enveloppe.
 
-Et même moi ça me tue de devoir donner une voix à certains du PS, LFI ou PCF, vu que ce que ces partis ont a proposer n’est pas franchement dénué d’oppressions coloniales, homophobes, transphobes ou validistes, j’en suis consciente. Mais on peut toujours dialoguer et les virer quand ils débordent, avec le RN on n’aura pas cette possibilité. Le fascisme ne se prend pas la tête à demander l’avis aux concernées, elle est là toute la différence.
+Et même moi ça me tue de devoir donner une voix à certains membres du PS, LFI, PCF ou autres. Tout ce que ces partis proposent n'est pas dénué d’oppressions coloniales, homophobes, transphobes ou validistes, et autres, j’en suis consciente. Mais on peut toujours dialoguer et les virer quand ils débordent, avec le RN on n’aura pas cette possibilité. Le fascisme ne se prend pas la tête à demander l’avis aux personnes concernées, elle est là toute la différence.
 
 Oui, je n’ai aucune envie de voir un Mélenchon, un Quatenens, un Guiraud, un Glucksman ou une Rousseau monter. Mais même si ce sont des gens imbus d’eux-mêmes, même si ce sont des gens calculateurs, justement ils font attention aux opinions.
 
