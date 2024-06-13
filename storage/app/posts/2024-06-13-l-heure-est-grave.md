@@ -1,5 +1,5 @@
 ---
-title: "L'heure est grave"
+title: "L'Heure est grave"
 date: "2024-06-13"
 description: "Je ne peux pas rester sans rien dire."
 category: "Politique"
