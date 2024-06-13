@@ -77,7 +77,7 @@ Nous avons appris.
 
 Nous savons comment cela peut arriver.
 
-Nos sommes plus fortes et forts qu’avant.
+Nous sommes plus fortes et forts qu’avant.
 
 Nous savons ce qui a permis à un recalé des beaux arts d’accéder au pouvoir en 33. Aujourd’hui notre gouvernement est encore plus instable que la République de Weimar. Que croyez-vous qu’il puisse se passer ?
 
