@@ -85,8 +85,10 @@ Les insultes, les menaces, les dévalorisations, je peux les gérer et les encai
 
 Mais ne faites pas une chose qui pourrait d’ici à quelques années vous faire vous retrouver sur les quais d’une gare à voir partir votre fille, votre fils, votre cousine, votre cousin, votre nièce ou neveu, vos petits-enfants ou vos oncles, tantes, proches, amis, dans un train qui pourrait ne jamais les ramener.
 
+Et comme beaucoup, je suis assez certaine d'y être, dans ce train.
+
 On a déjà essayé le RN.
 
-Et on avait dit “plus jamais".
+Et on avait dit &laquo;&nbsp;plus jamais&raquo;&nbsp;.
 
 N’oublions pas.
