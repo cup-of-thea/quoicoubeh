@@ -19,11 +19,11 @@ Mais il se peut que cette liberté soit justement désormais comptée, en année
 
 Alors je décide de partager un peu de mon quotidien, sans prétention de dire à qui que ce soit quoi faire, juste ce que je vis depuis ma transition. Simplement du partage.
 
-Déjà, je précise que je n’ai pas choisi d’être trans, et je ne sais même pas si je suis XY, XX ou autre, vu que je n’ai même pas eu de caryotye avant ma naissance. Et je m'en tape. Ce n’est pas un choix. On l’est, ou on ne l’est pas, on ne choisit pas d’être une personne trans, comme on ne choisit pas sa couleur de cheveux ou des yeux.
+Je précise que je n’ai pas choisi d’être trans, et je ne sais même pas si je suis XY, XX ou autre, vu que je n’ai même pas eu de caryotye avant ma naissance. Et je m'en fiche. Ce n’est pas un choix. On l’est, ou on ne l’est pas, on ne choisit pas d’être une personne trans, comme on ne choisit pas sa couleur de cheveux ou des yeux.
 
 Mais depuis que j’ai entamé ma transition, beaucoup de choses ont changées, et encore, j’ai une chance immense d’avoir un passing et d'être plutôt dans les standards de beauté.
 
-Je ne suis pas une “personnalité publique”, je ne suis pas une “influenceuse”, ce n’est pas un business, c’est un plaisir et j’ai de la chance d’avoir une petite audience que ça intéresse.
+Je ne suis pas une &laquo;&nbsp;personnalité publique&nbsp;&raquo;, je ne suis pas une &laquo;&nbsp;influenceuse&nbsp;&raquo;, ce n’est pas un business, c’est un plaisir et j’ai de la chance d’avoir une petite audience que ça intéresse.
 
 Mais il y a aussi l’envers de la chose.
 
