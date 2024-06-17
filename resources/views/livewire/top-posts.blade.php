@@ -1,6 +1,6 @@
 <div>
     <h2
-        class="text-3xl font-bold tracking-tight text-paynes-gray md:text-4xl dark:text-alice-blue"
+        class="text-3xl font-bold tracking-tight text-murrey md:text-4xl dark:text-powder"
     >
         Tops
     </h2>
@@ -11,7 +11,7 @@
                 <a
                     href="#"
                     wire:click.prevent="select('{{ $k }}')"
-                    class="rounded-md bg-raspberry px-3 py-2 text-sm font-medium text-alice-blue"
+                    class="rounded-md bg-atomic-tangerine px-3 py-2 text-sm font-medium text-powder"
                     aria-current="page"
                 >
                     {{ $option["title"] }}
@@ -20,7 +20,7 @@
                 <a
                     href="#"
                     wire:click.prevent="select('{{ $k }}')"
-                    class="rounded-md px-3 py-2 text-sm font-medium text-paynes-gray hover:bg-raspberry/20 dark:text-alice-blue"
+                    class="rounded-md px-3 py-2 text-sm font-medium text-murrey hover:bg-atomic-tangerine/20 dark:text-powder"
                 >
                     {{ $option["title"] }}
                 </a>

@@ -5,6 +5,8 @@ description: "Bon parce que si je ne veux pas parler de ma sexualité, je peux a
 draft: true
 category: "Perso"
 tags: ["À propos"]
+cols: 1
+rows: 1
 ---
 
 C'est parti pour répondre à quelques unes des questions que je trouve

@@ -47,32 +47,43 @@
 
     .prose {
         strong, h1, h2, h3, h4, h5, h6 {
-            @apply text-black-pearl dark:text-alice-blue;
+            @apply text-rich-black dark:text-powder;
         }
     }
 
     .prose a {
-        @apply text-moonstone;
+        @apply text-sky-magenta;
     }
 
 }
 
 @layer components {
+    .keep {
+        @apply col-span-1 col-span-2 row-span-1 row-span-2;
+        @apply aspect-1/2 aspect-2/1 aspect-square;
+    }
+}
+
+@layer components {
     .bento {
-        @apply rounded-2xl border border-paynes-gray/30 p-6;
+        @apply rounded-2xl p-6 shadow;
 
         .bento-title {
-            @apply text-xl font-light tracking-tight text-paynes-gray sm:text-2xl dark:text-alice-blue;
+            @apply text-xl font-light tracking-tight text-rich-black sm:text-2xl dark:text-powder;
         }
     }
 
     .small-post {
-        @apply rounded-2xl border border-paynes-gray/30 p-6;
+        @apply rounded-3xl shadow-bento border dark:border-paynes-gray/10 p-2 relative overflow-hidden;
 
-        @apply flex flex-col items-start justify-between bg-white dark:bg-black;
+        @apply bg-cover bg-center;
+
+        @apply flex flex-col items-start justify-between bg-powder dark:bg-rich-black;
 
         .small-post-title {
-            @apply text-lg font-light tracking-tight text-paynes-gray dark:text-alice-blue;
+            @apply text-sm font-light tracking-tight text-rich-black bg-powder rounded-lg p-2 px-3;
+
+            @apply md:text-xs xl:text-base;
         }
     }
 }

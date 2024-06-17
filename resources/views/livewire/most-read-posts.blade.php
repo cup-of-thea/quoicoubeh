@@ -1,6 +1,6 @@
 <div>
     <h2
-        class="px-6 text-xl font-light tracking-tight text-paynes-gray md:text-2xl lg:px-0 dark:text-alice-blue"
+        class="px-6 text-xl font-light tracking-tight text-rich-black md:text-2xl lg:px-0 dark:text-powder"
     >
         Articles les + lus
     </h2>

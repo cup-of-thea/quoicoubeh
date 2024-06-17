@@ -6,6 +6,10 @@ category: "Perso"
 tags: ["Relations humaines", "Communication"]
 series: "Expression et communication"
 episode: 2
+rows: 1
+cols: 1
+image: "covers/need.jpg"
+image_alt: "Deux filles, une tenant un parapluie pour l'autre"
 ---
 
 Cette semaine, j'avais envie de parler de manière plus positive de communication, et j'espère que ça sera un peu

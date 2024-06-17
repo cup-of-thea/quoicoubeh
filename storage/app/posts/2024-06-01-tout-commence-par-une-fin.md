@@ -5,6 +5,10 @@ description: "L'histoire de Laetitia. Une journaliste trentenaire pétrie de com
 category: "Fictions"
 series: "Laetitia"
 episode: 1
+image: "covers/L.png"
+image_alt: "Laetitia."
+rows: 1
+cols: 1
 ---
 
 Jeudi 9 mai 2024. 22h30.

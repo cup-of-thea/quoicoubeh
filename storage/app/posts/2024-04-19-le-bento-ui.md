@@ -4,6 +4,10 @@ date: "2024-04-19"
 description: "Cette semaine, je change de sujet et de domaine pour parler de design"
 category: "Pro"
 tags: [ "Design" ]
+image: "covers/bento.jpg"
+image_alt: "Une image de bento bien compartimenté avec des légumes et du riz posé sur une table"
+rows: 1
+cols: 1
 ---
 
 Cette semaine, j'avais envie de parler de design et de bouffe, alors je vais te parler du bento ui.

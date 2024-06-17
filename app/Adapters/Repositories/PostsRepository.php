@@ -5,6 +5,7 @@ namespace App\Adapters\Repositories;
 use App\Domain\Adapters\Repositories\IPostsRepository;
 use App\Domain\Exceptions\NotFoundException;
 use App\Domain\ValueObjects\CategoryId;
+use App\Domain\ValueObjects\Dimensions;
 use App\Domain\ValueObjects\Episode;
 use App\Domain\ValueObjects\PostId;
 use App\Domain\ValueObjects\PostIndex;
@@ -31,6 +32,8 @@ class PostsRepository implements IPostsRepository
         'p.slug',
         'p.description',
         'p.date',
+        'p.image',
+        'p.image_alt',
         'c.id as category_id',
         'c.title as category_title',
         'c.slug as category_slug',
@@ -40,6 +43,8 @@ class PostsRepository implements IPostsRepository
         'pm.reading_time',
         'pm.reading_count',
         'pm.review_authors',
+        'pm.rows',
+        'pm.cols',
     ];
 
     public function getLastPosts(int $limit = 10): PostIndexCollection
@@ -197,6 +202,9 @@ class PostsRepository implements IPostsRepository
             $post->review_authors
                 ? Review::from($post->review_authors)
                 : null,
+            $post->image,
+            $post->image_alt,
+            Dimensions::from($post->rows, $post->cols),
         );
     }
 

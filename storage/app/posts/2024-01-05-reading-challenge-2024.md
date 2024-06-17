@@ -4,6 +4,8 @@ date: "2024-01-05"
 description: "Cette année, j'ai décidé de me lancer un reading challenge ! Voici d'où vient l'idée, et comment je compte m'y prendre !"
 category: "Perso"
 tags: ["Communauté", "2024"]
+cols: 1
+rows: 1
 ---
 
 Cette année, j'ai décidé de me lancer un reading challenge ! Voici d'où vient l'idée, et comment je compte m'y prendre !

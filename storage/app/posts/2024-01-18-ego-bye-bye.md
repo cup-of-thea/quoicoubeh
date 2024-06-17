@@ -6,6 +6,8 @@ episode: 2
 category: "Pro"
 tags: ["Tech", "Communauté"]
 series: "Hygiène et développement"
+image_alt: "Photo de l'acteur Robin Williams"
+image: "covers/robin-williams.webp"
 ---
 
 Ce n’est pas un scoop, notre magnifique milieu du développement n'est pas aussi

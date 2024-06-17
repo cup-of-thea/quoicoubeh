@@ -7,6 +7,8 @@ episode: 1
 category: "Le stream"
 tags: ["Communauté"]
 series: "Projecteur sur le stream ❤️"
+cols: 1
+rows: 1
 ---
 
 Quand je parle du nombe d'activités que je fais en live, entre le dessin, les sessions de code, les parties de Genshin

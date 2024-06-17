@@ -6,6 +6,8 @@ episode: 1
 category: "Perso"
 tags: ["Transition", "LGBTQIA+", "Relations humaines"]
 series: "Expression et communication"
+cols: 1
+rows: 1
 ---
 
 J'écris cet article suite à un énième partage de ce que je ressens parfois

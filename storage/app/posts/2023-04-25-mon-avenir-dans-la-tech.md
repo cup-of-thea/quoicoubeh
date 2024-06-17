@@ -3,6 +3,8 @@ title: "Mon avenir dans la tech : new horizon"
 date: "2023-04-25"
 category: "Pro"
 tags: ["Tech"]
+cols: 1
+rows: 1
 ---
 
 C'est parti, cet article va parler pro, pour changer un peu des autres

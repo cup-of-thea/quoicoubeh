@@ -11,37 +11,44 @@
         @livewireStyles
     </head>
     <body
-        class="{{ Cache::get("theme:" . request()->ip(), "light") }} overflow-y-scroll bg-alice-blue font-sans text-paynes-gray dark:bg-black-pearl dark:text-alice-blue"
+        class="{{ Cache::get("theme:" . request()->ip(), "light") }} overflow-y-scroll bg-powder font-sans text-rich-black dark:bg-rich-black dark:text-powder"
     >
         <div
-            class="mx-auto flex w-full flex-col items-start px-4 lg:grid lg:grid-cols-3 lg:justify-items-stretch lg:gap-4 lg:px-0 xl:grid-cols-4"
+            class="mx-auto flex w-full flex-col items-start lg:grid lg:grid-cols-3 lg:justify-items-stretch lg:gap-4 xl:grid-cols-4"
         >
             <aside
                 class="mx-auto w-full px-6 py-10 lg:sticky lg:top-8 lg:w-64 lg:px-0 lg:py-0"
             >
                 <livewire:profile />
+                      <div class="h-14"></div>
+                <livewire:theme-selector />
+                <livewire:navbar />
+                <div class="h-4"></div>
+                <div class="hidden lg:block">
+                    <livewire:categories />
+                    <div class="h-4"></div>
+                    <livewire:series />
+                    <div class="h-4"></div>
+                    <livewire:post-years />
+                    <div class="h-4"></div>
+                    <livewire:tags />
+                </div>
             </aside>
 
-            <main class="mx-auto my-8 w-full xl:col-span-2">
+            <main class="mx-auto my-8 w-full lg:col-span-2 xl:col-span-3">
                 {{ $slot }}
             </main>
 
             <aside
-                class="top-8 mx-auto w-full max-w-3xl shrink-0 px-6 lg:sticky lg:top-8 lg:w-64 lg:px-0 lg:py-0"
+                class="lg:hidden top-8 mx-auto w-full max-w-3xl shrink-0 px-6 lg:sticky lg:top-8 lg:w-64 lg:px-0 lg:py-0"
             >
-                <div class="h-14"></div>
-                <livewire:theme-selector />
-                <livewire:navbar />
-                <div class="h-4"></div>
-                <hr />
-                <div class="h-4"></div>
-                <livewire:categories />
-                <div class="h-4"></div>
-                <livewire:series />
-                <div class="h-4"></div>
-                <livewire:post-years />
-                <div class="h-4"></div>
-                <livewire:tags />
+                    <livewire:categories />
+                    <div class="h-4"></div>
+                    <livewire:series />
+                    <div class="h-4"></div>
+                    <livewire:post-years />
+                    <div class="h-4"></div>
+                    <livewire:tags />
             </aside>
         </div>
         @livewireScripts

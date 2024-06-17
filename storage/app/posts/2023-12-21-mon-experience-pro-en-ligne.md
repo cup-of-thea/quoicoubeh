@@ -7,6 +7,8 @@ episode: 2
 category: "Pro"
 tags: ["Télétravail", "Organisation", "Communauté"]
 series: "Expériences"
+cols: 1
+rows: 1
 ---
 
 Tiens, je vais faire un sujet un peu plus léger cette semaine, on va parler de ce que j’ai appris depuis le mois de juin dernier côté pro.

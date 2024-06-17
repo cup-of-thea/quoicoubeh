@@ -3,6 +3,8 @@ title: "Mon premier coming out"
 date: "2022-12-28"
 category: "Perso"
 tags: ["Transition"]
+cols: 1
+rows: 1
 ---
 
 Alors, je n'ai pas une mémoire infaillible, d'autant que j'ai refoulé pas mal de
