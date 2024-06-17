@@ -5,6 +5,10 @@ description: "Une romance lesbienne entre deux femmes adultes"
 category: "Découvertes"
 tags: ["Manga", "Lesbiennes"]
 review_authors: "Takako Shimura"
+image: "covers/si-nous-etions-adulte-1-akata.jpg"
+image_alt: "Dessin de la couverture du premier tome de Si nous étions adultes, de Takako Shimura."
+rows: 2
+cols: 1
 ---
 
 Et voici la premiere revue de l'année&nbsp;! Et pour bien commencer, on va parler d'un manga touchant et intriguant&nbsp;: Si nous étions adultes, de Takako Shimura.

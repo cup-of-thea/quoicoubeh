@@ -23,18 +23,25 @@ export default {
                 "10xl": "104rem",
             },
             colors: {
-                "amaranth-purple": "#AA1155",
-                raspberry: "#DD1155",
-                "alice-blue": "#F5FCFF",
-                moonstone: "#39A2AE",
+                scarlet: "#F53100",
+                "atomic-tangerine": "#FD9855",
+                powder: "#fffffe",
+                "sky-magenta": "#D161A2",
+                murrey: "#A20161",
                 "paynes-gray": "#4C5C68",
-                "black-pearl": "#0C0C0C",
+                "rich-black": "#161E27",
                 white: "#FFFFFF",
             },
+            boxShadow: {
+                'bento': '0 2px 4px rgba(0, 0, 0, .04);',
+            },
+            aspectRatio: {
+                "1/2": '1 / 2',
+                "2/1": '2 / 1',
+            }
         },
     },
     plugins: [
-        require("@tailwindcss/typography"),
         require("@tailwindcss/typography"),
     ],
 };

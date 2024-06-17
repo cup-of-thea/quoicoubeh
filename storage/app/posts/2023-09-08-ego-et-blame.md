@@ -6,6 +6,8 @@ episode: 1
 category: "Pro"
 tags: ["Tech", "Communauté"]
 series: "Hygiène et développement"
+cols: 1
+rows: 1
 ---
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

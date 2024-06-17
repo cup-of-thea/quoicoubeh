@@ -4,6 +4,10 @@ date: "2024-01-23"
 description: "Cet article va probablement être difficile à lire et à encaisser si tu es un homme cisgenre. Mais je ne peux pas non plus me taire juste par peur des réactions. Encore moins si, dans ce cas, ces réactions ont un fond patriarcal."
 category: "Perso"
 tags: ["Féminisme"]
+rows: 1
+cols: 2
+image: "covers/invisible.jpg"
+image_alt: "Une femme cachée derrière une feuille d'arbre, avec uniquement deux trous pour les yeux qui laissent apparaître son regard"
 ---
 
 J'ai besoin de m'exprimer sur un sujet que j'ai mis 30 ans à aborder, un sujet qui, pourtant, me concerne pleinement, comme chaque femme, qu'elle ait ou non un utérus. Parce que j'en ai eu assez de tomber sur un énième message d'un homme cisgenre qui se dit féministe.

@@ -5,6 +5,8 @@ episode: 2
 category: "Le stream"
 tags: ["Communauté"]
 series: "Projecteur sur le stream ❤️"
+cols: 1
+rows: 1
 ---
 
 Coucou, alors d'abord, je te souhaite une bonne année 2024 !

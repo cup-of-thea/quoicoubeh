@@ -4,6 +4,8 @@ date: "2023-09-10"
 description: "Avant de quitter le pire réseau que la Terre ait porté, j'y ai eu quelques demandes sur mon parcours professionnel. Et maintenant que j'ai quelques années d'expérience, je me dis qu'il est peut-être opportun de t'en parler."
 category: "Perso"
 tags: ["Tech", "Communauté", "Transition"]
+cols: 1
+rows: 1
 ---
 
 Avant de quitter le pire réseau que la Terre ait porté, j'y ai eu quelques

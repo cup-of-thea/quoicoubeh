@@ -8,7 +8,7 @@ use App\Domain\ValueObjects\PostIndexCollection;
 
 readonly final class TopPostsDomainService
 {
-    const SMALL_LIMIT = 4;
+    const SMALL_LIMIT = 7;
 
     public function __construct(
         private ILikePostsRepository $likePostsRepository,

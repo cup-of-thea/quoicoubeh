@@ -21,11 +21,7 @@ readonly class Reading implements Wireable
 
     public function getReadingCount(): string
     {
-        if ($this->readingCount === 0) {
-            return 'Nouveau post';
-        }
-
-        return $this->readingCount > 1 ? $this->readingCount . ' lectures' : $this->readingCount . ' lecture';
+        return $this->readingCount;
     }
 
     public static function from(

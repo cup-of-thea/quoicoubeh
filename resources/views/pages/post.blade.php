@@ -1,7 +1,7 @@
 <x-layout>
-    <div class="px-6 py-16 xl:py-32">
-        <div class="mx-auto text-base leading-7 text-paynes-gray dark:text-alice-blue">
-            <h1 class="mt-2 text-3xl font-bold tracking-tight text-paynes-gray dark:text-alice-blue sm:text-4xl">
+    <div class="p-16 xl:py-32">
+        <div class="mx-auto text-base leading-7 dark:text-powder">
+            <h1 class="mt-2 text-3xl font-bold tracking-tight dark:text-powder sm:text-4xl">
                 {{ $post->title }}
             </h1>
             <div class="mt-4 flex items-center justify-between w-full text-xs text-gray-500">
@@ -34,7 +34,7 @@
                         @foreach($tags as $tag)
                             <li>
                                 <a href="/tags/{{ $tag->slug }}">
-                    <span class="inline-flex items-center rounded-md bg-paynes-gray/10 dark:bg-alice-blue/10 px-2 py-1 text-xs font-medium text-paynes-gray dark:text-alice-blue ring-1 ring-inset ring-paynes-gray/10 dark:ring-alice-blue/10">
+                    <span class="inline-flex items-center rounded-md bg-murrey/10 dark:bg-powder/10 px-2 py-1 text-xs font-medium text-murrey dark:text-powder ring-1 ring-inset ring-murrey/10 dark:ring-powder/10">
                                             #{{ $tag->title }}
                                         </span>
                                 </a>
@@ -49,7 +49,7 @@
                     {{ $post->description }}
                 </p>
             @endif
-            <div class="mt-10 post-content prose max-w-none text-paynes-gray dark:text-alice-blue/80">
+            <div class="mt-10 post-content prose max-w-none dark:text-powder/80">
                 {!! $post->content !!}
             </div>
         </div>

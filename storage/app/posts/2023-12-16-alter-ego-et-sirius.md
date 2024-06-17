@@ -5,6 +5,10 @@ description: "Deux one-shot qui parlent de relations lesbiennes et qui m'ont tou
 category: "Découvertes"
 tags: ["Manga", "Lesbiennes"]
 review_authors: "d'Ana C. Sánchez"
+image: "reviews/alter-ego.jpg"
+image_alt: "Deux filles dessinées en manga qui sautent ensemble et se tiennent les mains les genoux pliés"
+rows: 2
+cols: 1
 ---
 
 Aujourd'hui je vais te parler rapidement de deux œuvres one-shot qui se lisent bien et qui ne sont liées que par la sensibilité d'une même créatrice que j’ai adoré découvrir, Ana C. Sánchez.

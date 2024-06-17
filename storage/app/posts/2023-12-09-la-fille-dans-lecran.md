@@ -5,6 +5,10 @@ description: "Deux femmes, que l'Atlantique sépare, se rencontrent sur Internet
 category: "Découvertes"
 tags: ["BD", "Lesbiennes", "Amour à distance"]
 review_authors: "De Manon Desveaux et Lou Lubie"
+image: "reviews/lfdl.jpg"
+image_alt: "Couverture de la bande dessinée, un dessin avec deux femmes qui s’embrassent"
+rows: 2
+cols: 1
 ---
 
 Deuxième lecture du mois, et pas des moindres. C'est sans doute une des rares fois où je me suis efforcée de ne pas tout lire d'une traite, histoire de faire durer le plaisir. Et vraiment, j'ai tellement bien fait ! Je t'en parle juste en dessous 👇.

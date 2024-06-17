@@ -6,6 +6,10 @@ category: "Perso"
 tags: [ "Relations humaines" ]
 series: "Les mots de Thea"
 episode: 1
+rows: 1
+cols: 1
+image: "covers/controles.jpg"
+image_alt: "Une femme en train de méditer, assise en tailleur"
 ---
 
 Et voici une nouvelle série de billets intitulée "Les mots de Thea".

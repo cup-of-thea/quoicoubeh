@@ -27,7 +27,7 @@
         </div>
         <div class="group relative">
             <h3
-                class="small-post-title group-hover:underline sm:text-lg dark:text-alice-blue"
+                class="small-post-title group-hover:underline sm:text-lg dark:text-powder"
             >
                 <a href="/posts/{{ $post->slug }}">
                     <span class="absolute inset-0"></span>
@@ -35,7 +35,7 @@
                 </a>
             </h3>
             <p
-                class="mt-5 line-clamp-5 text-xs text-paynes-gray sm:line-clamp-3 sm:leading-6 dark:text-alice-blue"
+                class="mt-5 line-clamp-5 text-xs text-murrey sm:line-clamp-3 sm:leading-6 dark:text-powder"
             >
                 {{ $post->description }}
             </p>
@@ -44,7 +44,7 @@
     @if ($post->episode || $post->category)
         <div class="w-full border-t"></div>
         <div
-            class="flex w-full items-center gap-x-2 px-8 py-4 text-paynes-gray dark:text-alice-blue"
+            class="flex w-full items-center gap-x-2 px-8 py-4 text-murrey dark:text-powder"
         >
             @if ($post->category)
                 <div>
@@ -59,7 +59,7 @@
                     class="hidden w-full text-xs sm:flex sm:items-center sm:justify-between sm:text-sm"
                 >
                     <div class="flex items-center gap-x-2">
-                        <x-ri-netflix-fill class="h-4 w-4 text-raspberry" />
+                        <x-ri-netflix-fill class="h-4 w-4 text-atomic-tangerine" />
                         <p>{{ $post->episode->series }}</p>
                     </div>
                     <p>Épisode {{ $post->episode->episodeNumber }}</p>
@@ -75,7 +75,7 @@
 
     @if ($post->review)
         <div class="w-full border-t"></div>
-        <div class="w-full px-8 py-4 text-paynes-gray dark:text-alice-blue">
+        <div class="w-full px-8 py-4 text-murrey dark:text-powder">
             <div
                 class="hidden w-full items-center justify-between text-sm sm:flex"
             >
@@ -95,7 +95,7 @@
 
     <div class="w-full sm:hidden">
         <div class="w-full border-t"></div>
-        <div class="w-full px-8 py-4 text-paynes-gray dark:text-alice-blue">
+        <div class="w-full px-8 py-4 text-murrey dark:text-powder">
             <div class="flex flex-col gap-y-2 text-xs text-gray-500">
                 <div class="flex items-center gap-x-2">
                     <x-ri-calendar-schedule-line class="h-4 w-4" />

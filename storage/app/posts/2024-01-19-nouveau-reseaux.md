@@ -6,6 +6,10 @@ episode: 3
 category: "Le stream"
 tags: ["2024", "Communauté"]
 series: "Projecteur sur le stream ❤️"
+cols: 1
+rows: 2
+image_alt: "Photo d'un téléphone portable avec sur l'écran l'application Twitch qui se lance"
+image: "covers/nouveaux-reseaux.jpg"
 ---
 
 Décidément, j'écris pas mal en ce moment&nbsp;! Mais je ne résiste pas à l'envie de vous partager les nouveautés qui arrivent sur le stream (et plus globalement sur les contenus et la communauté).

@@ -6,6 +6,8 @@ episode: 1
 category: "Le stream"
 tags: ["Communauté"]
 series: "Projecteur sur le stream ❤️"
+cols: 1
+rows: 1
 ---
 
 Depuis avril, je suis devenue affiliée Twitch, j'ai maintenant un peu de recul pour pouvoir dire que cet évènement a bien chamboulé ma vie sur bien des aspects. Et je me suis rendue compte que je n'avais pas encore parlé de cette activité sur mon blog, alors qu'elle prend de plus en plus de place dans ma vie. 

@@ -4,6 +4,8 @@ date: "2024-06-13"
 description: "Je ne peux pas rester sans rien dire."
 category: "Politique"
 tags: ["Oppressions", "Féminisme", "LGBTQIA+"]
+image: "covers/fp-onsengueuleraplustard.jpg"
+image_alt: "Affiche du Front Populaire de 2024 sur lequel est écrite &laquo;&nbsp;On s'engueulera plus tard&nbsp;&raquo;"
 ---
 
 Bon.
