@@ -1,89 +1,14 @@
+@import "./base/fonts";
+@import "./base/base";
+@import "./base/layout";
+
+@import "./components/keep";
+@import "./components/generic";
+@import "./components/bento";
+@import "./components/small-post";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    @font-face {
-        font-family: 'Luciole';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url("/fonts/Luciole-Regular.ttf") format('truetype');
-    }
 
-    @font-face {
-        font-family: 'Luciole';
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url("/fonts/Luciole-Regular-Italic.ttf") format('truetype');
-    }
-
-    @font-face {
-        font-family: 'Luciole';
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url("/fonts/Luciole-Bold.ttf") format('truetype');
-    }
-
-    @font-face {
-        font-family: 'Luciole';
-        font-style: italic;
-        font-weight: 700;
-        font-display: swap;
-        src: url("/fonts/Luciole-Bold-Italic.ttf") format('truetype');
-    }
-}
-
-@layer base {
-    html {
-        font-family: 'Luciole', sans-serif;
-    }
-
-    .footnotes {
-        @apply text-sm;
-    }
-
-    .prose {
-        strong, h1, h2, h3, h4, h5, h6 {
-            @apply text-rich-black dark:text-powder;
-        }
-    }
-
-    .prose a {
-        @apply text-sky-magenta;
-    }
-
-}
-
-@layer components {
-    .keep {
-        @apply col-span-1 col-span-2 row-span-1 row-span-2;
-        @apply aspect-1/2 aspect-2/1 aspect-square;
-    }
-}
-
-@layer components {
-    .bento {
-        @apply rounded-2xl p-6 shadow;
-
-        .bento-title {
-            @apply text-xl font-light tracking-tight text-rich-black sm:text-2xl dark:text-powder;
-        }
-    }
-
-    .small-post {
-        @apply rounded-3xl shadow-bento border dark:border-paynes-gray/10 p-2 relative overflow-hidden;
-
-        @apply bg-cover bg-center;
-
-        @apply flex flex-col items-start justify-between bg-powder dark:bg-rich-black;
-
-        .small-post-title {
-            @apply text-sm font-light tracking-tight text-rich-black bg-powder rounded-lg p-2 px-3;
-
-            @apply md:text-xs xl:text-base;
-        }
-    }
-}

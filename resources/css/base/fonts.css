@@ -1,0 +1,33 @@
+@layer base {
+    @font-face {
+        font-family: 'Luciole';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/fonts/Luciole-Regular.ttf") format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Luciole';
+        font-style: italic;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/fonts/Luciole-Regular-Italic.ttf") format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Luciole';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url("/fonts/Luciole-Bold.ttf") format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Luciole';
+        font-style: italic;
+        font-weight: 700;
+        font-display: swap;
+        src: url("/fonts/Luciole-Bold-Italic.ttf") format('truetype');
+    }
+}

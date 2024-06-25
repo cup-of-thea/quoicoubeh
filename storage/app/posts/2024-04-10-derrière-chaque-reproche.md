@@ -3,7 +3,7 @@ title: "Derrière chaque reproche..."
 date: "2024-04-10"
 description: "Un reproche est un signal, qu'il soit émis ou reçu. Et c'est hyper difficile de s'habituer à prendre du recul dessus."
 category: "Perso"
-tags: ["Relations humaines", "Communication"]
+tags: [ "Relations humaines", "Communication" ]
 series: "Expression et communication"
 episode: 2
 rows: 1
@@ -28,16 +28,18 @@ C’est aussi paradoxal. On voudrait qu’on lise en nous comme dans un livre ou
 Rosette[^1] pour aider à la compréhension, on a peur et on se ferme dès qu’une personne semble y parvenir un peu.
 
 [^1]: La pierre de Rosette est une stèle égyptienne qui a permis de déchiffrer les hiéroglyphes. Elle est donc devenue
-      un symbole de déchiffrement de langage.
+un symbole de déchiffrement de langage.
 
 En tout cas, j'ai cette tendance à me refermer comme une huître assez (trop) souvent.
 
 Oui, je ne suis pas simple à vivre.
 
-Mais, il y a quelque temps, j'ai découvert que voir les reproches différemment pouvait m'aider à mieux comprendre mes besoins
+Mais, il y a quelque temps, j'ai découvert que voir les reproches différemment pouvait m'aider à mieux comprendre mes
+besoins
 et ceux des autres, et à mieux communiquer.
 
-Parce que c'est exactement ça dont il est question, de besoin, car **derrière chaque reproche, se cache un besoin inassouvi**. 
+Parce que c'est exactement ça dont il est question, de besoin, car **derrière chaque reproche, se cache un besoin
+inassouvi**.
 
 Pour le moment, ce n'est pas tous les jours que je parviens à avoir la mansuétude d'adopter ce point de vue,
 mais déjà le peu que je fais m'aide sur les deux plans, que ce soit un reproche émis ou reçu :
@@ -53,16 +55,17 @@ c'est difficile déjà parce que si on ne parvient pas à le formuler autrement,
 de jugement de notre part, et quand on est dans la position de recevoir un reproche, le réflexe va être d'enclencher la
 réaction de défense ou de fuite, pas de chercher à comprendre ce qui se cache derrière.
 
-Mais avec le temps, j'ai bon espoir de faire ça aussi facilement que je respire, c'est un chouette objectif pour la 
+Mais avec le temps, j'ai bon espoir de faire ça aussi facilement que je respire, c'est un chouette objectif pour la
 sérénité. Cela m'aide à m'apprécier et me comprendre, et à être même plus apte à accepter qu'une autre personne me
 comprenne ou éventuellement de m'extraire de son jugement. Et inversément, cela m'aide à comprendre les autres et à
-mieux les écouter, et à concevoir que leur reproche n'est pas une attaque personnelle, mais une demande, et ça, ça change
+mieux les écouter, et à concevoir que leur reproche n'est pas une attaque personnelle, mais une demande, et ça, ça
+change
 tout.
 
 ---
 
-Et toi, comment tu gères les reproches, qu'ils soient émis ou reçus ? Est-ce que tu as des astuces pour mieux les 
-comprendre et les accepter ? 
+Et toi, comment tu gères les reproches, qu'ils soient émis ou reçus ? Est-ce que tu as des astuces pour mieux les
+comprendre et les accepter ?
 
 Si jamais ce que je crée t'inspire, ou si tu as des questions, n'hésite pas à me le dire, je serais ravie de discuter.
 

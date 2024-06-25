@@ -7,7 +7,7 @@ tags: [ "Relations humaines" ]
 series: "Les mots de Thea"
 episode: 1
 rows: 1
-cols: 1
+cols: 2
 image: "covers/controles.jpg"
 image_alt: "Une femme en train de méditer, assise en tailleur"
 ---
