@@ -7,7 +7,7 @@ tags: [ "Féminisme" ]
 image: "posts/2023-12-07-pourquoi-calme-toi-est-misogyne/rdp.jpg"
 image_alt: "La roue des privilèges"
 rows: 1
-cols: 1
+cols: 2
 ---
 
 Merci [Magali](https://magali-milbergue.com/) pour ta relecture et tes conseils !

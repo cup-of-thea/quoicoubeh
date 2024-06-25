@@ -1,0 +1,17 @@
+@layer components {
+    .generic-component {
+        @apply px-6 py-16 xl:py-32;
+    }
+
+    .generic-title {
+        @apply text-3xl font-bold tracking-tight dark:text-powder sm:text-4xl;
+    }
+
+    .generic-subtitle {
+        @apply mt-2 text-lg leading-8 dark:text-powder;
+    }
+
+    .generic-grid {
+        @apply grid grid-cols-2 grid-flow-dense gap-8 pt-6 auto-rows-fr md:grid-cols-4 xl:grid-cols-4;
+    }
+}

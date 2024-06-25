@@ -6,7 +6,7 @@ episode: 1
 category: "Pro"
 tags: [ "Télétravail", "Organisation", "Communauté" ]
 series: "Expériences"
-image: "covers/organiser.png"
+image: "covers/organiser.jpg"
 image_alt: "Un agenda ouvert sur un bureau avec une tasse de thé et des fleurs"
 rows: 1
 cols: 1

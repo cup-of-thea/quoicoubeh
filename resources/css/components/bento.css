@@ -1,0 +1,9 @@
+@layer components {
+    .bento {
+        @apply rounded-2xl p-6 shadow;
+
+        .bento-title {
+            @apply text-xl font-light tracking-tight text-rich-black sm:text-2xl dark:text-powder;
+        }
+    }
+}

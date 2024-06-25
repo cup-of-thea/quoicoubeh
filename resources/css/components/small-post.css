@@ -1,0 +1,15 @@
+@layer components {
+    .small-post {
+        @apply rounded-3xl shadow-bento border dark:border-paynes-gray/10 p-2 relative overflow-hidden;
+
+        @apply bg-cover bg-center;
+
+        @apply flex flex-col items-start justify-between bg-powder dark:bg-rich-black;
+
+        .small-post-title {
+            @apply text-sm font-light tracking-tight text-rich-black bg-powder rounded-lg p-2 px-3;
+
+            @apply md:text-xs;
+        }
+    }
+}
