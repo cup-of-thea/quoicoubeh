@@ -35,7 +35,6 @@ class LikePostsRepository implements ILikePostsRepository
 
     public function isLiked(PostId $postId, ?string $ip)
     {
-        return false;
         return DB::connection('mongodb')
             ->collection('likes')
             ->where('post_id', $postId->value)
@@ -45,7 +44,6 @@ class LikePostsRepository implements ILikePostsRepository
 
     public function likesCount(PostId $postId)
     {
-        return 0;
         return DB::connection('mongodb')
             ->collection('likes')
             ->where('post_id', $postId->value)
