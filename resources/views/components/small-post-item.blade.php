@@ -38,14 +38,14 @@
         </div>
 
         <div
-            class="absolute bottom-0 left-0 flex items-center gap-x-2 rounded-tr-3xl border-r border-t bg-powder px-3 py-1"
+            class="absolute bottom-0 left-0 flex items-center gap-x-2 rounded-tr-3xl border-r border-t bg-powder px-3 py-1 text-paynes-gray"
         >
             <x-ri-eye-line class="h-4 w-4" />
             <span>{{ $post->reading->getReadingCount() }}</span>
         </div>
 
         <div
-            class="absolute right-0 top-0 rounded-bl-3xl border-b border-l bg-powder px-3 py-1"
+            class="absolute right-0 top-0 rounded-bl-3xl border-b border-l bg-powder px-3 py-1 text-paynes-gray"
         >
             <livewire:likes
                 wire:key="{{ Guid::uuid4() }}"
