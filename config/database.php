@@ -112,7 +112,7 @@ return [
         'mongodb' => [
             'driver' => 'mongodb',
             'dsn' => env('MONGO_URI', 'mongodb://mongo:27017/cup_of_coffee'),
-            'database' => 'cup_of_coffee',
+            'database' => env('MONGO_DATABASE', 'cup_of_coffee'),
         ],
     ],
 
@@ -149,7 +149,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
