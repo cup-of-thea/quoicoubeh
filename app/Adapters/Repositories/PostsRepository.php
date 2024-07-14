@@ -84,6 +84,8 @@ class PostsRepository implements IPostsRepository
                 'p.description',
                 'p.content',
                 'p.date',
+                'p.image',
+                'p.image_alt',
                 'c.id as category_id',
                 'c.title as category_title',
                 'c.slug as category_slug',
