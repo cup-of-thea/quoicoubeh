@@ -44,6 +44,8 @@
                 @endif
             </div>
 
+            <img src="{{ $post->getImage() }}" alt="{{ $post->getAlt() }}">
+
             @if($post->description)
                 <p class="mt-6 text-lg leading-8">
                     {{ $post->description }}

@@ -221,6 +221,8 @@ class PostsRepository implements IPostsRepository
             $post->category_id
                 ? PostItemCategory::from($post->category_id, $post->category_title, $post->category_slug)
                 : null,
+            $post->image,
+            $post->image_alt,
         );
     }
 
