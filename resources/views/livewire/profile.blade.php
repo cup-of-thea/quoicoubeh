@@ -1,24 +1,27 @@
 <div class="text-left">
     <div class="relative inline-block">
         <img
-            class="h-24 w-24 rounded-full"
+            class="h-32 w-32 rounded-full"
             src="{{ $avatarUrl }}"
             alt="Avatar"
         />
         <div
-            class="absolute -top-2 -right-2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg shadow"
+            class="absolute -right-2 -top-2 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg shadow"
         >
-            🎶
+            🥰
         </div>
     </div>
-    <div class="mt-4">
-        <h2 class="mb-4 text-xl text-scarlet dark:text-atomic-tangerine">
-            {{ $name }} · {{ $pronouns }}
-        </h2>
+    <div class="mt-4 text-sm">
+        <h2 class="mb-4 text-xl">{{ $name }} · {{ $pronouns }}</h2>
 
         <ul class="font-light">
-            🖥️ Développeuse .Net · 🎮 Affiliée Twitch · ✍️ Autrice de contenus ·  🌸 🏳️‍🌈 🏳️‍⚧️ Féministe Intersectionnelle & Lesbienne et fière de l'être
-
+            <li>🖥️ Développeuse .Net</li>
+            <li>🎮 Affiliée Twitch</li>
+            <li>✍️ Autrice de contenus</li>
+            <li>
+                🌸 🏳️‍🌈 🏳️‍⚧️ Féministe Intersectionnelle & Lesbienne et fière de
+                l'être
+            </li>
         </ul>
         <div class="h-6"></div>
     </div>

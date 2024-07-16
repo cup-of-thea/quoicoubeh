@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Profile extends Component
@@ -20,10 +19,5 @@ class Profile extends Component
         $this->name = config('domain.profile.name');
         $this->links = config('domain.profile.links');
         $this->pronouns = config('domain.profile.pronouns');
-    }
-
-    public function render(): View
-    {
-        return view('livewire.profile');
     }
 }

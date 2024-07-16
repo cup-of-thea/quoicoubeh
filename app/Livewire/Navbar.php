@@ -12,8 +12,4 @@ class Navbar extends Component
     {
         $this->links = config('domain.navbar.links');
     }
-    public function render()
-    {
-        return view('livewire.navbar');
-    }
 }
