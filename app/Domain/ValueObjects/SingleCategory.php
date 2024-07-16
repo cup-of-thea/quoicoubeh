@@ -2,7 +2,7 @@
 
 namespace App\Domain\ValueObjects;
 
-class SingleCategory
+final readonly class SingleCategory
 {
     private function __construct(
         public CategoryId $id,

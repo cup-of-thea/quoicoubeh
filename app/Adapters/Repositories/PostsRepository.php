@@ -47,10 +47,11 @@ class PostsRepository implements IPostsRepository
         'pm.cols',
     ];
 
-    public function getLastPosts(int $limit = 10): PostIndexCollection
+    public function getLastPosts(int $limit = 10, array $filteredOutCategories = []): PostIndexCollection
     {
         $items = $this->postIndexBuilder()
             ->orderBy('date', 'desc')
+            ->whereNotIn('c.id', $filteredOutCategories)
             ->limit($limit)
             ->get()
             ->map(fn($post) => $this->hydratePostIndex($post));
