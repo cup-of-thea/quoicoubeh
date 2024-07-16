@@ -4,6 +4,7 @@ namespace App\Domain\DomainService;
 
 use App\Domain\Adapters\Repositories\ILikePostsRepository;
 use App\Domain\Adapters\Repositories\IPostsRepository;
+use App\Domain\Adapters\Repositories\ITaxonomiesRepository;
 use App\Domain\ValueObjects\PostIndexCollection;
 
 readonly final class TopPostsDomainService
@@ -12,7 +13,8 @@ readonly final class TopPostsDomainService
 
     public function __construct(
         private ILikePostsRepository $likePostsRepository,
-        private IPostsRepository $postsRepository
+        private IPostsRepository $postsRepository,
+        private ITaxonomiesRepository $taxonomiesRepository
     ) {
     }
 
@@ -30,6 +32,8 @@ readonly final class TopPostsDomainService
 
     public function getMostRecentPosts(): PostIndexCollection
     {
-        return $this->postsRepository->getLastPosts(self::SMALL_LIMIT);
+        $discoveriesCategory = $this->taxonomiesRepository->getSingleCategory('decouvertes');
+
+        return $this->postsRepository->getLastPosts(self::SMALL_LIMIT, [$discoveriesCategory->id->value]);
     }
 }

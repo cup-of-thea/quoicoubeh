@@ -6,6 +6,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"
         />
+        {{ $meta ?? "" }}
         <title>{{ $title ?? config("app.name") }}</title>
         @vite("resources/css/app.css")
         @livewireStyles

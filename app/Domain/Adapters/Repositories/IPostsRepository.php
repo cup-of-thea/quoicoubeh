@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 
 interface IPostsRepository
 {
-    public function getLastPosts(int $limit = 10): PostIndexCollection;
+    public function getLastPosts(int $limit = 10, array $filteredOutCategories = []): PostIndexCollection;
 
     public function getYears(): PostYearsCollection;
 
