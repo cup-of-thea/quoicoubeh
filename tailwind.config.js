@@ -25,6 +25,7 @@ export default {
             colors: {
                 scarlet: "#F53100",
                 "atomic-tangerine": "#FD9855",
+                "rajah-orange": "#FFB84D",
                 powder: "#fffffe",
                 "sky-magenta": "#D161A2",
                 murrey: "#A20161",
@@ -33,15 +34,13 @@ export default {
                 white: "#FFFFFF",
             },
             boxShadow: {
-                'bento': '0 2px 4px rgba(0, 0, 0, .04);',
+                bento: "0 2px 4px rgba(0, 0, 0, .04);",
             },
             aspectRatio: {
-                "1/2": '1 / 2',
-                "2/1": '2 / 1',
-            }
+                "1/2": "1 / 2",
+                "2/1": "2 / 1",
+            },
         },
     },
-    plugins: [
-        require("@tailwindcss/typography"),
-    ],
+    plugins: [require("@tailwindcss/typography")],
 };

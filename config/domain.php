@@ -71,6 +71,11 @@ return [
                 'url' => '/',
             ],
             [
+                'title' => 'Streams',
+                'icon' => 'ri-twitch-line',
+                'url' => '/streams',
+            ],
+            [
                 'title' => 'Blog',
                 'icon' => 'ri-blogger-line',
                 'url' => '/blog',

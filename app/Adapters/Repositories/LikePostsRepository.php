@@ -33,21 +33,23 @@ class LikePostsRepository implements ILikePostsRepository
         }
     }
 
-    public function isLiked(PostId $postId, ?string $ip)
+    public function isLiked(PostId $postId, ?string $ip): bool
     {
-        return DB::connection('mongodb')
-            ->collection('likes')
-            ->where('post_id', $postId->value)
-            ->where('ip', $ip)
-            ->exists();
+        return false;
+//        return DB::connection('mongodb')
+//            ->collection('likes')
+//            ->where('post_id', $postId->value)
+//            ->where('ip', $ip)
+//            ->exists();
     }
 
     public function likesCount(PostId $postId)
     {
-        return DB::connection('mongodb')
-            ->collection('likes')
-            ->where('post_id', $postId->value)
-            ->count();
+        return 0;
+//        DB::connection('mongodb')
+//            ->collection('likes')
+//            ->where('post_id', $postId->value)
+//            ->count();
     }
 
     public function getMostLikedPostIds(): Collection

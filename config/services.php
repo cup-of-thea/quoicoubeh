@@ -31,4 +31,9 @@ return [
         ],
     ],
 
+    'notion' => [
+        'secret' => env('NOTION_SECRET'),
+        'page_id' => env('NOTION_PAGE_ID'),
+        'version' => env('NOTION_VERSION'),
+    ],
 ];
