@@ -2,5 +2,7 @@
     .keep {
         @apply col-span-1 col-span-2 row-span-1 row-span-2;
         @apply aspect-1/2 aspect-2/1 aspect-square;
+        @apply bg-red-50;
+        @apply text-red-500;
     }
 }
