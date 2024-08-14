@@ -13,7 +13,7 @@ readonly class GetStreamsController
 
     public function __invoke(): View
     {
-        return view('pages.notion', [
+        return view('pages.streams', [
             'streams' => $this->notion->getStreams(),
         ]);
     }
