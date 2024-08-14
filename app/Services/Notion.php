@@ -12,9 +12,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class Notion
+readonly class Notion
 {
-    private readonly array $headers;
+    private array $headers;
 
     public function __construct()
     {
