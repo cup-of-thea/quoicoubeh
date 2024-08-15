@@ -1,7 +1,6 @@
 <?php
 
 use App\Domain\Adapters\Repositories\INotionPostsRepository;
-use App\Domain\UseCases\Queries\Posts\GetLastPostsQuery;
 use App\Domain\ValueObjects\Notion\NotionPost;
 use App\Domain\ValueObjects\Notion\NotionPostCover;
 use App\Domain\ValueObjects\NotionPostCollection;
@@ -13,6 +12,7 @@ use Behat\Step\Then;
 use Behat\Step\When;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
@@ -88,8 +88,15 @@ class NotionContext extends TestCase implements Context
     {
         $expected = $table->getHash();
         // Get the actual posts from the database
-        $query = app(GetLastPostsQuery::class);
-        $actual = $query->get();
+        $actual = DB::table('posts')
+            ->orderBy('date', 'desc')
+            ->get(['title', 'slug', 'date'])
+            ->map(fn($post) => [
+                'title' => $post->title,
+                'slug' => $post->slug,
+                'date' => Carbon::parse($post->date)->format('Y-m-d'),
+            ])
+            ->toArray();
         $this->assertEquals($expected, $actual);
     }
 }
