@@ -4,6 +4,7 @@ namespace App\Domain\UseCases\Queries\Categories;
 
 use App\Domain\Adapters\Repositories\IPostsRepository;
 use App\Domain\Adapters\Repositories\ITaxonomiesRepository;
+use App\Domain\Exceptions\NotFoundException;
 use App\Domain\ValueObjects\PostIndexCollection;
 
 readonly class DiscoveriesQuery
@@ -16,7 +17,11 @@ readonly class DiscoveriesQuery
 
     public function get(): PostIndexCollection
     {
-        $singleCategory = $this->taxonomiesRepository->getSingleCategory('decouvertes');
+        try {
+            $singleCategory = $this->taxonomiesRepository->getSingleCategory('decouvertes');
+        } catch (NotFoundException) {
+            return new PostIndexCollection();
+        }
 
         return $this->postsRepository->getPostsFromCategory($singleCategory->id);
     }

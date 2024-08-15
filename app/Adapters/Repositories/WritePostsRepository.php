@@ -3,7 +3,7 @@
 namespace App\Adapters\Repositories;
 
 use App\Domain\Adapters\Repositories\IWritePostsRepository;
-use App\Domain\UseCase\Commands\PostCreator;
+use App\Domain\UseCases\Commands\PostCreator;
 use App\Domain\ValueObjects\PostId;
 use Illuminate\Support\Facades\DB;
 

@@ -23,6 +23,7 @@ class HomePageTest extends TestCase
 
     public function test_the_home_page_shows_posts(): void
     {
-        $this->get('/')->assertSeeLivewire('posts');
+        $this->get('/')->assertSeeLivewire('last-posts');
+        $this->get('/')->assertSeeLivewire('sections.discoveries');
     }
 }
