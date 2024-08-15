@@ -2,7 +2,6 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Hook\BeforeScenario;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class StartupContext extends TestCase implements Context
@@ -19,7 +18,6 @@ class StartupContext extends TestCase implements Context
     public function before(): void
     {
         $this->artisan('migrate:fresh');
-
-        DB::connection('mongodb')->collection('likes')->delete();
+        //DB::connection('mongodb')->collection('likes')->delete();
     }
 }
