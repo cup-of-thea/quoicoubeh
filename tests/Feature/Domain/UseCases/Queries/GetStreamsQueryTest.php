@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\UseCases\Queries;
+namespace Tests\Feature\Domain\UseCases\Queries;
 
 use App\Domain\Adapters\Repositories\IStreamsRepository;
 use App\Domain\UseCases\Queries\Streams\GetStreamsQuery;

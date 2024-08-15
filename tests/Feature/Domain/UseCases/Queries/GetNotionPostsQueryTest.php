@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\UseCases\Queries;
+namespace Tests\Feature\Domain\UseCases\Queries;
 
 use App\Domain\Adapters\Repositories\INotionPostsRepository;
 use App\Domain\UseCases\Queries\Posts\GetNotionPostsQuery;
