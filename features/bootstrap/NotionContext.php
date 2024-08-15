@@ -6,7 +6,6 @@ use App\Domain\ValueObjects\Notion\NotionPostCover;
 use App\Domain\ValueObjects\NotionPostCollection;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Hook\AfterScenario;
 use Behat\Step\Given;
 use Behat\Step\Then;
 use Behat\Step\When;
@@ -35,12 +34,6 @@ class NotionContext extends TestCase implements Context
         putenv('DB_DATABASE=:memory:');
         putenv('MONGO_DATABASE=testing');
         parent::SetUp();
-    }
-
-    #[AfterScenario]
-    public function after(): void
-    {
-        $this->artisan('migrate:rollback');
     }
 
     #[Given('/^the following posts exist in Notion:$/')]

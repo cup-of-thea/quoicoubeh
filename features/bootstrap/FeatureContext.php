@@ -7,7 +7,6 @@ use App\Domain\UseCases\Commands\PostCreator;
 use App\Domain\ValueObjects\PostId;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Hook\AfterScenario;
 use Behat\Step\Given;
 use Behat\Step\Then;
 use Behat\Step\When;
@@ -37,12 +36,6 @@ class FeatureContext extends TestCase implements Context
     {
         $this->createPostsCommand = new CreatePostCommand(new WritePostsRepository());
         parent::SetUp();
-    }
-
-    #[AfterScenario]
-    public function after(): void
-    {
-        $this->artisan('migrate:rollback');
     }
 
     #[Given('/^the following posts with likes exist:$/')]
