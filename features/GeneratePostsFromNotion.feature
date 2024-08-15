@@ -5,13 +5,13 @@ Feature: Generate Posts From Notion
 
   Scenario: Save posts into the database
     Given the following posts exist in Notion:
-      | title  | slug   |
-      | Post 1 | post-1 |
-      | Post 2 | post-2 |
-      | Post 3 | post-3 |
+      | title  | date       |
+      | Post 1 | 2021-01-01 |
+      | Post 2 | 2021-01-02 |
+      | Post 3 | 2021-01-03 |
     When I run the command to import posts
     Then I should have the following posts:
       | title  |
-      | Post 2 |
       | Post 3 |
+      | Post 2 |
       | Post 1 |

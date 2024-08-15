@@ -7,6 +7,7 @@ use App\Adapters\Repositories\NotionPostsRepository;
 use App\Adapters\Repositories\PostsRepository;
 use App\Adapters\Repositories\StreamsRepository;
 use App\Adapters\Repositories\TaxonomiesRepository;
+use App\Adapters\Repositories\WritePostsRepository;
 use App\Domain\Adapters\Repositories\ILikePostsRepository;
 use App\Domain\Adapters\Repositories\INotionPostsRepository;
 use App\Domain\Adapters\Repositories\IPostsRepository;
@@ -19,7 +20,7 @@ class InfrastructureServiceProvider extends ServiceProvider
 {
     public array $bindings = [
         IPostsRepository::class => PostsRepository::class,
-        IWritePostsRepository::class => PostsRepository::class,
+        IWritePostsRepository::class => WritePostsRepository::class,
         ITaxonomiesRepository::class => TaxonomiesRepository::class,
         ILikePostsRepository::class => LikePostsRepository::class,
         IStreamsRepository::class => StreamsRepository::class,

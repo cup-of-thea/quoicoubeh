@@ -8,7 +8,6 @@ use App\Domain\ValueObjects\PostId;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Hook\AfterScenario;
-use Behat\Hook\BeforeScenario;
 use Behat\Step\Given;
 use Behat\Step\Then;
 use Behat\Step\When;
@@ -36,19 +35,8 @@ class FeatureContext extends TestCase implements Context
      */
     public function __construct()
     {
-        putenv('DB_CONNECTION=sqlite');
-        putenv('DB_DATABASE=:memory:');
-        putenv('MONGO_DATABASE=testing');
         $this->createPostsCommand = new CreatePostCommand(new WritePostsRepository());
         parent::SetUp();
-    }
-
-    #[BeforeScenario]
-    public function before(): void
-    {
-        $this->artisan('migrate:fresh');
-
-        DB::connection('mongodb')->collection('likes')->delete();
     }
 
     #[AfterScenario]
@@ -81,8 +69,8 @@ class FeatureContext extends TestCase implements Context
         $this->mostLikedPosts = app(ILikePostsRepository::class)->getMostLikedPostIds();
     }
 
-    #[Then('/^I should have the following posts:$/')]
-    public function iShouldHaveTheFollowingPosts(TableNode $table): void
+    #[Then('/^I should have the following most liked posts:$/')]
+    public function iShouldHaveTheFollowingMostLikedPosts(TableNode $table): void
     {
         $expected = $table->getHash();
         $actual = $this->mostLikedPosts->map(
