@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\UseCase\Queries\GetRandomPostSlugQuery;
+use App\Domain\UseCases\Queries\Posts\GetRandomPostSlugQuery;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;

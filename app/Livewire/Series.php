@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCase\Queries\GetSeriesQuery;
+use App\Domain\UseCases\Queries\GetSeriesQuery;
 use App\Domain\ValueObjects\SeriesCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -10,6 +10,7 @@ use Livewire\Component;
 class Series extends Component
 {
     use HasToggle;
+
     private GetSeriesQuery $seriesQuery;
 
     public function boot(GetSeriesQuery $seriesQuery): void

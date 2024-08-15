@@ -2,8 +2,8 @@
 
 use App\Adapters\Repositories\WritePostsRepository;
 use App\Domain\Adapters\Repositories\ILikePostsRepository;
-use App\Domain\UseCase\Commands\CreatePostCommand;
-use App\Domain\UseCase\Commands\PostCreator;
+use App\Domain\UseCases\Commands\CreatePostCommand;
+use App\Domain\UseCases\Commands\PostCreator;
 use App\Domain\ValueObjects\PostId;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
