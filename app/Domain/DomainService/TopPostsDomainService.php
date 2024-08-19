@@ -33,7 +33,9 @@ readonly final class TopPostsDomainService
     public function getMostRecentPosts(): PostIndexCollection
     {
         $discoveriesCategory = $this->taxonomiesRepository->getSingleCategory('decouvertes');
+        $postsOfTheWeekCategory = $this->taxonomiesRepository->getSingleCategory('les-posts-de-la-semaine');
+        $exceptTheseCategories = [$discoveriesCategory->id->value, $postsOfTheWeekCategory->id->value];
 
-        return $this->postsRepository->getLastPosts(self::SMALL_LIMIT, [$discoveriesCategory->id->value]);
+        return $this->postsRepository->getLastPosts(self::SMALL_LIMIT, $exceptTheseCategories);
     }
 }
