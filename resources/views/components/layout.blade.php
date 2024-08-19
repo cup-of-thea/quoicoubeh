@@ -57,5 +57,6 @@
                 });
             });
         </script>
+        {{ $scripts ?? '' }}
     </body>
 </html>

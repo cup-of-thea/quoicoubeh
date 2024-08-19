@@ -59,4 +59,8 @@
         </div>
     </div>
 
+    <x-slot:scripts>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+    </x-slot>
 </x-layout>
