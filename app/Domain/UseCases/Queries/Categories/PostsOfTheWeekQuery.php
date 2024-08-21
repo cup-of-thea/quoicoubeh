@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Domain\UseCase\Queries\Categories;
+namespace App\Domain\UseCases\Queries\Categories;
 
 use App\Domain\Adapters\Repositories\IPostsRepository;
 use App\Domain\Adapters\Repositories\ITaxonomiesRepository;
+use App\Domain\Exceptions\NotFoundException;
 use App\Domain\ValueObjects\PostIndexCollection;
 
 readonly class PostsOfTheWeekQuery
@@ -16,7 +17,11 @@ readonly class PostsOfTheWeekQuery
 
     public function get(): PostIndexCollection
     {
-        $singleCategory = $this->taxonomiesRepository->getSingleCategory('les-posts-de-la-semaine');
+        try {
+            $singleCategory = $this->taxonomiesRepository->getSingleCategory('les-posts-de-la-semaine');
+        } catch (NotFoundException) {
+            return new PostIndexCollection();
+        }
 
         return $this->postsRepository->getPostsFromCategory($singleCategory->id);
     }
