@@ -18,7 +18,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_DATABASE: test_db
+          MYSQL_DATABASE: testing
           MYSQL_USER: user
           MYSQL_PASSWORD: secret
           MYSQL_ROOT_PASSWORD: secretroot
@@ -50,14 +50,14 @@ jobs:
         run: npm run build
       - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
         env:
-          MYSQL_DATABASE: test_db
+          MYSQL_DATABASE: testing
           DB_USERNAME: user
           DB_PASSWORD: secret
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         run: php artisan test
       - name: Execute tests (Acceptance tests)
         env:
-          MYSQL_DATABASE: test_db
+          MYSQL_DATABASE: testing
           DB_USERNAME: user
           DB_PASSWORD: secret
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
