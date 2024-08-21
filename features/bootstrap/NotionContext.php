@@ -30,8 +30,7 @@ class NotionContext extends TestCase implements Context
      */
     public function __construct()
     {
-        putenv('DB_CONNECTION=sqlite');
-        putenv('DB_DATABASE=:memory:');
+        putenv('DB_DATABASE=testing');
         putenv('MONGO_DATABASE=testing');
         parent::SetUp();
     }

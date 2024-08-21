@@ -23,7 +23,7 @@ class NotionSync extends Command
     /**
      * Execute the console command.
      */
-    #[NoReturn] public function handle()
+    #[NoReturn] public function handle(): void
     {
         $postsToWrite = $this->getNotionPostsQuery->execute();
 

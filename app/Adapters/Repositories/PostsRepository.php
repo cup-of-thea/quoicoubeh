@@ -62,7 +62,7 @@ class PostsRepository implements IPostsRepository
     public function getYears(): PostYearsCollection
     {
         $years = DB::table('posts')
-            ->selectRaw('strftime("%Y", date) as year, COUNT(*) as count')
+            ->selectRaw('YEAR(date) as year, COUNT(*) as count')
             ->distinct()
             ->orderBy('year', 'desc')
             ->groupBy('year')
