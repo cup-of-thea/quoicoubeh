@@ -2,8 +2,13 @@
 
 namespace App\Domain\ValueObjects;
 
+use App\Domain\ValueObjects\Notion\NotionPost;
 use Illuminate\Support\Collection;
 
-class NotionPostCollection extends Collection
+final readonly class NotionPostCollection
 {
+    /** @var Collection<NotionPost> $posts */
+    public function __construct(public Collection $posts)
+    {
+    }
 }
