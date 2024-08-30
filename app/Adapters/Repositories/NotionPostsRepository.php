@@ -33,22 +33,21 @@ readonly class NotionPostsRepository implements INotionPostsRepository
     {
         return new NotionPostCollection(
             collect($this->getPostsFromNotion()->collect('results'))
+                ->filter(fn($post) => isset($post['cover']) && isset($post['properties']['Date']['date']))
                 ->map(fn($post) => NotionPost::from(
                     $post['id'],
                     Carbon::parse($post['created_time']),
                     Carbon::parse($post['last_edited_time']),
-                    Carbon::parse(
-                        $post['properties']['Date']['date'] ? $post['properties']['Date']['date']['start'] : ''
-                    ),
+                    Carbon::parse($post['properties']['Date']['date']['start']),
                     NotionPostCover::from(
-                        $post['cover'] ? $post['cover']['external']['url'] : '',
-                        $this->notionService->getRichTextContent($post, 'Cover Alt') ?: '',
-                        $post['properties']['Cover Author Link']['url'] ?: '',
+                        $post['cover']['external']['url'],
+                        $this->notionService->getRichTextContent($post, 'Cover Alt'),
+                        $post['properties']['Cover Author Link']['url'],
                     ),
                     $post['properties']['Titre']['title'][0]['plain_text'],
                     $this->notionService->getRichTextContent($post, 'Slug')
                         ?: str($post['properties']['Titre']['title'][0]['plain_text'])->slug(),
-                    $this->notionService->getRichTextContent($post, 'Description') ?: '',
+                    $this->notionService->getRichTextContent($post, 'Description'),
                     $this->notionService->getSelectContent($post, 'Catégorie'),
                     $this->notionService->getSelectContent($post, 'Série'),
                     $this->notionService->getMultiSelectContent($post, 'Tags')

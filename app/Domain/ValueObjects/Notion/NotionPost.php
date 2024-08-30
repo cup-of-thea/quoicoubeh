@@ -14,7 +14,7 @@ final readonly class NotionPost
         public NotionPostCover $cover,
         public string $title,
         public string $slug,
-        public string $description,
+        public ?string $description = null,
         public ?string $category = null,
         public ?string $series = null,
         public array $tags = [],
@@ -29,7 +29,7 @@ final readonly class NotionPost
         NotionPostCover $cover,
         string $title,
         string $slug,
-        string $description,
+        ?string $description = null,
         ?string $category = null,
         ?string $series = null,
         array $tags = [],
@@ -55,14 +55,14 @@ final readonly class NotionPostCover
     public function __construct(
         public string $url,
         public string $alt,
-        public string $authorUrl,
+        public ?string $authorUrl = null,
     ) {
     }
 
     public static function from(
         string $url,
         string $alt,
-        string $authorUrl,
+        ?string $authorUrl = null,
     ): self {
         return new self(
             url: $url,

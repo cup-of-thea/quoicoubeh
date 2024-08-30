@@ -15,16 +15,16 @@ class GetNotionPostsQueryTest extends TestCase
     /**
      * A basic test example.
      */
-    public function test_it_get_lasts_notion_posts(): void
+    public function test_it_gets_lasts_notion_posts(): void
     {
         // Given
         $mock = $this->mock(INotionPostsRepository::class, function ($mock) {
             $mock->shouldReceive('getPosts')->andReturn($this->postsFromNotionApi());
         });
         // When
-        $streams = (new GetNotionPostsQuery($mock))->execute();
+        $postCollection = (new GetNotionPostsQuery($mock))->execute();
         // Then
-        $this->assertCount(2, $streams);
+        $this->assertCount(2, $postCollection->posts);
     }
 
     private function postsFromNotionApi(): NotionPostCollection
