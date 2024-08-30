@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCase\Queries\GetCategoriesQuery;
+use App\Domain\UseCases\Queries\Categories\GetCategoriesQuery;
 use App\Domain\ValueObjects\CategoriesCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;

@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCase\Queries\GetLastPostsQuery;
+use App\Domain\UseCases\Queries\Posts\GetLastPostsQuery;
 use App\Domain\ValueObjects\PostIndexCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;

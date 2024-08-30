@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCase\Commands\LikePostCommand;
-use App\Domain\UseCase\Queries\LikedPostQuery;
+use App\Domain\UseCases\Commands\LikePostCommand;
+use App\Domain\UseCases\Queries\Posts\LikedPostQuery;
 use App\Domain\ValueObjects\PostId;
 use Livewire\Component;
 
@@ -17,8 +17,8 @@ class LikePostAction extends Component
 
     public function boot(
         LikePostCommand $likePostCommand,
-        LikedPostQuery  $likedPostQuery): void
-    {
+        LikedPostQuery $likedPostQuery
+    ): void {
         $this->likePostCommand = $likePostCommand;
         $this->likedPostQuery = $likedPostQuery;
     }

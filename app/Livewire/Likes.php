@@ -2,8 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCase\Commands\LikePostCommand;
-use App\Domain\UseCase\Queries\LikedPostQuery;
+use App\Domain\UseCases\Queries\Posts\LikedPostQuery;
 use App\Domain\ValueObjects\PostId;
 use Livewire\Component;
 
@@ -14,7 +13,7 @@ class Likes extends Component
     public int $likesCount;
     private LikedPostQuery $likedPostQuery;
 
-    public function boot(LikedPostQuery  $likedPostQuery): void
+    public function boot(LikedPostQuery $likedPostQuery): void
     {
         $this->likedPostQuery = $likedPostQuery;
     }

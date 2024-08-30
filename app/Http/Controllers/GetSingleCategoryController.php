@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\UseCase\Queries\GetPostsFromCategoryQuery;
-use App\Domain\UseCase\Queries\GetSingleCategoryQuery;
+use App\Domain\UseCases\Queries\Categories\GetSingleCategoryQuery;
+use App\Domain\UseCases\Queries\Posts\GetPostsFromCategoryQuery;
 use Illuminate\Contracts\View\View;
 
 readonly class GetSingleCategoryController
@@ -11,8 +11,7 @@ readonly class GetSingleCategoryController
     public function __construct(
         private GetSingleCategoryQuery $query,
         private GetPostsFromCategoryQuery $postsFromCategoryQuery
-    )
-    {
+    ) {
     }
 
     public function __invoke(string $slug): View

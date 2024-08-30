@@ -5,6 +5,7 @@ namespace App\Domain\DomainService;
 use App\Domain\Adapters\Repositories\ILikePostsRepository;
 use App\Domain\Adapters\Repositories\IPostsRepository;
 use App\Domain\Adapters\Repositories\ITaxonomiesRepository;
+use App\Domain\Exceptions\NotFoundException;
 use App\Domain\ValueObjects\PostIndexCollection;
 
 readonly final class TopPostsDomainService
@@ -32,10 +33,13 @@ readonly final class TopPostsDomainService
 
     public function getMostRecentPosts(): PostIndexCollection
     {
-        $discoveriesCategory = $this->taxonomiesRepository->getSingleCategory('decouvertes');
-        $postsOfTheWeekCategory = $this->taxonomiesRepository->getSingleCategory('les-posts-de-la-semaine');
-        $exceptTheseCategories = [$discoveriesCategory->id->value, $postsOfTheWeekCategory->id->value];
-
+        try {
+            $discoveriesCategory = $this->taxonomiesRepository->getSingleCategory('decouvertes');
+            $postsOfTheWeekCategory = $this->taxonomiesRepository->getSingleCategory('les-posts-de-la-semaine');
+            $exceptTheseCategories = [$discoveriesCategory->id->value, $postsOfTheWeekCategory->id->value];
+        } catch (NotFoundException) {
+            return new PostIndexCollection();
+        }
         return $this->postsRepository->getLastPosts(self::SMALL_LIMIT, $exceptTheseCategories);
     }
 }

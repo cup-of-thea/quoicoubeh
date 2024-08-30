@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\UseCase\Queries\GetPostsFromTagQuery;
-use App\Domain\UseCase\Queries\GetSingleTagQuery;
+use App\Domain\UseCases\Queries\GetSingleTagQuery;
+use App\Domain\UseCases\Queries\Posts\GetPostsFromTagQuery;
 use Illuminate\Contracts\View\View;
 
 readonly class GetSingleTagController
 {
     public function __construct(
-        private GetSingleTagQuery    $query,
+        private GetSingleTagQuery $query,
         private GetPostsFromTagQuery $postsFromTagQuery
-    )
-    {
+    ) {
     }
 
     public function __invoke(string $slug): View

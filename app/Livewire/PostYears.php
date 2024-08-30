@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCase\Queries\GetPostYearsQuery;
+use App\Domain\UseCases\Queries\GetPostYearsQuery;
 use App\Domain\ValueObjects\PostYearsCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -10,6 +10,7 @@ use Livewire\Component;
 class PostYears extends Component
 {
     use HasToggle;
+
     private GetPostYearsQuery $postYearsQuery;
 
 

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Sections;
 
-use App\Domain\UseCase\Queries\Categories\DiscoveriesQuery;
+use App\Domain\UseCases\Queries\Categories\DiscoveriesQuery;
 use App\Domain\ValueObjects\PostIndexCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;

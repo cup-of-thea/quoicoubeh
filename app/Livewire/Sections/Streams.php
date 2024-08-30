@@ -2,23 +2,23 @@
 
 namespace App\Livewire\Sections;
 
-use App\Services\NotionService;
-use Illuminate\Support\Collection;
+use App\Domain\UseCases\Queries\Streams\GetStreamsQuery;
+use App\Domain\ValueObjects\StreamCollection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Streams extends Component
 {
-    private readonly NotionService $notion;
+    private readonly GetStreamsQuery $query;
 
-    public function boot(NotionService $notion): void
+    public function boot(GetStreamsQuery $query): void
     {
-        $this->notion = $notion;
+        $this->query = $query;
     }
 
     #[Computed]
-    public function streams(): Collection
+    public function streams(): StreamCollection
     {
-        return $this->notion->getStreams();
+        return $this->query->execute();
     }
 }
