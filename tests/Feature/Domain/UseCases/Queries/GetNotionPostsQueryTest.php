@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Domain\UseCases\Queries;
 
-use App\Adapters\Repositories\NotionPostsRepository;
+use App\Adapters\NotionService;
 use App\Domain\Adapters\Repositories\INotionPostsRepository;
 use App\Domain\UseCases\Queries\Posts\GetNotionPostsQuery;
 use App\Domain\ValueObjects\NotionPostCollection;
@@ -121,9 +121,7 @@ class GetNotionPostsQueryTest extends TestCase
                     'Titre' => [
                         'title' => [
                             [
-                                'text' => [
-                                    'plain_text' => 'Stream 2',
-                                ],
+                                'plain_text' => 'Stream 2',
                             ],
                         ],
                     ],
@@ -215,6 +213,6 @@ class GetNotionPostsQueryTest extends TestCase
                 ],
             ],
         ];
-        return NotionPostsRepository::mapPosts(collect($rawValues));
+        return (new NotionService())->mapPosts(collect($rawValues));
     }
 }

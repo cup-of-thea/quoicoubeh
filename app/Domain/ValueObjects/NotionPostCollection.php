@@ -14,6 +14,6 @@ final readonly class NotionPostCollection
 
     public function categories(): Collection
     {
-        return dd($this->posts);
+        return $this->posts->map(fn(NotionPost $post) => $post->category)->unique();
     }
 }
