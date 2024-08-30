@@ -11,4 +11,9 @@ final readonly class NotionPostCollection
     public function __construct(public Collection $posts)
     {
     }
+
+    public function categories(): Collection
+    {
+        return dd($this->posts);
+    }
 }

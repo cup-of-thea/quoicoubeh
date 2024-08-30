@@ -38,34 +38,31 @@ class NotionContext extends TestCase implements Context
     #[Given('/^the following posts exist in Notion:$/')]
     public function theFollowingPostsExist(TableNode $table): void
     {
-        $posts = new NotionPostCollection();
-        collect($table->getHash())->each(fn($row) => $posts->add(
-            NotionPost::from(
-                $this->faker->uuid,
-                Carbon::now(),
-                Carbon::now(),
-                Carbon::parse($row['date']),
-                NotionPostCover::from(
-                    $this->faker->imageUrl(),
-                    $this->faker->sentence,
-                    $this->faker->url,
-                ),
-                $row['title'],
-                str($row['title'])->slug(),
+        $posts = collect($table->getHash())->map(fn($row) => NotionPost::from(
+            $this->faker->uuid,
+            Carbon::now(),
+            Carbon::now(),
+            Carbon::parse($row['date']),
+            NotionPostCover::from(
+                $this->faker->imageUrl(),
                 $this->faker->sentence,
-                $row['category'] ?? null,
-                $row['series'] ?? null,
-                isset($row['tags'])
-                    ? explode(',', $row['tags'])
-                    : [],
-            )
+                $this->faker->url,
+            ),
+            $row['title'],
+            str($row['title'])->slug(),
+            $this->faker->sentence,
+            $row['category'] ?? null,
+            $row['series'] ?? null,
+            isset($row['tags'])
+                ? explode(',', $row['tags'])
+                : [],
         ));
+
+        $posts = new NotionPostCollection($posts);
 
         $this->notionPostsRepository = $this->mock(
             INotionPostsRepository::class,
-            function ($mock) use ($posts) {
-                $mock->shouldReceive('getPosts')->andReturn($posts);
-            }
+            fn($mock) => $mock->shouldReceive('getPosts')->andReturn($posts)
         );
     }
 

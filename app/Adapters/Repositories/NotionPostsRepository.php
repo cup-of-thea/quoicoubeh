@@ -10,6 +10,7 @@ use App\Domain\ValueObjects\NotionPostCollection;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 readonly class NotionPostsRepository implements INotionPostsRepository
@@ -18,22 +19,15 @@ readonly class NotionPostsRepository implements INotionPostsRepository
     {
     }
 
-    /**
-     * @throws ConnectionException
-     */
-    public function getPosts(): NotionPostCollection
-    {
-        return $this->mapPosts();
-    }
-
-    /**
-     * @throws ConnectionException
-     */
-    private function mapPosts(): NotionPostCollection
+    /** @todo : consider that maybe it's a NotionService method */
+    public static function mapPosts(Collection $posts): NotionPostCollection
     {
         return new NotionPostCollection(
-            collect($this->getPostsFromNotion()->collect('results'))
-                ->filter(fn($post) => isset($post['cover']) && isset($post['properties']['Date']['date']))
+            collect($posts)
+                ->filter(fn($post) => isset($post['cover'])
+                    && isset($post['properties']['Date']['date'])
+                    && $post['properties']['Catégorie']['select']
+                )
                 ->map(fn($post) => NotionPost::from(
                     $post['id'],
                     Carbon::parse($post['created_time']),
@@ -41,18 +35,26 @@ readonly class NotionPostsRepository implements INotionPostsRepository
                     Carbon::parse($post['properties']['Date']['date']['start']),
                     NotionPostCover::from(
                         $post['cover']['external']['url'],
-                        $this->notionService->getRichTextContent($post, 'Cover Alt'),
+                        NotionService::getRichTextContent($post, 'Cover Alt'),
                         $post['properties']['Cover Author Link']['url'],
                     ),
                     $post['properties']['Titre']['title'][0]['plain_text'],
-                    $this->notionService->getRichTextContent($post, 'Slug')
+                    NotionService::getRichTextContent($post, 'Slug')
                         ?: str($post['properties']['Titre']['title'][0]['plain_text'])->slug(),
-                    $this->notionService->getRichTextContent($post, 'Description'),
-                    $this->notionService->getSelectContent($post, 'Catégorie'),
-                    $this->notionService->getSelectContent($post, 'Série'),
-                    $this->notionService->getMultiSelectContent($post, 'Tags')
+                    NotionService::getRichTextContent($post, 'Description'),
+                    NotionService::getSelectContent($post, 'Catégorie'),
+                    NotionService::getSelectContent($post, 'Série'),
+                    NotionService::getMultiSelectContent($post, 'Tags')
                 ))
         );
+    }
+
+    /**
+     * @throws ConnectionException
+     */
+    public function getPosts(): NotionPostCollection
+    {
+        return $this->mapPosts($this->getPostsFromNotion()->collect('results'));
     }
 
     /**
