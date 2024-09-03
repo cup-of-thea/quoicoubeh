@@ -26,7 +26,7 @@ Sans jeu de mot en français, cela donne&nbsp;:
 
 Mon boss&nbsp;: tu es en retard
 
-Moi&nbsp;: attrape la tasse dans sa main, ça se prononce &laquo;&nbsp;ton latte&nbps;&raquo; mais merci
+Moi&nbsp;: attrape la tasse dans sa main, ça se prononce &laquo;&nbsp;ton latte&nbsp;&raquo; mais merci
 </em>
 
 <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:3u4yezfifhwdhtv4jjjbo7e4/app.bsky.feed.post/3l2turnpoev2h" data-bluesky-cid="bafyreibleo6b5ia2qqv2xggq4a3fekabrh63nq45p4cc3p45sf5f2zecwi"><p lang="en">How do I explain to my microwave that I want it to focus on the coffee and not the mug?</p>&mdash; Jason Hazeley (<a href="https://bsky.app/profile/did:plc:3u4yezfifhwdhtv4jjjbo7e4?ref_src=embed">@jasonhazeley.bsky.social</a>) <a href="https://bsky.app/profile/did:plc:3u4yezfifhwdhtv4jjjbo7e4/post/3l2turnpoev2h?ref_src=embed">Aug 29, 2024 at 10:58 AM</a></blockquote>
