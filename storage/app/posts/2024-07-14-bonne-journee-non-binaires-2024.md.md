@@ -3,7 +3,7 @@ title: "Bonne journée des visibilités non-binaires 2024 !"
 date: "2024-07-14"
 description: "Une autre raison de fêter le 14 juillet."
 category: "Inclusion"
-tags: [ "Oppressions", "Luttes" ]
+tags: [ "Oppressions", "Luttes", "LGBTQIA+" ]
 image: "covers/non-binary.jpg"
 image_alt: "Une personne qui tient une ardoise sur laquelle est écrite : My pronouns are"
 ---
