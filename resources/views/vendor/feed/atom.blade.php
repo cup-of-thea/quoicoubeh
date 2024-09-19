@@ -36,7 +36,7 @@ use Spatie\Feed\Helpers\Cdata;
         <entry>
             <title>{!! Cdata::out($item->title) !!}</title>
             <link rel="alternate" href="{{ url($item->link) }}" />
-            <id>{{ $item->id }}</id>
+            <id>{{ url($item->link) }}</id>
             <author>
                 <name>
                     {!! Cdata::out($item->authorName) !!}
@@ -50,8 +50,6 @@ use Spatie\Feed\Helpers\Cdata;
             <summary type="html">
                 {!! Cdata::out($item->summary) !!}
             </summary>
-            <logo>{!! $item->image !!}</logo>
-            <icon>{!! $item->image !!}</icon>
             @if ($item->__isset("enclosure"))
                 <link
                     href="{{ url($item->enclosure) }}"
