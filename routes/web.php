@@ -9,11 +9,11 @@ use App\Http\Controllers\GetSingleYearController;
 use App\Http\Controllers\GetStreamsController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => view('welcome'));
+Route::get('/', fn() => view('welcome'))->name('home');
 
 Route::get('/blog', fn() => view('pages.blog'));
 
-Route::get('/posts/{slug}', GetSinglePostController::class);
+Route::get('/posts/{slug}', GetSinglePostController::class)->name('posts.show');
 
 Route::get('/categories/{slug}', GetSingleCategoryController::class);
 
@@ -26,3 +26,5 @@ Route::get('/series/{slug}', GetSingleSeriesController::class);
 Route::get('/random', GetRandomPostController::class);
 
 Route::get('/streams', GetStreamsController::class);
+
+Route::feeds();

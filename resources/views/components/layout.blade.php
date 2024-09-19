@@ -10,6 +10,7 @@
         <title>{{ $title ?? config("app.name") }}</title>
         @vite("resources/css/app.css")
         @livewireStyles
+        <x-feed-links />
     </head>
     <body
         class="{{ Cache::get("theme:" . request()->ip(), "light") }} layout-body"
@@ -57,6 +58,6 @@
                 });
             });
         </script>
-        {{ $scripts ?? '' }}
+        {{ $scripts ?? "" }}
     </body>
 </html>
