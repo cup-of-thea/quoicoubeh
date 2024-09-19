@@ -3,6 +3,7 @@
 namespace App\Domain\ValueObjects;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 use Livewire\Wireable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
@@ -77,6 +78,9 @@ readonly class PostIndex implements Wireable, Feedable
             ->link(route('posts.show', $this->slug))
             ->authorName('Thea Cake')
             ->category($this->category?->title)
-            ->image(route('home') . $this->getImage());
+            ->image(route('home') . $this->getImage())
+            ->enclosure(route('home') . $this->getImage())
+            ->enclosureLength(File::size(public_path($this->getImage())))
+            ->enclosureType(File::mimeType(public_path($this->getImage())));
     }
 }
