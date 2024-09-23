@@ -85,5 +85,10 @@
             async
             src="https://tenor.com/embed.js"
         ></script>
+        <script
+            async
+            src="https://substack.com/embedjs/embed.js"
+            charset="utf-9"
+        ></script>
     </x-slot>
 </x-layout>
