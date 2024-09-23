@@ -40,6 +40,5 @@ TikTok ne permet pas d'inclure une prévisualisation, mais je t'invite à aller 
 Et pour finir je vous ressors un de mes posts les plus likés sur cette période, parce qu'ici, on aime les cottes de
 mailles&nbsp;!
 
-<blockquote class="text-post-media" data-text-post-permalink="https://<blockquote class="twitter-tweet"><p lang="fr" dir="ltr">Une femme en cotte de mailles <a href="https://t.co/gvrZScLZJd">https://t.co/gvrZScLZJd</a></p>&mdash; Thea (@thea_cake) <a href="https://twitter.com/thea_cake/status/1834549954280370190?ref_src=twsrc%5Etfw">September 13, 2024</a></blockquote>
-
+<blockquote class="twitter-tweet"><p lang="fr" dir="ltr">Une femme en cotte de mailles <a href="https://t.co/gvrZScLZJd">https://t.co/gvrZScLZJd</a></p>&mdash; Thea (@thea_cake) <a href="https://twitter.com/thea_cake/status/1834549954280370190?ref_src=twsrc%5Etfw">September 13, 2024</a></blockquote>
 Bisous, et à la semaine prochaine&nbsp;!
