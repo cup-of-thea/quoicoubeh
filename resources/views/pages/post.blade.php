@@ -68,6 +68,8 @@
         </div>
     </div>
 
+    <x-kofi />
+
     <x-slot:scripts>
         <script
             async

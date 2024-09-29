@@ -15,8 +15,10 @@
     <body
         class="{{ Cache::get("theme:" . request()->ip(), "light") }} layout-body"
     >
+        <x-banner />
         <section class="layout-section">
             <aside class="layout-aside-left">
+                <div class="h-4"></div>
                 <livewire:profile />
                 <div class="h-14"></div>
                 <livewire:theme-selector />
