@@ -12,6 +12,8 @@ class Tag extends Model
 {
     use HasFactory, HasSlug;
 
+    protected $withCount = ['posts'];
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
