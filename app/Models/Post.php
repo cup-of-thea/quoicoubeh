@@ -37,4 +37,10 @@ class Post extends Model
     {
         return $this->hasOne(Episode::class);
     }
+
+    public function series(): BelongsToMany
+    {
+        return $this->belongsToMany(Series::class, 'episodes')
+            ->withPivot('episode_number');
+    }
 }
