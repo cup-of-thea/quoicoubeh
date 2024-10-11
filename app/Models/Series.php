@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Category extends Model
+class Series extends Model
 {
     use HasFactory, HasSlug;
 
@@ -25,8 +25,8 @@ class Category extends Model
         return 'slug';
     }
 
-    public function posts(): HasMany
+    public function episodes(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Episode::class);
     }
 }
