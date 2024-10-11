@@ -10,6 +10,8 @@ class PostMeta extends Model
 {
     use HasFactory;
 
+    protected $table = 'post_meta';
+
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
