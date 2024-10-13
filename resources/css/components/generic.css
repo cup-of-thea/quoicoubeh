@@ -1,6 +1,6 @@
 @layer components {
     .generic-component {
-        @apply px-6 py-16 xl:py-32;
+        @apply px-6 py-16;
     }
 
     .generic-title {

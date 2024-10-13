@@ -12,7 +12,7 @@
     }
 
     .layout-main {
-        @apply mx-auto my-8 w-full lg:col-span-2 xl:col-span-6;
+        @apply mx-auto my-8 w-full lg:col-span-2 xl:col-span-6 max-w-screen-lg;
     }
 
     .layout-aside-right {

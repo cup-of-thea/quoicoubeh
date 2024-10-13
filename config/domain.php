@@ -4,26 +4,29 @@ return [
     'profile' => [
         'email' => env('PROFILE_EMAIL', ''),
         'name' => env('PROFILE_NAME', ''),
+        'bio' => "Salut, je suis Thea, streameuse, cré-autrice de contenus (ici et ailleurs) et développeuse.
+                  J'aime beaucoup faire du craft, de la reliure, des vêtements, des bougies, des cottes de mailles, fin du classique quoi (feur).
+                  Mais on fait aussi des jeux vidéo et on parle de socio, et de plein d'autres sujets.<br/>Ici, je parle d'identité de genre,
+                  je fais de la fiction, je parle d'actualité et de revues de lecture, jeux, films, séries, etc.",
         'pronouns' => env('PROFILE_PRONOUNS', ''),
         'links' => [
             [
-                'title' => 'Bento',
-                'url' => 'https://bento.me/thea',
-                'name' => 'Bento@thea',
-                'icon' => 'ri-planet-line'
-            ],
-            [
-                'title' => 'GitHub',
-                'url' => 'https://github.com/cup-of-thea',
-                'name' => '@cup-of-thea',
-                'icon' => 'ri-github-line'
-            ],
-
-            [
-                'title' => 'Twitter',
-                'url' => 'https://twitter.com/thea_cake',
+                'title' => 'Twitch',
+                'url' => 'https://www.twitch.tv/thea_cake',
                 'name' => '@thea_cake',
-                'icon' => 'ri-twitter-line'
+                'icon' => 'ri-twitch-line'
+            ],
+            [
+                'title' => 'BlueSky',
+                'url' => 'https://bsky.app/profile/cupof.coffee',
+                'name' => '@cupof.coffee',
+                'icon' => 'ri-bluesky-line'
+            ],
+            [
+                'title' => 'TikTok',
+                'url' => 'https://www.tiktok.com/@thea_cake',
+                'name' => '@thea_cake',
+                'icon' => 'ri-tiktok-line'
             ],
             [
                 'title' => 'Instagram',
@@ -38,48 +41,46 @@ return [
                 'icon' => 'ri-threads-line'
             ],
             [
-                'title' => 'Twitch',
-                'url' => 'https://www.twitch.tv/thea_cake',
+                'title' => 'Twitter',
+                'url' => 'https://twitter.com/thea_cake',
                 'name' => '@thea_cake',
-                'icon' => 'ri-twitch-line'
+                'icon' => 'ri-twitter-line'
             ],
             [
-                'title' => 'TikTok',
-                'url' => 'https://www.tiktok.com/@thea_cake',
-                'name' => '@thea_cake',
-                'icon' => 'ri-tiktok-line'
-            ],
-            [
-                'title' => 'BlueSky',
-                'url' => 'https://bsky.app/profile/cupof.coffee',
-                'name' => '@cupof.coffee',
-                'icon' => 'ri-bluesky-line'
-            ],
-            [
-                'title' => 'LinkedIn',
-                'url' => 'https://www.linkedin.com/in/thea-%E2%9A%A1%EF%B8%8F-m-257b09271/',
-                'name' => 'Thea ⚡️ M',
-                'icon' => 'ri-linkedin-box-line'
+                'title' => 'Bento',
+                'url' => 'https://bento.me/thea',
+                'name' => 'Bento@thea',
+                'icon' => 'ri-planet-line'
             ],
         ],
     ],
     'navbar' => [
         'links' => [
             [
-                'title' => 'Home',
+                'title' => 'Accueil',
                 'icon' => 'ri-home-heart-line',
                 'url' => '/',
             ],
             [
-                'title' => 'Streams',
+                'title' => 'Articles',
+                'icon' => 'ri-article-line',
+                'url' => '/blog',
+            ],
+            [
+                'title' => 'Projets',
                 'icon' => 'ri-twitch-line',
                 'url' => '/streams',
             ],
             [
-                'title' => 'Blog',
-                'icon' => 'ri-blogger-line',
-                'url' => '/blog',
-            ]
+                'title' => 'Événements',
+                'icon' => 'ri-calendar-event-line',
+                'url' => '/events',
+            ],
+            [
+                'title' => 'À&nbsp;propos',
+                'icon' => 'ri-chat-1-line',
+                'url' => '/about',
+            ],
         ],
     ],
 ];

@@ -15,15 +15,16 @@
     <body
         class="{{ Cache::get("theme:" . request()->ip(), "light") }} layout-body"
     >
-        <x-banner />
+        <livewire:navigation-top />
+
+        <main class="layout-main">
+            {{ $slot }}
+        </main>
+
         <section class="layout-section">
             <aside class="layout-aside-left">
                 <div class="h-4"></div>
-                <livewire:profile />
                 <div class="h-14"></div>
-                <livewire:theme-selector />
-                <livewire:navbar />
-                <div class="h-4"></div>
                 <div class="hidden lg:block">
                     <livewire:categories />
                     <div class="h-4"></div>
@@ -34,10 +35,6 @@
                     <livewire:tags />
                 </div>
             </aside>
-
-            <main class="layout-main">
-                {{ $slot }}
-            </main>
 
             <aside class="layout-aside-right">
                 <livewire:categories />
