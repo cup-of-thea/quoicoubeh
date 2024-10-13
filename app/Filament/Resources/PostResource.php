@@ -10,12 +10,14 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     public static function form(Form $form): Form
     {
@@ -23,8 +25,6 @@ class PostResource extends Resource
             ->schema([
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'title'),
-                Forms\Components\TextInput::make('edition_id')
-                    ->numeric(),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
@@ -52,27 +52,32 @@ class PostResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->groups([
+                Tables\Grouping\Group::make('category.title')
+                    ->titlePrefixedWithLabel(false)
+                    ->getTitleFromRecordUsing(fn(Post $post) => $post->category?->title)
+                    ->collapsible(),
+                Tables\Grouping\Group::make('date')
+                    ->date()
+                    ->groupQueryUsing(fn(Builder $query) => $query
+                        ->select(DB::raw('YEAR(date) as year, MONTH(date) as month'))
+                        ->groupBy('year', 'month'))
+                    ->titlePrefixedWithLabel(false)
+                    ->getTitleFromRecordUsing(fn(Post $post) => $post->date->format('F Y'))
+                    ->collapsible(),
+            ])
+            ->defaultSort('date', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('category.title')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('edition_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('date')
+                    ->date('d M Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('description')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\ImageColumn::make('image_alt'),
-                Tables\Columns\TextColumn::make('filePath')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('canonical')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('date')
-                    ->dateTime()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('category.title')
+                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
