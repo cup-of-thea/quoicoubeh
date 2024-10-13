@@ -2,23 +2,16 @@
 
 namespace App\Livewire\Sections;
 
-use App\Domain\UseCases\Queries\Categories\DiscoveriesQuery;
-use App\Domain\ValueObjects\PostIndexCollection;
+use App\Models\Post;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Discoveries extends Component
 {
-    private DiscoveriesQuery $discoveriesQuery;
-
-    public function boot(DiscoveriesQuery $query): void
-    {
-        $this->discoveriesQuery = $query;
-    }
-
     #[Computed]
-    public function posts(): PostIndexCollection
+    public function posts(): Collection
     {
-        return $this->discoveriesQuery->get();
+        return Post::mostRecentDiscoveries()->get();
     }
 }

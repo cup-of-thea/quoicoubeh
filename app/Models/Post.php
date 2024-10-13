@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Domain\QueryBuilders\PostBuilder;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,6 +25,17 @@ class Post extends Model
     {
         return Attribute::make(
             fn($value) => Carbon::parse($value)
+        );
+    }
+
+    public function image(): Attribute
+    {
+        return Attribute::make(
+            fn($value) =>  $value
+            ? str($value)->startsWith('/')
+                ? $value
+                : "/$value"
+            : '/covers/trans-pride.webp'
         );
     }
 
@@ -51,5 +63,10 @@ class Post extends Model
     {
         return $this->belongsToMany(Series::class, 'episodes')
             ->withPivot('episode_number');
+    }
+
+    public function newEloquentBuilder($query): PostBuilder
+    {
+        return new PostBuilder($query);
     }
 }
