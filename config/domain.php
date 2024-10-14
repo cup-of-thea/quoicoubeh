@@ -67,19 +67,19 @@ return [
                 'url' => '/blog',
             ],
             [
+                'title' => 'Séries',
+                'icon' => 'ri-guide-line',
+                'url' => '/series',
+            ],
+            [
                 'title' => 'Projets',
                 'icon' => 'ri-twitch-line',
                 'url' => '/streams',
             ],
             [
                 'title' => 'Événements',
-                'icon' => 'ri-calendar-event-line',
+                'icon' => 'ri-chat-heart-line',
                 'url' => '/events',
-            ],
-            [
-                'title' => 'À&nbsp;propos',
-                'icon' => 'ri-chat-1-line',
-                'url' => '/about',
             ],
         ],
     ],

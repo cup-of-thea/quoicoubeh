@@ -2,23 +2,43 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCases\Queries\Posts\GetLastPostsQuery;
-use App\Domain\ValueObjects\PostIndexCollection;
+use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Posts extends Component
 {
-    private GetLastPostsQuery $lastPostsQuery;
+    #[Url(as: 'category')]
+    public ?string $selectedCategory = null;
 
-    public function boot(GetLastPostsQuery $lastPostsQuery): void
+    public function selectCategory(?string $category): void
     {
-        $this->lastPostsQuery = $lastPostsQuery;
+        $this->selectedCategory = $category;
     }
 
     #[Computed]
-    public function posts(): PostIndexCollection
+    public function categories(): Collection
     {
-        return $this->lastPostsQuery->get();
+        return Category::withCount('posts')
+            ->orderBy('posts_count', 'desc')
+            ->get();
+    }
+
+    #[Computed]
+    public function posts(): Collection
+    {
+        return Post::query()
+            ->whereHas(
+                'category',
+                fn ($query) => $this->selectedCategory
+                    ? $query->where('slug', $this->selectedCategory)
+                    : $query
+            )
+            ->latest('date')
+            ->limit(20)
+            ->get();
     }
 }
