@@ -69,7 +69,7 @@ return [
             [
                 'title' => 'Séries',
                 'icon' => 'ri-guide-line',
-                'url' => '/series',
+                'url' => '/shows',
             ],
             [
                 'title' => 'Projets',
