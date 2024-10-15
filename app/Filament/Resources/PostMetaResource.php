@@ -3,48 +3,30 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostMetaResource\Pages;
-use App\Filament\Resources\PostMetaResource\RelationManagers;
 use App\Models\PostMeta;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PostMetaResource extends Resource
 {
     protected static ?string $model = PostMeta::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'ri-donut-chart-line';
+
+    protected static ?string $navigationGroup = 'Posts';
+
+    protected static ?int $navigationSort = 11;
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\Select::make('post_id')
-                    ->relationship('post', 'title')
-                    ->required(),
-                Forms\Components\TextInput::make('reading_time')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('reading_count')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('review_authors')
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('rows')
-                    ->required()
-                    ->numeric()
-                    ->default(2),
-                Forms\Components\TextInput::make('cols')
-                    ->required()
-                    ->numeric()
-                    ->default(2),
-            ]);
+        return $form->schema([]);
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function table(Table $table): Table
@@ -56,18 +38,15 @@ class PostMetaResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('reading_time')
                     ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->suffix(' min'),
+                Tables\Columns\TextColumn::make('likes_count')
+                    ->numeric(),
                 Tables\Columns\TextColumn::make('reading_count')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('review_authors')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('rows')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('cols')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -77,12 +56,8 @@ class PostMetaResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
+            ->filters([])
+            ->actions([])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -101,8 +76,6 @@ class PostMetaResource extends Resource
     {
         return [
             'index' => Pages\ListPostMetas::route('/'),
-            'create' => Pages\CreatePostMeta::route('/create'),
-            'edit' => Pages\EditPostMeta::route('/{record}/edit'),
         ];
     }
 }

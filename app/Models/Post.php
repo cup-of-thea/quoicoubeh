@@ -31,11 +31,11 @@ class Post extends Model
     public function image(): Attribute
     {
         return Attribute::make(
-            fn($value) =>  $value
-            ? str($value)->startsWith('/')
-                ? $value
-                : "/$value"
-            : '/covers/trans-pride.webp'
+            fn($value) => $value
+                ? str($value)->startsWith('/')
+                    ? $value
+                    : "/$value"
+                : '/covers/trans-pride.webp'
         );
     }
 

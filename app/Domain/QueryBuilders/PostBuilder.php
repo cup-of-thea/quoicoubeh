@@ -2,6 +2,7 @@
 
 namespace App\Domain\QueryBuilders;
 
+use App\Models\PostLike;
 use Illuminate\Database\Eloquent\Builder;
 
 class PostBuilder extends Builder
@@ -10,11 +11,11 @@ class PostBuilder extends Builder
     {
         return $this
             ->whereDoesntHave(
-            'category', fn ($query) => $query
+                'category', fn($query) => $query
                 ->where('slug', 'decouvertes')
                 ->orWhere('slug', 'les-posts-de-la-semaine')
                 ->orWhere('slug', 'fictions')
-        )
+            )
             ->latest('date')
             ->limit(5);
     }
@@ -22,7 +23,7 @@ class PostBuilder extends Builder
     public function mostRecentDiscoveries(): self
     {
         return $this
-            ->whereHas('category', fn ($query) => $query ->where('slug', 'decouvertes'))
+            ->whereHas('category', fn($query) => $query->where('slug', 'decouvertes'))
             ->latest('date')
             ->limit(5);
     }
@@ -30,7 +31,7 @@ class PostBuilder extends Builder
     public function mostRecentPostsOfTheWeek(): self
     {
         return $this
-            ->whereHas('category', fn ($query) => $query ->where('slug', 'les-posts-de-la-semaine'))
+            ->whereHas('category', fn($query) => $query->where('slug', 'les-posts-de-la-semaine'))
             ->latest('date')
             ->limit(5);
     }
@@ -38,9 +39,17 @@ class PostBuilder extends Builder
     public function fromLaetitiaSeries(): self
     {
         return $this
-            ->whereHas('category', fn ($query) => $query ->where('slug', 'fictions'))
-            ->whereHas('series', fn ($query) => $query ->where('slug', 'laetitia'))
+            ->whereHas('category', fn($query) => $query->where('slug', 'fictions'))
+            ->whereHas('series', fn($query) => $query->where('slug', 'laetitia'))
             ->orderBy('date', 'asc')
             ->limit(5);
+    }
+
+    public function isLikedByCurrentGuest(int $id): bool
+    {
+        return PostLike::query()
+            ->where('post_id', $id)
+            ->where('ip', request()->ip())
+            ->exists();
     }
 }

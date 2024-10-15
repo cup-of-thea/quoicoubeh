@@ -15,7 +15,11 @@ class SeriesResource extends Resource
 {
     protected static ?string $model = Series::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-video-camera';
+    protected static ?string $navigationIcon = 'ri-guide-line';
+
+    protected static ?string $navigationGroup = 'Series';
+
+    protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
     {

@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Forms\Actions\GenerateSlugAction;
+use App\Filament\Forms\Actions\SetTodayDateAction;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
@@ -17,35 +19,53 @@ class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static ?int $navigationSort = 1;
+
+    protected static ?string $navigationGroup = 'Posts';
+
+    protected static ?string $navigationIcon = 'ri-newspaper-line';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('category_id')
-                    ->relationship('category', 'title'),
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->hintAction(GenerateSlugAction::make()),
                 Forms\Components\TextInput::make('slug')
                     ->required()
+                    ->maxLength(255)
+                    ->disabledOn('edit')
+                    ->readOnlyOn('edit'),
+                Forms\Components\Textarea::make('description')
+                    ->autosize()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('description')
-                    ->maxLength(255),
+
+                Forms\Components\Select::make('category_id')
+                    ->relationship('category', 'title')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->maxLength(255)
+                            ->hintAction(GenerateSlugAction::make()),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->maxLength(255),
+                    ])
+                    ->required()
+                    ->native(false)
+                    ->preload(),
+
                 Forms\Components\FileUpload::make('image')
                     ->image(),
-                Forms\Components\FileUpload::make('image_alt')
-                    ->image(),
-                Forms\Components\Textarea::make('content')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('filePath')
+                Forms\Components\Textarea::make('image_alt')
                     ->required()
+                    ->autosize()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('canonical')
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('date')
-                    ->required(),
+                Forms\Components\MarkdownEditor::make('content')
+                    ->columnSpanFull(),
+                Forms\Components\DateTimePicker::make('date'),
             ]);
     }
 
@@ -104,6 +124,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\MetaRelationManager::class,
             RelationManagers\TagsRelationManager::class,
         ];
     }
