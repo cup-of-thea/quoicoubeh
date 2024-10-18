@@ -21,31 +21,6 @@
             {{ $slot }}
         </main>
 
-        <section class="layout-section">
-            <aside class="layout-aside-left">
-                <div class="h-4"></div>
-                <div class="h-14"></div>
-                <div class="hidden lg:block">
-                    <livewire:categories />
-                    <div class="h-4"></div>
-                    <livewire:series />
-                    <div class="h-4"></div>
-                    <livewire:post-years />
-                    <div class="h-4"></div>
-                    <livewire:tags />
-                </div>
-            </aside>
-
-            <aside class="layout-aside-right">
-                <livewire:categories />
-                <div class="h-4"></div>
-                <livewire:series />
-                <div class="h-4"></div>
-                <livewire:post-years />
-                <div class="h-4"></div>
-                <livewire:tags />
-            </aside>
-        </section>
         @livewireScripts
         <script>
             document.addEventListener('livewire:init', () => {

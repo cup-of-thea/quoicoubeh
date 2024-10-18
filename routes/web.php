@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('welcome'))->name('home');
 
-Route::get('/blog', fn() => view('pages.blog'));
+Route::get('/blog', fn() => view('pages.blog'))->name('blog');
 
-Route::get('/shows', fn() => view('pages.shows'));
+Route::get('/shows', fn() => view('pages.shows'))->name('shows');
 
 Route::get('/posts/{slug}', GetSinglePostController::class)->name('posts.show');
 

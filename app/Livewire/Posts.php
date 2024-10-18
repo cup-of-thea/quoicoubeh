@@ -4,41 +4,49 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Posts extends Component
 {
-    #[Url(as: 'category')]
-    public ?string $selectedCategory = null;
+    use WithPagination;
 
-    public function selectCategory(?string $category): void
+    #[Url(as: 'category')]
+    public string $selectedCategory = 'all';
+
+    public function render(): View
+    {
+        return view('livewire.posts', [
+            'posts' => Post::query()
+                ->whereHas(
+                    'category',
+                    fn($query) => $this->selectedCategory !== 'all'
+                        ? $query->where('slug', $this->selectedCategory)
+                        : $query
+                )
+                ->latest('date')
+                ->paginate(10),
+            'categories' => Cache::remember(
+                'categories',
+                86400,
+                fn() => Category::withCount('posts')->orderBy('posts_count', 'desc')->get()
+            ),
+
+        ]);
+    }
+
+    public function selectCategory(string $category): void
     {
         $this->selectedCategory = $category;
+        $this->resetPage();
     }
 
-    #[Computed]
-    public function categories(): Collection
+    public function resetCategory(): void
     {
-        return Category::withCount('posts')
-            ->orderBy('posts_count', 'desc')
-            ->get();
-    }
-
-    #[Computed]
-    public function posts(): Collection
-    {
-        return Post::query()
-            ->whereHas(
-                'category',
-                fn ($query) => $this->selectedCategory
-                    ? $query->where('slug', $this->selectedCategory)
-                    : $query
-            )
-            ->latest('date')
-            ->limit(20)
-            ->get();
+        $this->selectedCategory = 'all';
+        $this->resetPage();
     }
 }

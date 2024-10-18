@@ -4,15 +4,15 @@
     </p>
     <div class="h-4"></div>
     <nav class="flex flex-wrap gap-4" aria-label="Tabs">
-        <div
-            wire:click="selectShow(null)"
-            class="{{ $selectedShow === null ? "bg-gray-100 text-gray-700" : "text-gray-500 hover:text-gray-700" }} flex cursor-pointer items-center rounded-md px-3 py-2 text-sm font-medium"
+        <a
+            href="{{ route("shows") }}"
+            class="{{ $selectedShow === "all" ? "bg-gray-100 text-gray-700" : "text-gray-500 hover:text-gray-700" }} flex cursor-pointer items-center rounded-md px-3 py-2 text-sm font-medium"
         >
             Derniers épisodes
-        </div>
-        @foreach ($this->shows as $show)
-            <div
-                wire:click="selectShow('{{ $show->slug }}')"
+        </a>
+        @foreach ($shows as $show)
+            <a
+                href="?show={{ $show->slug }}"
                 class="{{ $selectedShow === $show->slug ? "bg-gray-100 text-gray-700" : "text-gray-500 hover:text-gray-700" }} flex cursor-pointer items-center rounded-md px-3 py-2 text-sm font-medium"
             >
                 {{ $show->title }}
@@ -21,7 +21,7 @@
                 >
                     {{ $show->posts_count }}
                 </span>
-            </div>
+            </a>
         @endforeach
     </nav>
     <div class="h-16"></div>
@@ -29,9 +29,12 @@
         class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40"
     >
         <div class="flex max-w-3xl flex-col space-y-16">
-            @foreach ($this->posts as $k => $post)
+            @foreach ($posts as $k => $post)
                 <x-small-post-item :post="$post" :k="$k" />
             @endforeach
         </div>
     </div>
+    <!-- Pagination -->
+    <div class="h-16"></div>
+    {{ $posts->links(data: ["scrollTo" => false]) }}
 </div>

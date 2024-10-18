@@ -3,47 +3,62 @@
 namespace App\Livewire;
 
 use App\Models\Post;
-use Illuminate\Support\Collection;
-use Livewire\Attributes\Computed;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Shows extends Component
 {
-    #[Url(as: 'show')]
-    public ?string $selectedShow = null;
+    use WithPagination;
 
-    public function selectShow(?string $show): void
+    #[Url(as: 'show')]
+    public string $selectedShow = 'all';
+
+    public function render(): View
+    {
+        return view('livewire.shows', [
+            'posts' => $this->posts(),
+            'shows' => Cache::remember(
+                'shows',
+                86400,
+                fn() => \App\Models\Series::withCount('posts')->orderBy('posts_count', 'desc')->get()
+            ),
+
+        ]);
+    }
+
+    public function selectShow(string $show): void
     {
         $this->selectedShow = $show;
+        $this->resetPage();
     }
 
-    #[Computed]
-    public function shows(): Collection
+    public function resetShow(): void
     {
-        return \App\Models\Series::withCount('posts')
-            ->orderBy('posts_count', 'desc')
-            ->get();
+        $this->selectedShow = 'all';
+        $this->resetPage();
     }
 
-    #[Computed]
-    public function posts(): Collection
+    public function posts(): LengthAwarePaginator
     {
         $query = Post::query()
             ->whereHas(
                 'series',
-                fn($query) => $this->selectedShow
+                fn($query) => $this->selectedShow !== 'all'
                     ? $query->where('slug', $this->selectedShow)
                     : $query
             );
 
-        if ($this->selectedShow) {
-            $query->oldest('date')->limit(20);
+        if ($this->selectedShow !== 'all') {
+            $query->oldest('date');
         } else {
-            $query->latest('date')->limit(5);
+            $query->latest('date');
         }
 
-        return $query->get();
+        return $query->paginate(5);
     }
 
 }

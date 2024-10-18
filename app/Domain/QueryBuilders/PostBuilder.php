@@ -17,7 +17,7 @@ class PostBuilder extends Builder
                 ->orWhere('slug', 'fictions')
             )
             ->latest('date')
-            ->limit(5);
+            ->limit(3);
     }
 
     public function mostRecentDiscoveries(): self
@@ -25,7 +25,7 @@ class PostBuilder extends Builder
         return $this
             ->whereHas('category', fn($query) => $query->where('slug', 'decouvertes'))
             ->latest('date')
-            ->limit(5);
+            ->limit(3);
     }
 
     public function mostRecentPostsOfTheWeek(): self
@@ -33,7 +33,7 @@ class PostBuilder extends Builder
         return $this
             ->whereHas('category', fn($query) => $query->where('slug', 'les-posts-de-la-semaine'))
             ->latest('date')
-            ->limit(5);
+            ->limit(3);
     }
 
     public function fromLaetitiaSeries(): self
@@ -42,7 +42,23 @@ class PostBuilder extends Builder
             ->whereHas('category', fn($query) => $query->where('slug', 'fictions'))
             ->whereHas('series', fn($query) => $query->where('slug', 'laetitia'))
             ->orderBy('date', 'asc')
-            ->limit(5);
+            ->limit(3);
+    }
+
+    public function mostLikedPosts(): self
+    {
+        return $this
+            ->join('post_meta', 'posts.id', '=', 'post_meta.post_id')
+            ->orderBy('post_meta.likes_count', 'desc')
+            ->limit(3);
+    }
+
+    public function mostReadPosts(): self
+    {
+        return $this
+            ->join('post_meta', 'posts.id', '=', 'post_meta.post_id')
+            ->orderBy('post_meta.reading_count', 'desc')
+            ->limit(3);
     }
 
     public function isLikedByCurrentGuest(int $id): bool

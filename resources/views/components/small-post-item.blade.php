@@ -88,7 +88,10 @@
             </div>
             <div><p>·</p></div>
             <div class="flex items-center gap-1">
-                <livewire:like-post-action :post="$post" />
+                <livewire:like-post-action
+                    wire:key="like-post-action:{{ $post->slug }}"
+                    :post="$post"
+                />
             </div>
         </div>
     </div>

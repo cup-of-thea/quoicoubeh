@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="p-16 xl:py-32">
+    <div class="px-8 py-8 lg:px-16">
         <div class="mx-auto text-base leading-7 dark:text-powder">
             <h1
                 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl dark:text-powder"
@@ -69,6 +69,8 @@
             </div>
         </div>
     </div>
+
+    <livewire:post-like-section :post="$post" />
 
     <x-kofi />
 
