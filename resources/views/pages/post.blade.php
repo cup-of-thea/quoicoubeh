@@ -46,6 +46,7 @@
                                         class="inline-flex items-center rounded-md bg-murrey/10 px-2 py-1 text-xs font-medium text-murrey ring-1 ring-inset ring-murrey/10 dark:bg-powder/10 dark:text-powder dark:ring-powder/10"
                                     >
                                         #{{ $tag->title }}
+                                        ({{ $tag->posts_count }})
                                     </span>
                                 </a>
                             </li>

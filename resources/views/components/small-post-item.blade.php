@@ -25,7 +25,9 @@
                 @if ($post->tags->isNotEmpty())
                     <div class="flex flex-wrap gap-4">
                         @foreach ($post->tags as $tag)
-                            <p>#{{ $tag->title }}</p>
+                            <p>
+                                #{{ $tag->title }} ({{ $tag->posts_count }})
+                            </p>
                         @endforeach
                     </div>
                 @endif
