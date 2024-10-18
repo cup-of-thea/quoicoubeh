@@ -74,5 +74,22 @@
             Lire l'article
             <x-ri-arrow-right-s-line class="ml-1 h-4 w-4 fill-current" />
         </div>
+        <div
+            class="relative z-10 mt-2 flex items-center gap-2 text-sm text-zinc-600"
+        >
+            <div class="flex items-center gap-1">
+                <x-ri-book-open-line class="h-4 w-4" />
+                {{ $post->meta->reading_count }} lecture·s
+            </div>
+            <div><p>·</p></div>
+            <div class="flex items-center gap-1">
+                <x-ri-hourglass-line class="h-4 w-4" />
+                {{ $post->meta->reading_time }} min
+            </div>
+            <div><p>·</p></div>
+            <div class="flex items-center gap-1">
+                <livewire:like-post-action :post="$post" />
+            </div>
+        </div>
     </div>
 </article>

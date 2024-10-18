@@ -6,7 +6,6 @@ use App\Http\Controllers\GetSinglePostController;
 use App\Http\Controllers\GetSingleSeriesController;
 use App\Http\Controllers\GetSingleTagController;
 use App\Http\Controllers\GetSingleYearController;
-use App\Http\Controllers\GetStreamsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('welcome'))->name('home');
@@ -27,6 +26,6 @@ Route::get('/series/{slug}', GetSingleSeriesController::class);
 
 Route::get('/random', GetRandomPostController::class);
 
-Route::get('/streams', GetStreamsController::class);
+Route::get('/projects', fn() => view('pages.projects'));
 
 Route::feeds();

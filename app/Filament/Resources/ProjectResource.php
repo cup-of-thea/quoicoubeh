@@ -2,24 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\ProjectResource\Pages;
+use App\Filament\Resources\ProjectResource\RelationManagers;
+use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class CategoryResource extends Resource
+class ProjectResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Project::class;
 
-    protected static ?string $navigationIcon = 'ri-book-shelf-line';
+    protected static ?string $navigationIcon = 'ri-hand-heart-line';
 
-    protected static ?string $navigationGroup = 'Classifications';
+    protected static ?string $navigationGroup = 'Actions';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -28,7 +28,23 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('slug')
+                Forms\Components\Textarea::make('description')
+                    ->required()
+                    ->autosize()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('icon')
+                    ->image()
+                    ->avatar()
+                    ->imageEditor()
+                    ->circleCropper()
+                    ->panelAspectRatio('1:1')
+                    ->required()
+                    ->maxSize(2048),
+                Forms\Components\TextInput::make('icon_alt')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('url')
+                    ->url()
                     ->required()
                     ->maxLength(255),
             ]);
@@ -38,13 +54,12 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('icon')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
+                Tables\Columns\TextColumn::make('url')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('posts_count')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -77,9 +92,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListProjects::route('/'),
+            'create' => Pages\CreateProject::route('/create'),
+            'edit' => Pages\EditProject::route('/{record}/edit'),
         ];
     }
 }

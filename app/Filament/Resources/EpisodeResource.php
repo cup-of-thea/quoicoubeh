@@ -19,7 +19,7 @@ class EpisodeResource extends Resource
 
     protected static ?string $navigationGroup = 'Series';
 
-    protected static ?int $navigationSort = 31;
+    protected static ?int $navigationSort = 21;
 
     public static function form(Form $form): Form
     {

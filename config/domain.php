@@ -74,7 +74,7 @@ return [
             [
                 'title' => 'Projets',
                 'icon' => 'ri-twitch-line',
-                'url' => '/streams',
+                'url' => '/projects',
             ],
             [
                 'title' => 'Événements',

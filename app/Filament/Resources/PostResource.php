@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Forms\Actions\GenerateSlugAction;
-use App\Filament\Forms\Actions\SetTodayDateAction;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
@@ -29,43 +28,64 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255)
-                    ->hintAction(GenerateSlugAction::make()),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255)
-                    ->disabledOn('edit')
-                    ->readOnlyOn('edit'),
-                Forms\Components\Textarea::make('description')
-                    ->autosize()
-                    ->maxLength(255),
-
-                Forms\Components\Select::make('category_id')
-                    ->relationship('category', 'title')
-                    ->createOptionForm([
+                Forms\Components\Fieldset::make('Contents')
+                    ->schema([
                         Forms\Components\TextInput::make('title')
                             ->required()
                             ->maxLength(255)
                             ->hintAction(GenerateSlugAction::make()),
                         Forms\Components\TextInput::make('slug')
                             ->required()
+                            ->maxLength(255)
+                            ->disabledOn('edit')
+                            ->readOnlyOn('edit'),
+                        Forms\Components\Textarea::make('description')
+                            ->autosize()
                             ->maxLength(255),
-                    ])
-                    ->required()
-                    ->native(false)
-                    ->preload(),
-
-                Forms\Components\FileUpload::make('image')
-                    ->image(),
-                Forms\Components\Textarea::make('image_alt')
-                    ->required()
-                    ->autosize()
-                    ->maxLength(255),
-                Forms\Components\MarkdownEditor::make('content')
-                    ->columnSpanFull(),
-                Forms\Components\DateTimePicker::make('date'),
+                        Forms\Components\MarkdownEditor::make('content')
+                            ->columnSpanFull(),
+                    ]),
+                Forms\Components\Fieldset::make('Publication')
+                    ->schema([
+                        Forms\Components\DateTimePicker::make('date')
+                            ->required(),
+                        Forms\Components\Select::make('status')
+                            ->options([
+                                'draft' => 'Draft',
+                                'review' => 'Review',
+                                'ready_for_preview' => 'Ready for Preview',
+                                'published' => 'Published',
+                            ])
+                            ->default('draft'),
+                    ]),
+                Forms\Components\Fieldset::make('Cover')
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->image(),
+                        Forms\Components\Textarea::make('image_alt')
+                            ->required()
+                            ->autosize()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('image_author')
+                            ->maxLength(255),
+                    ]),
+                Forms\Components\Fieldset::make('Taxonomy')
+                    ->schema([
+                        Forms\Components\Select::make('category_id')
+                            ->relationship('category', 'title')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('title')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->hintAction(GenerateSlugAction::make()),
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->maxLength(255),
+                            ])
+                            ->required()
+                            ->native(false)
+                            ->preload(),
+                    ]),
             ]);
     }
 

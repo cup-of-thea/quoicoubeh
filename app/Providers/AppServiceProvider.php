@@ -2,7 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Cache;
+use App\Models\Category;
+use App\Models\Episode;
+use App\Models\Event;
+use App\Models\Post;
+use App\Models\PostMeta;
+use App\Models\Project;
+use App\Models\Series;
+use App\Models\Stream;
+use App\Models\Tag;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +28,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Category::unguard();
+        Episode::unguard();
+        Event::unguard();
+        PostMeta::unguard();
+        Post::unguard();
+        Project::unguard();
+        Series::unguard();
+        Stream::unguard();
+        Tag::unguard();
     }
 }
