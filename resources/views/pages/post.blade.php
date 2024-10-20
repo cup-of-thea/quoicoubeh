@@ -61,12 +61,14 @@
                 </p>
             @endif
 
-            <img src="{{ $post->image }}" alt="{{ $post->image_alt }}" />
+            <img src="{{ $post->cover }}" alt="{{ $post->image_alt }}" />
 
             <div
                 class="post-content prose mt-10 max-w-none dark:text-powder/80"
             >
-                {!! $post->content !!}
+                <x-markdown>
+                    {!! $post->content !!}
+                </x-markdown>
             </div>
         </div>
     </div>

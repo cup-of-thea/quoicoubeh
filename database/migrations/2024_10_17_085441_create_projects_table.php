@@ -12,11 +12,13 @@ return new class extends Migration {
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->unsignedTinyInteger('order')->unique();
             $table->string('title')->unique();
             $table->string('description');
             $table->string('icon');
             $table->string('icon_alt');
             $table->string('url');
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }

@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
-use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -25,6 +24,12 @@ class ProjectResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('order')
+                    ->unique()
+                    ->numeric()
+                    ->prefixIcon('ri-hashtag')
+                    ->required()
+                    ->minValue(0),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
@@ -47,17 +52,42 @@ class ProjectResource extends Resource
                     ->url()
                     ->required()
                     ->maxLength(255),
+                Forms\Components\DateTimePicker::make('published_at')
+                    ->native(false)
+                    ->seconds(false)
+                    ->nullable()
+                    ->suffixAction(
+                        Forms\Components\Actions\Action::make('publish')
+                            ->icon('ri-time-line')
+                            ->label('Publish now')
+                            ->action(function (Forms\Set $set, $state) {
+                                $set('published_at', now());
+                            })
+                    )
+                    ->hintAction(
+                        Forms\Components\Actions\Action::make('unpublish')
+                            ->icon('ri-close-line')
+                            ->label('Unpublish')
+                            ->action(function (Forms\Set $set, $state) {
+                                $set('published_at', null);
+                            })
+                    )
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('order')
             ->columns([
+                Tables\Columns\TextInputColumn::make('order')
+                    ->type('number')
+                    ->sortable(),
                 Tables\Columns\ImageColumn::make('icon')
                     ->circular(),
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('url')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

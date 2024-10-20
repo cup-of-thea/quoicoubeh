@@ -48,8 +48,12 @@ class EventResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('start')
+                    ->native(false)
+                    ->seconds(false)
                     ->required(),
                 Forms\Components\DateTimePicker::make('end')
+                    ->native(false)
+                    ->seconds(false)
                     ->required(),
             ]);
     }
@@ -58,13 +62,10 @@ class EventResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('icon')
+                    ->circular()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('description')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('icon')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('icon_alt')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('url')
                     ->searchable(),

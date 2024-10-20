@@ -39,7 +39,7 @@
     >
         <img
             class="h-28 w-28 rounded-2xl object-cover"
-            src="{{ $post->image }}"
+            src="{{ $post->cover }}"
             alt="{{ $post->alt }}"
         />
     </div>

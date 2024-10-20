@@ -24,4 +24,6 @@ Route::get('/random', GetRandomPostController::class);
 
 Route::get('/projects', fn() => view('pages.projects'));
 
+Route::get('/events', fn() => view('pages.events'));
+
 Route::feeds();

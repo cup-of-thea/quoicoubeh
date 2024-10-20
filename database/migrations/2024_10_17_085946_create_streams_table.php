@@ -15,9 +15,11 @@ return new class extends Migration {
             $table->string('title')->unique();
             $table->string('image');
             $table->string('image_alt');
-            $table->string('image_author');
+            $table->string('image_author')->nullable();
+            $table->string('image_author_link')->nullable();
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
     }

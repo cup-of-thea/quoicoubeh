@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -27,14 +28,20 @@ class Post extends Model
         );
     }
 
-    public function image(): Attribute
+    public function cover(): Attribute
     {
         return Attribute::make(
-            fn($value) => $value
-                ? str($value)->startsWith('/')
-                    ? $value
-                    : "/$value"
-                : '/covers/trans-pride.webp'
+            function () {
+                if (!$this->image || str($this->image)->contains('covers/')) {
+                    return $this->image
+                        ? str($this->image)->startsWith('/')
+                            ? ($this->image)
+                            : "/$this->image"
+                        : '/covers/trans-pride.webp';
+                }
+
+                return Storage::url($this->image);
+            }
         );
     }
 

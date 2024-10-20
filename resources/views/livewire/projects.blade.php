@@ -1,23 +1,18 @@
-<div class="mt-16 sm:mt-20">
+<div class="generic-component">
     <ul
         role="list"
         class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
     >
-        @foreach ($this->projects as $project)
+        @foreach ($projects as $project)
             <li class="group relative flex flex-col items-start">
                 <div
-                    class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
+                    class="relative z-10 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
                 >
                     <img
-                        alt=""
-                        loading="lazy"
-                        width="32"
-                        height="32"
-                        decoding="async"
-                        data-nimg="1"
-                        class="h-8 w-8"
+                        alt="{{ $project->icon_alt }}"
+                        class="object-cover"
                         style="color: transparent"
-                        src="{{ $project->icon }}"
+                        src="{{ $project->stored_icon }}"
                     />
                 </div>
                 <h2
@@ -41,7 +36,7 @@
                     {{ $project->description }}
                 </p>
                 <p
-                    class="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200"
+                    class="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-scarlet dark:text-zinc-200"
                 >
                     <svg
                         viewBox="0 0 24 24"
@@ -53,7 +48,9 @@
                             fill="currentColor"
                         ></path>
                     </svg>
-                    <span class="ml-2">{{ $project->url }}</span>
+                    <span class="ml-2">
+                        {{ str($project->url)->afterLast("://") }}
+                    </span>
                 </p>
             </li>
         @endforeach

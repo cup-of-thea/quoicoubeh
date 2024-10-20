@@ -3,15 +3,15 @@
 namespace App\Livewire;
 
 use App\Models\Project;
-use Illuminate\Database\Eloquent\Collection;
-use Livewire\Attributes\Computed;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Projects extends Component
 {
-    #[Computed]
-    public function projects(): Collection
+    public function render(): View
     {
-        return Project::all();
+        return view('livewire.projects', [
+            'projects' => Project::orderBy('order', 'asc')->limit(6)->get()
+        ]);
     }
 }

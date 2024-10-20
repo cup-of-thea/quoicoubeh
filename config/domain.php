@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'streams_link' => 'https://www.twitch.tv/thea_cake',
     'profile' => [
         'email' => env('PROFILE_EMAIL', ''),
         'name' => env('PROFILE_NAME', ''),

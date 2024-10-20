@@ -47,7 +47,8 @@ class PostResource extends Resource
                     ]),
                 Forms\Components\Fieldset::make('Publication')
                     ->schema([
-                        Forms\Components\DateTimePicker::make('date')
+                        Forms\Components\DatePicker::make('date')
+                            ->native(false)
                             ->required(),
                         Forms\Components\Select::make('status')
                             ->options([
@@ -67,6 +68,8 @@ class PostResource extends Resource
                             ->autosize()
                             ->maxLength(255),
                         Forms\Components\TextInput::make('image_author')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('image_link')
                             ->maxLength(255),
                     ]),
                 Forms\Components\Fieldset::make('Taxonomy')
@@ -111,6 +114,13 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('date')
                     ->date('d M Y')
                     ->sortable(),
+                Tables\Columns\SelectColumn::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'review' => 'Review',
+                        'ready_for_preview' => 'Ready for Preview',
+                        'published' => 'Published',
+                    ]),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('slug')

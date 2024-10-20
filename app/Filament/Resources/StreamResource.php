@@ -41,11 +41,39 @@ class StreamResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('image_author')
-                    ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('image_author_link')
+                    ->url()
+                    ->maxLength(255),
+                Forms\Components\DateTimePicker::make('published_at')
+                    ->native(false)
+                    ->seconds(false)
+                    ->nullable()
+                    ->suffixAction(
+                        Forms\Components\Actions\Action::make('publish')
+                            ->icon('ri-time-line')
+                            ->label('Publish now')
+                            ->action(function (Forms\Set $set, $state) {
+                                $set('published_at', now());
+                            })
+                    )
+                    ->hintAction(
+                        Forms\Components\Actions\Action::make('unpublish')
+                            ->icon('ri-close-line')
+                            ->label('Unpublish')
+                            ->action(function (Forms\Set $set, $state) {
+                                $set('published_at', null);
+                            })
+                    ),
                 Forms\Components\DateTimePicker::make('start')
+                    ->native(false)
+                    ->seconds(false)
+                    ->minutesStep(5)
                     ->required(),
                 Forms\Components\DateTimePicker::make('end')
+                    ->native(false)
+                    ->seconds(false)
+                    ->minutesStep(5)
                     ->required(),
             ]);
     }
@@ -56,9 +84,8 @@ class StreamResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\ImageColumn::make('image_alt'),
-                Tables\Columns\ImageColumn::make('image_author'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('start')
                     ->dateTime()
                     ->sortable(),

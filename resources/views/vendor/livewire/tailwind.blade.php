@@ -84,7 +84,7 @@
                                 @if ($page == $paginator->currentPage())
                                     <div
                                         aria-current="page"
-                                        class="inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600"
+                                        class="inline-flex items-center border-t-2 border-scarlet px-4 pt-4 text-sm font-medium text-scarlet"
                                     >
                                         {{ $page }}
                                     </div>
