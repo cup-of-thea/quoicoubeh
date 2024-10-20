@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PostBuilder extends Builder
 {
+    public function published(): self
+    {
+        return $this->where('status', 'published');
+    }
+
     public function mostRecentGeneralPosts(): self
     {
         return $this
+            ->published()
             ->whereDoesntHave(
                 'category', fn($query) => $query
                 ->where('slug', 'decouvertes')
@@ -23,6 +29,7 @@ class PostBuilder extends Builder
     public function mostRecentDiscoveries(): self
     {
         return $this
+            ->published()
             ->whereHas('category', fn($query) => $query->where('slug', 'decouvertes'))
             ->latest('date')
             ->limit(3);
@@ -31,6 +38,7 @@ class PostBuilder extends Builder
     public function mostRecentPostsOfTheWeek(): self
     {
         return $this
+            ->published()
             ->whereHas('category', fn($query) => $query->where('slug', 'les-posts-de-la-semaine'))
             ->latest('date')
             ->limit(3);
@@ -39,6 +47,7 @@ class PostBuilder extends Builder
     public function fromLaetitiaSeries(): self
     {
         return $this
+            ->published()
             ->whereHas('category', fn($query) => $query->where('slug', 'fictions'))
             ->whereHas('series', fn($query) => $query->where('slug', 'laetitia'))
             ->orderBy('date', 'asc')
@@ -48,6 +57,7 @@ class PostBuilder extends Builder
     public function mostLikedPosts(): self
     {
         return $this
+            ->published()
             ->join('post_meta', 'posts.id', '=', 'post_meta.post_id')
             ->orderBy('post_meta.likes_count', 'desc')
             ->limit(3);
@@ -56,6 +66,7 @@ class PostBuilder extends Builder
     public function mostReadPosts(): self
     {
         return $this
+            ->published()
             ->join('post_meta', 'posts.id', '=', 'post_meta.post_id')
             ->orderBy('post_meta.reading_count', 'desc')
             ->limit(3);
