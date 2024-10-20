@@ -1,56 +1,100 @@
-@php
-    use Ramsey\Uuid\Guid\Guid;
-@endphp
-
 @props([
     "post",
 ])
 
-@php
-    $aspect =
-        $post->dimensions->cols == $post->dimensions->rows
-            ? "aspect-square"
-            : ($aspect =
-                $post->dimensions->cols > $post->dimensions->rows
-                    ? "h-full min-h-32"
-                    : "h-full min-h-72");
-
-    $cols = $post->dimensions->cols == 2 ? "col-span-2" : "col-span-1";
-
-    $rows = $post->dimensions->rows == 2 ? "row-span-2" : "row-span-1";
-@endphp
-
-<a href="/posts/{{ $post->slug }}" class="{{ $cols }} {{ $rows }}">
-    <article
-        {{ $attributes->merge(["class" => "small-post {$aspect}"]) }}
-        style="background-image: url('{{ $post->getImage() }}')"
+<article class="group relative grid grid-cols-4 gap-4">
+    <div
+        class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"
+    ></div>
+    <div
+        class="relative z-10 col-span-4 mt-1 pt-6 text-sm text-zinc-400 dark:text-zinc-500"
     >
-        <div
-            class="absolute bottom-10 left-1/2 w-full grow -translate-x-1/2 px-4 py-2"
-        >
-            <div class="group relative">
-                <h3
-                    class="small-post-title text-ellipsis border group-hover:underline"
-                >
-                    {{ $post->title }}
-                </h3>
+        <x-ri-git-commit-fill
+            class="absolute -left-9 -top-2.5 h-6 w-6 rotate-90 transform fill-murrey"
+        />
+        <div class="-mt-8 flex items-start gap-4">
+            <time
+                class="z-10 text-sm text-zinc-400 dark:text-zinc-500"
+                datetime="{{ $post->date->format("Y-m-d") }}"
+            >
+                <span class="sr-only">Publié le</span>
+                {{ $post->date->isoFormat("LL") }}
+            </time>
+            <div>
+                <p>{{ $post->category->title }}</p>
+                @if ($post->tags->isNotEmpty())
+                    <div class="flex flex-wrap gap-4">
+                        @foreach ($post->tags as $tag)
+                            <p>
+                                #{{ $tag->title }} ({{ $tag->posts_count }})
+                            </p>
+                        @endforeach
+                    </div>
+                @endif
             </div>
         </div>
-
-        <div
-            class="absolute bottom-0 left-0 flex items-center gap-x-2 rounded-tr-3xl border-r border-t bg-powder px-3 py-1 text-paynes-gray"
+    </div>
+    <div
+        class="relative z-10 col-span-4 text-sm text-zinc-400 md:col-span-1 dark:text-zinc-500"
+    >
+        <img
+            class="h-28 w-28 rounded-2xl object-cover"
+            src="{{ $post->cover }}"
+            alt="{{ $post->alt }}"
+        />
+    </div>
+    <div class="col-span-4 flex flex-col items-start md:col-span-3">
+        <h2
+            class="text-lg font-medium tracking-tight text-zinc-800 dark:text-zinc-100"
         >
-            <x-ri-eye-line class="h-4 w-4" />
-            <span>{{ $post->reading->getReadingCount() }}</span>
-        </div>
+            <a href="/posts/{{ $post->slug }}">
+                <span
+                    class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"
+                ></span>
+                <span class="relative z-10">{{ $post->title }}</span>
+            </a>
+        </h2>
+        @if ($post->episode)
+            <p
+                class="relative z-10 flex items-center gap-2 text-sm font-thin text-zinc-600 dark:text-zinc-400"
+            >
+                <x-ri-guide-line class="h-5 w-5" />
+                {{ $post->episode->series->title }} - épisode
+                {{ $post->episode->episode_number }}
+            </p>
+        @endif
 
-        <div
-            class="absolute right-0 top-0 rounded-bl-3xl border-b border-l bg-powder px-3 py-1 text-paynes-gray"
+        <p
+            class="relative z-10 mt-2 text-base font-thin leading-relaxed text-zinc-600 dark:text-zinc-400"
         >
-            <livewire:likes
-                wire:key="{{ Guid::uuid4() }}"
-                :postId="$post->postId"
-            />
+            {{ $post->description }}
+        </p>
+        <div
+            aria-hidden="true"
+            class="relative z-10 mt-4 flex items-center text-base font-medium text-sky-magenta"
+        >
+            Lire l'article
+            <x-ri-arrow-right-s-line class="ml-1 h-4 w-4 fill-current" />
         </div>
-    </article>
-</a>
+        <div
+            class="relative z-10 mt-2 flex items-center gap-2 text-sm text-zinc-600"
+        >
+            <div class="flex items-center gap-1">
+                <x-ri-book-open-line class="h-4 w-4" />
+                {{ $post->meta->reading_count }} lecture·s
+            </div>
+            <div><p>·</p></div>
+            <div class="flex items-center gap-1">
+                <x-ri-hourglass-line class="h-4 w-4" />
+                {{ $post->meta->reading_time }} min
+            </div>
+            <div><p>·</p></div>
+            <div class="flex items-center gap-1">
+                <livewire:like-post-action
+                    wire:key="like-post-action:{{ $post->slug }}"
+                    :post="$post"
+                />
+            </div>
+        </div>
+    </div>
+</article>

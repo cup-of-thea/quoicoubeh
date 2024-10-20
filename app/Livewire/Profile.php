@@ -8,6 +8,7 @@ class Profile extends Component
 {
     public string $avatarUrl;
     public string $name;
+    public string $bio;
     public string $pronouns;
     public array $links;
 
@@ -19,5 +20,6 @@ class Profile extends Component
         $this->name = config('domain.profile.name');
         $this->links = config('domain.profile.links');
         $this->pronouns = config('domain.profile.pronouns');
+        $this->bio = config('domain.profile.bio');
     }
 }

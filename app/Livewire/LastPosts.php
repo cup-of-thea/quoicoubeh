@@ -2,23 +2,17 @@
 
 namespace App\Livewire;
 
-use App\Domain\DomainService\TopPostsDomainService;
-use App\Domain\ValueObjects\PostIndexCollection;
+use App\Models\Post;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class LastPosts extends Component
 {
-    private TopPostsDomainService $topPostsDomainService;
-
-    public function boot(TopPostsDomainService $topPostsDomainService): void
-    {
-        $this->topPostsDomainService = $topPostsDomainService;
-    }
-
     #[Computed]
-    public function posts(): PostIndexCollection
+    public function posts(): Collection
     {
-        return $this->topPostsDomainService->getMostRecentPosts();
+        return Cache::remember('last-posts', 4 * 3600, fn() => Post::mostRecentGeneralPosts()->get());
     }
 }

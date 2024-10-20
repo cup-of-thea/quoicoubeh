@@ -18,7 +18,7 @@ class HomePageTest extends TestCase
 
     public function test_the_home_page_shows_navbar(): void
     {
-        $this->get('/')->assertSeeLivewire('navbar');
+        $this->get('/')->assertSeeLivewire('navigation-top');
     }
 
     public function test_the_home_page_shows_posts(): void

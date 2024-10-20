@@ -2,31 +2,24 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCases\Commands\LikePostCommand;
-use App\Domain\UseCases\Queries\Posts\LikedPostQuery;
-use App\Domain\ValueObjects\PostId;
+use App\Models\Post;
+use App\Models\PostLike;
 use Livewire\Component;
 
 class LikePostAction extends Component
 {
-    public PostId $postId;
+    public Post $post;
+
     public bool $isLiked;
     public int $likesCount;
-    private LikePostCommand $likePostCommand;
-    private LikedPostQuery $likedPostQuery;
-
-    public function boot(
-        LikePostCommand $likePostCommand,
-        LikedPostQuery $likedPostQuery
-    ): void {
-        $this->likePostCommand = $likePostCommand;
-        $this->likedPostQuery = $likedPostQuery;
-    }
 
     public function mount(): void
     {
-        $this->isLiked = $this->likedPostQuery->isLiked($this->postId);
-        $this->likesCount = $this->likedPostQuery->likesCount($this->postId);
+        $this->isLiked = PostLike::query()
+            ->where('post_id', $this->post->id)
+            ->where('ip', request()->ip())
+            ->exists();
+        $this->likesCount = $this->post->meta->likes_count;
     }
 
     public function toggleLike(): void
@@ -40,14 +33,22 @@ class LikePostAction extends Component
 
     public function like(): void
     {
-        $this->likePostCommand->like($this->postId);
+        PostLike::create([
+            'post_id' => $this->post->id,
+            'ip' => request()->ip(),
+        ]);
+        $this->post->meta()->increment('likes_count');
         $this->isLiked = true;
         $this->likesCount++;
     }
 
     public function unlike(): void
     {
-        $this->likePostCommand->unlike($this->postId);
+        PostLike::query()
+            ->where('post_id', $this->post->id)
+            ->where('ip', request()->ip())
+            ->delete();
+        $this->post->meta()->decrement('likes_count');
         $this->isLiked = false;
         $this->likesCount--;
     }

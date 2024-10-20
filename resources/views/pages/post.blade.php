@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="p-16 xl:py-32">
+    <div class="px-8 py-8 lg:px-16">
         <div class="mx-auto text-base leading-7 dark:text-powder">
             <h1
                 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl dark:text-powder"
@@ -7,18 +7,20 @@
                 {{ $post->title }}
             </h1>
             <div
-                class="mt-4 flex w-full items-center justify-between text-xs text-gray-500"
+                class="relative z-10 mt-2 flex items-center gap-2 text-sm text-zinc-600"
             >
-                <div class="flex items-center gap-x-2">
-                    <x-ri-calendar-schedule-line class="h-4 w-4" />
-                    <time datetime="{{ $post->date->format("Y-m-d") }}">
-                        {{ $post->date->isoFormat("LL") }}
-                    </time>
-                    <div class="w-2"></div>
-                    <x-ri-time-line class="h-4 w-4" />
-                    <span>{{ $post->reading->getReadingTime() }}</span>
-                    <div class="w-2"></div>
-                    <livewire:like-post-action :postId="$post->id" />
+                <div class="flex items-center gap-1">
+                    <x-ri-book-open-line class="h-4 w-4" />
+                    {{ $post->meta->reading_count }} lecture·s
+                </div>
+                <div><p>·</p></div>
+                <div class="flex items-center gap-1">
+                    <x-ri-hourglass-line class="h-4 w-4" />
+                    {{ $post->meta->reading_time }} min
+                </div>
+                <div><p>·</p></div>
+                <div class="flex items-center gap-1">
+                    <livewire:like-post-action :post="$post" />
                 </div>
             </div>
             <div class="h-4"></div>
@@ -37,13 +39,14 @@
                             </li>
                         @endif
 
-                        @foreach ($tags as $tag)
+                        @foreach ($post->tags as $tag)
                             <li>
                                 <a href="/tags/{{ $tag->slug }}">
                                     <span
                                         class="inline-flex items-center rounded-md bg-murrey/10 px-2 py-1 text-xs font-medium text-murrey ring-1 ring-inset ring-murrey/10 dark:bg-powder/10 dark:text-powder dark:ring-powder/10"
                                     >
                                         #{{ $tag->title }}
+                                        ({{ $tag->posts_count }})
                                     </span>
                                 </a>
                             </li>
@@ -58,15 +61,19 @@
                 </p>
             @endif
 
-            <img src="{{ $post->getImage() }}" alt="{{ $post->getAlt() }}" />
+            <img src="{{ $post->cover }}" alt="{{ $post->image_alt }}" />
 
             <div
                 class="post-content prose mt-10 max-w-none dark:text-powder/80"
             >
-                {!! $post->content !!}
+                <x-markdown>
+                    {!! $post->content !!}
+                </x-markdown>
             </div>
         </div>
     </div>
+
+    <livewire:post-like-section :post="$post" />
 
     <x-kofi />
 

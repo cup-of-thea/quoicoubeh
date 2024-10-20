@@ -1,45 +1,30 @@
-<div class="text-left">
-    <div class="relative inline-block">
+<div class="generic-component">
+    <div class="relative flex items-center gap-x-4">
         <img
-            class="h-32 w-32 rounded-full"
+            class="h-16 w-16 rounded-full"
             src="{{ $avatarUrl }}"
             alt="Avatar"
         />
-        <div
-            class="absolute -right-2 -top-2 flex h-12 w-12 items-center justify-center rounded-full bg-white text-lg shadow"
-        >
-            🥰
-        </div>
+        <h2 class="text-2xl">{{ $name }} · {{ $pronouns }}</h2>
     </div>
-    <div class="mt-4 text-sm">
-        <h2 class="mb-4 text-xl">{{ $name }} · {{ $pronouns }}</h2>
-
-        <ul class="font-light">
-            <li>🖥️ Développeuse .Net</li>
-            <li>🎮 Affiliée Twitch</li>
-            <li>✍️ Autrice de contenus</li>
-            <li>
-                🌸 🏳️‍🌈 🏳️‍⚧️ Féministe Intersectionnelle & Lesbienne et fière de
-                l'être
-            </li>
-        </ul>
-        <div class="h-6"></div>
-    </div>
+    <p class="mt-6 text-base font-thin leading-relaxed text-zinc-600 dark:text-zinc-400">
+        {!! $bio !!}
+    </p>
 
     <ul
         role="list"
-        class="grid grid-cols-6 gap-2 md:grid-cols-10 lg:grid-cols-6"
+        class="flex gap-4 mt-6 flex-wrap"
     >
         @foreach ($links as $link)
             <li>
                 <a
                     href="{{ $link["url"] }}"
-                    class="group flex items-center justify-center rounded-lg p-1 px-2 hover:text-sky-magenta md:justify-start dark:text-powder/80"
+                    class="group flex items-center justify-center rounded-lg hover:text-sky-magenta md:justify-start dark:text-powder/80"
                 >
                     <span class="sr-only">{{ $link["title"] }}</span>
                     <x-dynamic-component
                         component="{{ $link['icon'] }}"
-                        class="h-5 w-5"
+                        class="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"
                     />
                 </a>
             </li>

@@ -15,40 +15,12 @@
     <body
         class="{{ Cache::get("theme:" . request()->ip(), "light") }} layout-body"
     >
-        <x-banner />
-        <section class="layout-section">
-            <aside class="layout-aside-left">
-                <div class="h-4"></div>
-                <livewire:profile />
-                <div class="h-14"></div>
-                <livewire:theme-selector />
-                <livewire:navbar />
-                <div class="h-4"></div>
-                <div class="hidden lg:block">
-                    <livewire:categories />
-                    <div class="h-4"></div>
-                    <livewire:series />
-                    <div class="h-4"></div>
-                    <livewire:post-years />
-                    <div class="h-4"></div>
-                    <livewire:tags />
-                </div>
-            </aside>
+        <livewire:navigation-top />
 
-            <main class="layout-main">
-                {{ $slot }}
-            </main>
+        <main class="layout-main">
+            {{ $slot }}
+        </main>
 
-            <aside class="layout-aside-right">
-                <livewire:categories />
-                <div class="h-4"></div>
-                <livewire:series />
-                <div class="h-4"></div>
-                <livewire:post-years />
-                <div class="h-4"></div>
-                <livewire:tags />
-            </aside>
-        </section>
         @livewireScripts
         <script>
             document.addEventListener('livewire:init', () => {

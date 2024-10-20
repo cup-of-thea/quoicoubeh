@@ -2,23 +2,17 @@
 
 namespace App\Livewire\Sections;
 
-use App\Domain\UseCases\Queries\Categories\PostsOfTheWeekQuery;
-use App\Domain\ValueObjects\PostIndexCollection;
+use App\Models\Post;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class PostsOfTheWeek extends Component
 {
-    private PostsOfTheWeekQuery $postsOfTheWeekQuery;
-
-    public function boot(PostsOfTheWeekQuery $query): void
-    {
-        $this->postsOfTheWeekQuery = $query;
-    }
-
     #[Computed]
-    public function posts(): PostIndexCollection
+    public function posts(): Collection
     {
-        return $this->postsOfTheWeekQuery->get();
+        return Cache::remember('posts-of-the-week', 4 * 3600, fn() => Post::mostRecentPostsOfTheWeek()->get());
     }
 }

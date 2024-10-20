@@ -1,9 +1,12 @@
-<div wire:click="toggleLike" class="flex items-center {{ $isLiked ? 'text-atomic-tangerine' : '' }} cursor-pointer gap-x-2">
-    @if($isLiked)
-        <x-ri-heart-3-fill class="w-4 h-4" />
+<div
+    wire:click="toggleLike"
+    class="{{ $isLiked ? "text-atomic-tangerine" : "" }} flex cursor-pointer items-center gap-x-2"
+>
+    @if ($isLiked)
+        <x-ri-hearts-fill class="h-4 w-4" />
         <p>{{ $likesCount }}</p>
     @else
-        <x-ri-heart-3-line class="w-4 h-4" />
+        <x-ri-hearts-line class="h-4 w-4" />
         <p>{{ $likesCount }}</p>
     @endif
 </div>

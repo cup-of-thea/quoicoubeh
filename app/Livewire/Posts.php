@@ -2,23 +2,51 @@
 
 namespace App\Livewire;
 
-use App\Domain\UseCases\Queries\Posts\GetLastPostsQuery;
-use App\Domain\ValueObjects\PostIndexCollection;
-use Livewire\Attributes\Computed;
+use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Posts extends Component
 {
-    private GetLastPostsQuery $lastPostsQuery;
+    use WithPagination;
 
-    public function boot(GetLastPostsQuery $lastPostsQuery): void
+    #[Url(as: 'category')]
+    public string $selectedCategory = 'all';
+
+    public function render(): View
     {
-        $this->lastPostsQuery = $lastPostsQuery;
+        return view('livewire.posts', [
+            'posts' => Post::query()
+                ->whereHas(
+                    'category',
+                    fn($query) => $this->selectedCategory !== 'all'
+                        ? $query->where('slug', $this->selectedCategory)
+                        : $query
+                )
+                ->latest('date')
+                ->paginate(10),
+            'categories' => Cache::remember(
+                'categories',
+                86400,
+                fn() => Category::withCount('posts')->orderBy('posts_count', 'desc')->get()
+            ),
+
+        ]);
     }
 
-    #[Computed]
-    public function posts(): PostIndexCollection
+    public function selectCategory(string $category): void
     {
-        return $this->lastPostsQuery->get();
+        $this->selectedCategory = $category;
+        $this->resetPage();
+    }
+
+    public function resetCategory(): void
+    {
+        $this->selectedCategory = 'all';
+        $this->resetPage();
     }
 }

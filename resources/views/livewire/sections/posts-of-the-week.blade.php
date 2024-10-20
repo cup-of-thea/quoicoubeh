@@ -1,11 +1,12 @@
 <div class="generic-component">
-    <h2 class="generic-title">Les posts de la semaine ({{ $this->posts->count() }})</h2>
-    <p class="mt-6 font-light">
-        {{ config("metadata.categories.posts-of-the-week") }}
-    </p>
-    <div class="generic-grid">
-        @foreach ($this->posts as $k => $post)
-            <x-small-post-item :post="$post" />
-        @endforeach
+    <h2 class="generic-title">Les posts de la semaine</h2>
+    <div class="mt-16">
+        <div class="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
+            <div class="flex max-w-3xl flex-col space-y-16">
+                @foreach ($this->posts as $k => $post)
+                    <x-small-post-item :post="$post" :k="$k" />
+                @endforeach
+            </div>
+        </div>
     </div>
 </div>
