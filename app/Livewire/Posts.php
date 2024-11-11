@@ -21,6 +21,7 @@ class Posts extends Component
     {
         return view('livewire.posts', [
             'posts' => Post::query()
+                ->published()
                 ->whereHas(
                     'category',
                     fn($query) => $this->selectedCategory !== 'all'
