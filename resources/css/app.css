@@ -6,6 +6,7 @@
 @import "./components/generic";
 @import "./components/bento";
 @import "./components/small-post";
+@import "./components/gallery";
 
 @tailwind base;
 @tailwind components;
