@@ -8,9 +8,7 @@
         <p class="mx-auto max-w-xl leading-8 text-gray-600 dark:text-powder/80">
             J'adore écrire des articles pour toi, mais c'est un gros travail. Si
             tu aimes ce que je fais (et seulement si tu peux) tu peux me
-            soutenir en m'offrant un café&nbsp;! En plus si tu es sur le
-            discord, tu auras un rôle spécial et des accès à des contenus
-            inédits&nbsp;!
+            soutenir en m'offrant un café&nbsp;!
         </p>
         <div class="mt-4 flex items-center justify-center gap-x-6">
             <a
