@@ -1,0 +1,32 @@
+@layer base {
+    .post-container {
+        @apply w-full grid grid-cols-1 gap-4 lg:grid-cols-3 px-12 lg:px-0;
+    }
+
+    .post-header {
+        @apply w-full col-span-1 lg:col-span-3 order-1;
+        .post-title {
+            @apply text-center mb-4 text-3xl font-light tracking-wide sm:text-4xl dark:text-powder;
+        }
+    }
+
+    .post-side {
+        @apply w-full col-span-1 lg:col-span-1 divide-y order-3 lg:order-2;
+        .post-side-section {
+            @apply py-4;
+        }
+        .post-side-section-title {
+            @apply uppercase text-sm font-bold text-zinc-900 dark:text-powder pb-1;
+        }
+        .post-side-link {
+            @apply py-1 px-2 rounded border border-paynes-gray;
+            &:hover {
+                @apply bg-paynes-gray/10;
+            }
+        }
+    }
+
+    .post-main {
+        @apply w-full col-span-1 lg:col-span-2 order-2 lg:order-3;
+    }
+}
