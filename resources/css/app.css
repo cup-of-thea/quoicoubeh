@@ -1,6 +1,7 @@
 @import "./base/fonts";
 @import "./base/base";
 @import "./base/layout";
+@import "./base/post";
 
 @import "./components/keep";
 @import "./components/generic";
