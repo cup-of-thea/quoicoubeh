@@ -3,7 +3,9 @@
         Série
     </div>
     <div class="post-side-section-content">
-        {{ $episode->series->title }} - Épisode {{ $episode->episode_number }}
+        <a class="underline" href="{{ route('shows') }}?show={{ $episode->series->slug }}">
+            {{ $episode->series->title }}
+        </a> - Épisode {{ $episode->episode_number }}
         @if($episode->previous())
         <a class="flex items-center underline" href="{{ route('posts.show', $episode->previous()->post) }}">
             <p class="sr-only">Épisode précédent</p>
