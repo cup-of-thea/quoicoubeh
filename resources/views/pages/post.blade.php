@@ -9,6 +9,9 @@
 
         <aside class="post-side">
             <x-meta :post="$post" />
+            @if($post->image_alt)
+                <x-image-alt :alt="$post->image_alt" />
+            @endif
             <x-actions :post="$post" />
             @if($post->category)
                 <x-category :post="$post" />
@@ -16,8 +19,8 @@
             @if($post->tags->isNotEmpty())
                 <x-tags :post="$post" />
             @endif
-            @if($post->image_alt)
-                <x-image-alt :alt="$post->image_alt" />
+            @if($post->episode)
+                <x-episode :episode="$post->episode" />
             @endif
             <x-kofi-side />
         </aside>

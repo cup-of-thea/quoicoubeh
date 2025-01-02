@@ -19,4 +19,18 @@ class Episode extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    public function previous(): ?self
+    {
+        return Episode::where('series_id', $this->series_id)
+            ->where('episode_number', $this->episode_number - 1)
+            ->first();
+    }
+
+    public function next(): ?self
+    {
+        return Episode::where('series_id', $this->series_id)
+            ->where('episode_number', $this->episode_number + 1)
+            ->first();
+    }
 }
