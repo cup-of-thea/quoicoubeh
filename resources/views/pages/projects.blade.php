@@ -2,7 +2,7 @@
     <div class="generic-component">
         <h2 class="text-2xl">Projets</h2>
         <p
-            class="mt-6 text-base font-thin leading-relaxed text-zinc-600 dark:text-zinc-400"
+            class="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400"
         >
             Ici, tu pourras retrouver ce à quoi j'ai participé, les autres
             projets que je soutiens, les collectifs, les associations, bref, les

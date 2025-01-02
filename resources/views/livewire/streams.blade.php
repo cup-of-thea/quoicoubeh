@@ -1,7 +1,7 @@
 <div class="generic-component">
     <h3 class="text-xl">Streams</h3>
     <p
-        class="mt-6 text-base font-thin leading-relaxed text-zinc-600 dark:text-zinc-400"
+        class="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400"
     >
         Les streams sont sur mon Twitch ! Viens me retrouver lors de mes
         prochains streams ici :

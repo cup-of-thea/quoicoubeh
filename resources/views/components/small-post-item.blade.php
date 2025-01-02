@@ -56,7 +56,7 @@
         </h2>
         @if ($post->episode)
             <p
-                class="relative z-10 flex items-center gap-2 text-sm font-thin text-zinc-600 dark:text-zinc-400"
+                class="relative z-10 flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400"
             >
                 <x-ri-guide-line class="h-5 w-5" />
                 {{ $post->episode->series->title }} - épisode
@@ -65,7 +65,7 @@
         @endif
 
         <p
-            class="relative z-10 mt-2 text-base font-thin leading-relaxed text-zinc-600 dark:text-zinc-400"
+            class="relative z-10 mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400"
         >
             {{ $post->description }}
         </p>
