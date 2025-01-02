@@ -6,6 +6,7 @@
         J'adore écrire des articles pour toi, mais c'est un gros travail. Si
         tu aimes ce que je fais (et seulement si tu peux) tu peux me
         soutenir en m'offrant un café&nbsp;!
+    </div>
     <div class="mt-4 gap-x-6">
         <a
             href="https://ko-fi.com/thea_cake"

@@ -7,7 +7,7 @@
         Catégorie
     </div>
     <div class="post-side-section-content">
-        <a class="post-side-link" href="/categories/{{ $post->category->slug }}">
+        <a class="underline" href="/categories/{{ $post->category->slug }}">
             {{ $post->category->title }}
             ({{ $post->category->posts_count }})
         </a>
