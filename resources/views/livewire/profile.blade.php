@@ -7,7 +7,7 @@
         />
         <h2 class="text-2xl">{{ $name }} · {{ $pronouns }}</h2>
     </div>
-    <p class="mt-6 text-base font-thin leading-relaxed text-zinc-600 dark:text-zinc-400">
+    <p class="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
         {!! $bio !!}
     </p>
 
