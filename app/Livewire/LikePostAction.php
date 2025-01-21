@@ -19,7 +19,7 @@ class LikePostAction extends Component
             ->where('post_id', $this->post->id)
             ->where('ip', request()->ip())
             ->exists();
-        $this->likesCount = $this->post->meta?->likes_count;
+        $this->likesCount = $this->post->meta?->likes_count ?: 0;
     }
 
     public function toggleLike(): void
