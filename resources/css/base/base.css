@@ -17,4 +17,8 @@
         @apply text-sky-magenta;
     }
 
+    .prose blockquote
+    {
+        @apply dark:text-powder;
+    }
 }
