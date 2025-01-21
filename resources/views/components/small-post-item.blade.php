@@ -81,12 +81,12 @@
         >
             <div class="flex items-center gap-1">
                 <x-ri-book-open-line class="h-4 w-4" />
-                {{ $post->meta->reading_count }} lecture·s
+                {{ $post->meta?->reading_count }} lecture·s
             </div>
             <div><p>·</p></div>
             <div class="flex items-center gap-1">
                 <x-ri-hourglass-line class="h-4 w-4" />
-                {{ $post->meta->reading_time }} min
+                {{ $post->meta?->reading_time }} min
             </div>
             <div><p>·</p></div>
             <div class="flex items-center gap-1">
