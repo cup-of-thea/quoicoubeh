@@ -71,6 +71,11 @@ class Post extends Model
             ->withPivot('episode_number');
     }
 
+    public function authors(): BelongsToMany
+    {
+        return $this->belongsToMany(Author::class, 'post_author');
+    }
+
     public function newEloquentBuilder($query): PostBuilder
     {
         return new PostBuilder($query);
