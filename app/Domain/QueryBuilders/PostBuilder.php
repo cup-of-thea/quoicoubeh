@@ -12,10 +12,21 @@ class PostBuilder extends Builder
         return $this->where('status', 'published');
     }
 
+    public function notGuest(): self
+    {
+        return $this->withCount('authors')->having('authors_count', '<', 1);
+    }
+
+    public function guests(): self
+    {
+        return $this->withCount('authors')->having('authors_count', '>=', 1);
+    }
+
     public function mostRecentGeneralPosts(): self
     {
         return $this
             ->published()
+            ->notGuest()
             ->whereDoesntHave(
                 'category', fn($query) => $query
                 ->where('slug', 'decouvertes')
@@ -78,5 +89,14 @@ class PostBuilder extends Builder
             ->where('post_id', $id)
             ->where('ip', request()->ip())
             ->exists();
+    }
+
+    public function fromGuests(): self
+    {
+        return $this
+            ->published()
+            ->guests()
+            ->latest('date')
+            ->limit(1);
     }
 }

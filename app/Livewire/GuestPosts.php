@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
-class LastPosts extends Component
+class GuestPosts extends Component
 {
     #[Computed]
     public function posts(): Collection
     {
-        return Cache::remember( 'last-posts', now()->addWeek(), fn() => Post::mostRecentGeneralPosts()->get());
+        return Cache::remember('guest-posts', now()->addMonths(3), fn() => Post::fromGuests()->get());
     }
 }

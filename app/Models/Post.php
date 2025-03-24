@@ -28,6 +28,13 @@ class Post extends Model
         );
     }
 
+    public function isGuest(): Attribute
+    {
+        return Attribute::make(
+            fn() => $this->authors()->count() > 0,
+        );
+    }
+
     public function cover(): Attribute
     {
         return Attribute::make(
@@ -69,6 +76,11 @@ class Post extends Model
     {
         return $this->belongsToMany(Series::class, 'episodes')
             ->withPivot('episode_number');
+    }
+
+    public function authors(): BelongsToMany
+    {
+        return $this->belongsToMany(Author::class, 'post_author');
     }
 
     public function newEloquentBuilder($query): PostBuilder

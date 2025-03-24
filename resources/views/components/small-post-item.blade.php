@@ -76,6 +76,19 @@
             Lire l'article
             <x-ri-arrow-right-s-line class="ml-1 h-4 w-4 fill-current" />
         </div>
+        @if($post->isGuest)
+            <div class="relative z-10 mt-2 flex items-center gap-2 text-sm text-zinc-600" >
+            @foreach($post->authors as $k => $author)
+                    @if($k > 0)
+                    <div><p>·</p></div>
+                    @endif
+                    <div class="flex items-center gap-1">
+                        <x-ri-quill-pen-line class="h-4 w-4" />
+                        {{ $author->name }}
+                    </div>
+            @endforeach
+            </div>
+        @endif
         <div
             class="relative z-10 mt-2 flex items-center gap-2 text-sm text-zinc-600"
         >
