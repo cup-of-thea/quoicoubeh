@@ -156,6 +156,7 @@ class PostResource extends Resource
         return [
             RelationManagers\MetaRelationManager::class,
             RelationManagers\TagsRelationManager::class,
+            RelationManagers\AuthorsRelationManager::class,
         ];
     }
 
