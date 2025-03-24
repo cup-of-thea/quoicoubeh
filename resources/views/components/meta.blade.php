@@ -21,5 +21,17 @@
             <x-ri-hourglass-line class="h-4 w-4" />
             {{ $post->meta->reading_time }} min
         </div>
+        <div class="flex items-center gap-1">
+            <x-ri-quill-pen-line class="h-4 w-4" />
+            Écrit par
+            @forelse($post->authors as $k => $author)
+                @if($k > 0)
+                    <div><p>·</p></div>
+                @endif
+                    {{ $author->name }}
+            @empty
+                Thea
+            @endforelse
+        </div>
     </div>
 </section>
