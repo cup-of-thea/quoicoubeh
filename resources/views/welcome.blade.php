@@ -1,5 +1,6 @@
 <x-layout>
     <livewire:profile />
+    <livewire:guest-posts />
     <livewire:last-posts />
     <livewire:sections.most-liked-posts />
     <livewire:sections.most-read-posts />

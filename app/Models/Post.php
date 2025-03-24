@@ -28,6 +28,13 @@ class Post extends Model
         );
     }
 
+    public function isGuest(): Attribute
+    {
+        return Attribute::make(
+            fn() => $this->authors()->count() > 0,
+        );
+    }
+
     public function cover(): Attribute
     {
         return Attribute::make(
