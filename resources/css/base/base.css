@@ -17,8 +17,42 @@
         @apply text-sky-magenta;
     }
 
-    .prose blockquote
-    {
+    .prose blockquote {
         @apply dark:text-powder;
+    }
+
+    .spoiler {
+        background: #333333;
+        border-radius: 0.2em;
+        color: transparent !important;
+    }
+
+    .spoiler:target {
+        background: transparent;
+        color: inherit;
+        text-decoration: none;
+        @apply text-rich-black dark:text-powder !important;
+
+        a {
+            @apply text-sky-magenta underline !important;
+        }
+    }
+
+    .spoiler::before, .spoiler::after {
+        clip-path: inset(100%);
+        clip: rect(1px, 1px, 1px, 1px);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    .spoiler::before {
+        content: " [spoiler start] ";
+    }
+
+    .spoiler::after {
+        content: " [spoiler end] ";
     }
 }
