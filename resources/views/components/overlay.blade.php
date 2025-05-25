@@ -11,9 +11,7 @@
     @vite("resources/css/app.css")
     @livewireStyles
 </head>
-<body
-        class="layout-body"
->
+<body>
 <main class="layout-main">
     {{ $slot }}
 </main>
