@@ -9,6 +9,8 @@
 @import "./components/small-post";
 @import "./components/gallery";
 
+@import "./components/overlays/jimqueen";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
