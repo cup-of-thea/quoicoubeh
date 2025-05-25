@@ -26,4 +26,9 @@ Route::get('/projects', fn() => view('pages.projects'));
 
 Route::get('/events', fn() => view('pages.events'));
 
+Route::prefix('/overlays')->group(function () {
+    Route::get('/jimqueen/{slug}', fn(string $slug) => view("overlays.jimqueen.$slug"))
+        ->name('overlays.jimqueen');
+});
+
 Route::feeds();
