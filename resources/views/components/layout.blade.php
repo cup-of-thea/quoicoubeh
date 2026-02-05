@@ -11,9 +11,6 @@
     @vite("resources/css/app.css")
     @livewireStyles
     <x-feed-links/>
-    <script defer src="https://api.pirsch.io/pa.js"
-            id="pianjs"
-            data-code="RWUIFHQXceA9iy6QqvIbdom387a3t4hg"></script>
 </head>
 <body
         class="{{ Cache::get("theme:" . request()->ip(), "light") }} layout-body"
